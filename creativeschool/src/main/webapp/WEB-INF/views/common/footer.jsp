@@ -19,6 +19,6 @@
 	
 	<!-- Latest compiled JavaScript -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="${path }/resources/js/jquery-3.7.1.js"></script>
+	<script src="${path }/resources/js/jquery-3.7.0.min.js"></script>
 </body>
 </html>
