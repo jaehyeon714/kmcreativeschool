@@ -19,9 +19,9 @@
 		<property name="driverClassName" 
 		value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" 
-		value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="spring"/>
-		<property name="password" value="spring"/>
+		value="jdbc:oracle:thin:@teacherdev09.kro.kr:8877:xe"/>
+		<property name="username" value="km"/>
+		<property name="password" value="km"/>
 	</bean>
 	
 	<bean id="sqlSesionFactory" 
