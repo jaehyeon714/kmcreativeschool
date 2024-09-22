@@ -16,4 +16,6 @@ public class ChatController {
 		return "chat/livechat";
 	}
 	
+	
+	
 }
