@@ -6,8 +6,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>신고 사이트</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<!-- 공식 문서 - https://getbootstrap.kr/docs/5.3/getting-started/introduction -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	
+	<!-- 커스텀 css -->
+	<link rel="stylesheet" href="${ path }/resources/css/basic.css">
 </head>
 <body>
 	<header class="d-flex justify-content-between align-items-center p-3 bg-white border-bottom">
