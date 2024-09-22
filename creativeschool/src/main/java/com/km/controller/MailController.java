@@ -16,14 +16,14 @@ public class MailController {
 	
 	@RequestMapping("/mail/test")
 	@ResponseBody
-	public String testSendMail() {
-		mailService.sendMail(MailInfo.builder().
+	public boolean testSendMail() {
+		return mailService.sendMail(MailInfo.builder().
 				reciever("prince0324@naver.com")
 				.title("테스트메일발송")
-				.content("테스트내용")
+				.content("<h3>테스트내용</h3>")
 				.build()
 				);	
-		return "테스트메일발송";
+		//return "테스트메일발송";
 	}
 }
 

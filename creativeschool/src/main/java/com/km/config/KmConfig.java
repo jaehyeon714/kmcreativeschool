@@ -13,13 +13,15 @@ public class KmConfig {
 	@Bean
 	JavaMailSender javaMailSender() {
 		Properties mailData=new Properties();
-		mailData.put("host", "smtp.gmail.com");
-		mailData.put("port", "587");
-		mailData.put("username", "teacherdev09");
-		mailData.put("password", "ibgzqktxlpvkmlhb");
-		mailData.put("mail.smtp.auth", true);
-		mailData.put("mail.smtp.starttls", true);
+		mailData.put("mail.smtp.auth", "true");
+        mailData.put("mail.smtp.starttls.enable", "true");
+        mailData.put("mail.smtp.host", "smtp.gmail.com");
+        mailData.put("mail.smtp.port", "587");
+        mailData.put("mail.debug", "true");
+		
 		JavaMailSenderImpl sender=new JavaMailSenderImpl();
+		sender.setUsername("teacherdev09@gmail.com");
+		sender.setPassword("ibgzqktxlpvkmlhb");
 		sender.setJavaMailProperties(mailData);
 		
 		return sender;
