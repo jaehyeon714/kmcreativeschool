@@ -3,6 +3,7 @@ package com.example.login.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -25,5 +26,10 @@ public class LoginController {
             model.addAttribute("error", "Invalid username or password");
             return "login"; // 실패 시 로그인 페이지로 다시 이동
         }
+    }
+    
+    @GetMapping("policeenroll.do")
+    public String policeLogin() {
+        return "/police/policeenroll"; // policeenroll.jsp로 이동
     }
 }

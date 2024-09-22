@@ -18,7 +18,7 @@
 	        <h3 class="mb-0 ml-2">학교폭력신고</h3>
 	    </div>
 	    <div>
-	        <a href="${ path }/police/파일이름">
+	        <a href="${ path }/police/policeenroll.do">
 	            <button type="button" class="btn btn-primary px-4">경찰관</button>
 	        </a>
 	    </div>
