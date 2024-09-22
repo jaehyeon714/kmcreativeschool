@@ -200,6 +200,12 @@
 		    <version>${org.springframework-version}</version>
 		</dependency>		
 				
+				<dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.3.10</version>
+    </dependency>
+        
 				
 	</dependencies>
     <build>
@@ -240,6 +246,7 @@
             </plugin>
         </plugins>
     </build>
+    
   
   
   
