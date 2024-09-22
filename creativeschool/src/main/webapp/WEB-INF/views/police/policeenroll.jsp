@@ -4,6 +4,7 @@
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>    
 
+
 <style>
 	#div_box{
 		margin-top: 30px;
@@ -11,7 +12,6 @@
 	}
 </style>
 <main class="flex-column justify-content-coneter" style="padding:5%;">
-
     <div class="d-flex justify-content-center">
     	<img alt="경찰로고" src="${ path }/resources/images/policeLogo.png" style="width: 130px; height: 100px; border-radius: 100px;">
 	 </div>	
@@ -59,4 +59,5 @@
         <p style="color:red">${error}</p>
     </c:if>
 </main>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

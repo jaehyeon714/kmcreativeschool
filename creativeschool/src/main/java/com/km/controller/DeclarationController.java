@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DeclarationController {
 	
 	@RequestMapping("/requestdeclaration.km")
-	public String reportinro() {
-		return "declaration/report";
+
+	
+
+	public String reportinfo() {
+		return "report/reporter";
 	}
-	
-	
-	
 }
