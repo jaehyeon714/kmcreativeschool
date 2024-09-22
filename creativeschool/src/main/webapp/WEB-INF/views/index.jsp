@@ -3,7 +3,7 @@
 	
 	<!-- main > section > article -->
     <main class="container my-4 d-flex justify-content-around" style="height: 700px;">
-    	<a href="${ path }/police/이름" style="margin-top: 200px;">
+    	<a href="${ path }/declaration/requestdeclaration.km">
     		<img alt="신고하기" src="/creativeschool/resources/images/declaration_img.jpg" class="img-fluid">
     		<p class="text-center" style="font-size: 30px;">신고하기</p>
     	</a>
