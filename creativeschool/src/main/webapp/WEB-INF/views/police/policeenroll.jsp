@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>    
-
 	<style>
 		#div_box{
 			margin-top: 30px;
@@ -57,9 +56,11 @@
 				<button type="button" class="btn btn-outline-primary">경찰등록</button>
 			</div>
 		</div>
+	
     <!-- 로그인 실패 시 에러 메시지 출력 -->
     <c:if test="${not empty error}">
         <p style="color:red">${error}</p>
     </c:if>
 </main>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

@@ -9,11 +9,9 @@ public class DeclarationController {
 	
 	@RequestMapping("/requestdeclaration.km")
 	public String reportinfo() {
-		return "declaration/report
+		return "declaration/report";
 	}
 }
-
-
 
 
 
