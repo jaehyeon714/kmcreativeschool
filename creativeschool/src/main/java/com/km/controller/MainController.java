@@ -10,4 +10,10 @@ public class MainController {
 	public String main() {
 		return "index";
 	}
+	
+	@RequestMapping("/police/policeenroll.do")
+	public String policeLogin() {
+		return "police/policeenroll";
+	}
+	
 }

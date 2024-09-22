@@ -1,26 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <meta charset="UTF-8">
+    <title>로그인 화면</title>
+    <link rel="stylesheet" href="<c:url value='/css/login.css'/>"> <!-- CSS 파일 링크 -->
 </head>
 <body>
-    <h2>Login</h2>
-
-    <form action="login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-
-        <input type="submit" value="Login">
-    </form>
-
-    <!-- 로그인 실패 시 에러 메시지 출력 -->
-    <c:if test="${not empty error}">
-        <p style="color:red">${error}</p>
-    </c:if>
+    <div class="login-container">
+        <h2>로그인</h2>
+        <c:if test="${not empty error}">
+            <div class="error-message" style="color: red;">${error}</div>
+        </c:if>
+        <form action="<c:url value='/login'/>" method="post">
+            <div class="input-group">
+                <label for="username">아이디</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">로그인</button>
+        </form>
+        <div class="links">
+            <a href="#">아이디 찾기</a>
+            <a href="#">비밀번호 찾기</a>
+            <a href="#">가입하기</a>
+        </div>
+    </div>
 </body>
 </html>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

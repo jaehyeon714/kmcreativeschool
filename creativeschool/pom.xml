@@ -181,6 +181,8 @@
 		    <version>2.7</version>
 		</dependency>
 
+
+
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
 		    <groupId>commons-fileupload</groupId>
@@ -223,17 +225,6 @@
 		</dependency>
 
 
-<!--		<dependency>
-	        <groupId>javax.mail</groupId>
-	        <artifactId>mail</artifactId>
-	        <version>1.4.7</version>
-	    </dependency>
-		 https://mvnrepository.com/artifact/javax.activation/activation 
-		<dependency>
-		    <groupId>javax.activation</groupId>
-		    <artifactId>activation</artifactId>
-		    <version>1.1.1</version>
-		</dependency>-->
 	</dependencies>
     <build>
         <plugins>
