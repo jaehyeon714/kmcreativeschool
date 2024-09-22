@@ -32,4 +32,7 @@ public class LoginController {
     public String policeLogin() {
         return "/police/policeenroll"; // policeenroll.jsp로 이동
     }
+    
+    
+    
 }
