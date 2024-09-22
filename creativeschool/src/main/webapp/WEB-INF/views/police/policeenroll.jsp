@@ -3,18 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>    
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Police Login Page</title>
 	<style>
 		#div_box{
 			margin-top: 30px;
 			margin-bottom: 20px;
 		}
 	</style>
-</head>
-<body>
+	<main>
     <div class="d-flex justify-content-center">
     	<img alt="경찰로고" src="${ path }/resources/images/policeLogo.png" style="width: 150px; height: 50px; margin: 20px;">
 	 </div>	 
@@ -42,7 +37,6 @@
     <c:if test="${not empty error}">
         <p style="color:red">${error}</p>
     </c:if>
-    
-</body>
-</html>
+   </main>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

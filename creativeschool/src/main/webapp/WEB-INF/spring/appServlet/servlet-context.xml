@@ -18,7 +18,17 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.km"/>
-
+	
+	
+	<!-- 웹소켓연결하기 -->
+	<beans:bean id="chattingServer" class="com.km.config.ChattingServer"/>
+	<websocket:handlers>
+		<websocket:mapping handler="chattingServer" path="/chatting"/>
+		<websocket:handshake-interceptors>
+			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	
 </beans:beans>
 
 
