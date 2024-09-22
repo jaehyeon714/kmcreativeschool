@@ -9,7 +9,7 @@
     		<img alt="신고하기" src="/creativeschool/resources/images/declaration_img.jpg" class="img-fluid">
     		<p class="text-center" style="font-size: 30px;">신고하기</p>
     	</a>
-    	<a href="${ path }/chat/livechatlist.km" style="margin-top: 200px;">
+    	<a href="${ path }/chat/livechatlist.km">
     		<img alt="실시간채팅" src="/creativeschool/resources/images/live_chat_img.png" class="img-fluid">
     		<p class="text-center" style="font-size: 30px;">실시간 채팅</p>
     	</a>
