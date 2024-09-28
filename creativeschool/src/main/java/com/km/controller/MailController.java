@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.km.common.MailService;
 import com.km.model.dto.MailInfo;
-import com.km.model.service.MailService;
 
 @Controller
 public class MailController {

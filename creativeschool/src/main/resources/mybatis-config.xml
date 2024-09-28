@@ -2,4 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<typeAliases>
+		<typeAlias type="com.km.model.dto.Report" alias="report"/>
+		<typeAlias type="com.km.model.dto.Attacker" alias="attacker"/>
+		<typeAlias type="com.km.model.dto.Reporter" alias="reporter"/>
+		<typeAlias type="com.km.model.dto.DeclarationAttachment" alias="declarationAttach"/>
+	</typeAliases>
+
 </configuration>	 

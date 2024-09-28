@@ -119,7 +119,7 @@
         </div>
 
         <div class="button-group d-flex justify-content-end">
-            <button type="submit" class="btn btn-outline-success" onclick="return dataCheck();">신고하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-outline-success">신고하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-outline-danger">취소하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-outline-secondary">임시 저장</button>
         </div>
@@ -127,14 +127,10 @@
     </form>
 </div>
 <script>
-	const dataCheck=()=>{
-		const data=$('#reportForm').serialize();
-		console.log(data);
-		return false;
-	}
 	const addAttachment=()=>{
 		if($("#attachContainer>input").length<5){
 			const inputTemp=$("#attachContainer>input").first().clone();
+			inputTemp.val('');
 			$('#attachContainer').append(inputTemp);
 			
 		}else{
@@ -149,16 +145,26 @@
 		}
 	}
 	const addAttacker=(e)=>{
+		console.log($(".perpetrator-info").length);
 		//가해자 입력form 추가하기 
 		const $targetContainer=$(".perpetrator-info").first();
 		const $copyContainer=$targetContainer.clone(true);
-		console.log($copyContainer);
-		const $containerDiv=$targetContainer.after($copyContainer);
 		//name값 변경하기 
 		//$copyContainer.find("input")
 		//복사된 가해자 정보 초기화 해주기 
-		$copyContainer.find("input").val("");
+		$copyContainer.find("input").attr("name",(i,e)=>{
+			return e.replace("0",$(".perpetrator-info").length);
+		});
+		
 		$copyContainer.find("textarea").val("");
+		$copyContainer.find("textarea").attr("name",(i,e)=>{
+			return e.replace("0",$(".perpetrator-info").length);
+		});
+		$copyContainer.find("select").attr("name",(i,e)=>{
+			return e.replace("0",$(".perpetrator-info").length);
+		})
+		const $containerDiv=$("#perpetrator-container").append($copyContainer);
+
 		//스크롤 맨밑으로 조정하기
 		const $container=$("#perpetrator-container");
 		$container[0].scrollTop=$container[0].scrollHeight;
@@ -177,8 +183,9 @@
 	const funcAttackCount=()=>{
 		$("#attackCount").text("("+$(".perpetrator-info").length+"명)");
 	}
-	$(document).on("click","input[name*=Address]",e=>{
-		openSearchAddress(e.target);
+	$(document).on("focus","input[name*=Address]",e=>{
+		if(e.target.value.trim().length==0)
+			openSearchAddress(e.target);
 	})
 	/* document.querySelectorAll("input[name*=Address]").forEach(element=>element.addEventListener('click',e=>{
 		openSearchAddress(e.target);
