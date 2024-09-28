@@ -55,18 +55,18 @@
 		            	</div>
 			            <div class="row">
 			                <label>이름 
-			                <input type="text" name="attackerName" 
+			                <input type="text" name="attackers[0].attackerName" 
 			                class="form-control" required></label>
 			                <label>학교 
-			            	<input type="text" name="attackerSchool" 
+			            	<input type="text" name="attackers[0].attackerSchool" 
 			            	class="form-control" required></label>
 						</div>
 						<div class="row">     	
 			                <label>연락처 
-			                <input type="text" name="attackerContact"
+			                <input type="text" name="attackers[0].attackerContact"
 			                class="form-control" required></label>
 			                <label>성별 
-			                    <select name="attackerGender"
+			                    <select name="attackers[0].attackerGender"
 			                    class="form-control" required>
 			                        <option value="">선택하세요</option>
 			                        <option value="남성">남성</option>
@@ -76,12 +76,12 @@
 			             </div>
 			             <div class="row">
 				             <label style="width:100%">주소 
-				             <input type="text" name="attackerAddress" 
+				             <input type="text" name="attackers[0].attackerAddress" 
 				             class="form-control" required></label>
 			             </div>
 			             <div class="row">
 			             <label style="width:100%">인상착의
-			             <textarea name="attackerInfo" 
+			             <textarea name="attackers[0].attackerInfo" 
 				            class="form-control"></textarea>
 				            </label>
 			             </div>
@@ -108,9 +108,9 @@
         	<div class="d-flex align-items-center">
 	            <h4>첨부 파일</h4>&nbsp;&nbsp;&nbsp;
 	            <button type="button" 
-	            class="btn btn-outline-info" onclick="addAttachment()">파일추가</button>
+	            class="btn btn-outline-info" onclick="addAttachment()">추가</button>
 	            <button type="button" 
-	            class="btn btn-outline-warning" onclick="delAttachment()">파일삭제</button>
+	            class="btn btn-outline-warning" onclick="delAttachment()">삭제</button>
             </div>
             <div id="attachContainer" class="d-flex">
             	<input class="form-control" type="file"
@@ -154,12 +154,15 @@
 		const $copyContainer=$targetContainer.clone(true);
 		console.log($copyContainer);
 		const $containerDiv=$targetContainer.after($copyContainer);
+		//name값 변경하기 
+		//$copyContainer.find("input")
 		//복사된 가해자 정보 초기화 해주기 
 		$copyContainer.find("input").val("");
 		$copyContainer.find("textarea").val("");
 		//스크롤 맨밑으로 조정하기
 		const $container=$("#perpetrator-container");
 		$container[0].scrollTop=$container[0].scrollHeight;
+		//가해자수 출력하기 
 		funcAttackCount();
 	}
 	const delAttacker=(e)=>{
