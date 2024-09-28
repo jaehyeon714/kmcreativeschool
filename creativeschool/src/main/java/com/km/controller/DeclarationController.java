@@ -45,7 +45,7 @@ public class DeclarationController {
 	public String enrollEndReport(Report report, MultipartFile[] upfile,HttpSession session, Model m) {
 		//파일저장하기 
 		if(upfile!=null) {
-			String path=session.getServletContext().getRealPath("/upload/repoter/");
+			String path=session.getServletContext().getRealPath("/resources/upload/repoter/");
 			Random randomObj=new Random();
 			SimpleDateFormat formatDate=new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss:sss");
 			for(MultipartFile file : upfile) {
