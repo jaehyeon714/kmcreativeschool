@@ -13,7 +13,9 @@
 	max-width: 600px;
 	margin: 0 auto;
 }
-
+input[readonly] {
+    background-color: lightgray;
+}
 .info {
 	border: 1px solid #ccc;
 	padding: 10px;
