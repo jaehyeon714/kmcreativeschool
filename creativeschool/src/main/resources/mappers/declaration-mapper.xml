@@ -15,10 +15,10 @@
 		</selectKey>
 	</insert>
 	<insert id="insertAttacker" parameterType="attacker">
-	
+		
 	</insert>
 	<insert id="insertAttachment" parameterType="declarationAttach">
-	
+		
 	</insert>
 	
 </mapper>	 

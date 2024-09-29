@@ -47,7 +47,7 @@ public class DeclarationController {
 		if(upfile!=null) {
 			String path=session.getServletContext().getRealPath("/resources/upload/repoter/");
 			Random randomObj=new Random();
-			SimpleDateFormat formatDate=new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss:sss");
+			SimpleDateFormat formatDate=new SimpleDateFormat("yyyy_MM_dd_HHmmsssss");
 			for(MultipartFile file : upfile) {
 				if(!file.isEmpty()) {
 					String oriFileName=file.getOriginalFilename();
@@ -99,12 +99,11 @@ public class DeclarationController {
 			//service.insertDeclaration(report);
 			m.addAttribute("msg", "정상적으로 신고 처리 되었습니다");
 			m.addAttribute("status","light");
-			return "common/msg";			
 		}catch(IllegalArgumentException e) {
 			m.addAttribute("msg","신고를 실패했습니다 다시 시도하거나 관리자에게 문의하세요.");
 			m.addAttribute("status","danager");
-			return "common/error/saveError";
 		}
+		return "common/msg";			
 		
 		
 	}
