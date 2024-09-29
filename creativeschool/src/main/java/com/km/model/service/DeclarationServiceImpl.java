@@ -70,15 +70,17 @@ public class DeclarationServiceImpl implements DeclarationService {
 		List<Map> result=dao.searchReportAreaPolice(session, 
 				Map.of("sido",report.getSido(),"gungu",report.getGungu(),
 						"dong",report.getDong().split(" ")[0]));
-		//경찰관 사건지정하기
-		//첫번째로 나오는 경찰에게 사건연결
-		//차후 변경할 수 있게 설정
-		dao.insertJoinReport(session,Map.of("reportNo",
-				report.getReportNo(),"policeNo",result.get(0).get("POLICE_NO")));
 		
-		//메일 전송하기 
-		//경찰관 email찾기
+		
 		if(result.size()>0) {
+			//경찰관 사건지정하기
+			//첫번째로 나오는 경찰에게 사건연결
+			//차후 변경할 수 있게 설정
+			dao.insertJoinReport(session,Map.of("reportNo",
+					report.getReportNo(),"policeNo",result.get(0).get("POLICE_NO")));
+
+			//메일 전송하기 
+			//경찰관 email찾기
 			String content="""
 					<h2>%s에서 학교폭력이 접수되었습니다.<h2>
 					<h3>접수자 : %s Email : %s</h3>
