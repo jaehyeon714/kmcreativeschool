@@ -54,6 +54,11 @@
 		#{declarationAttachmentRename},#{declarationAttachmentOriginalName},#{declarationNo})
 	</insert>
 	
+	<select id="searchReportAreaPolice" parameterType="string" resultType="police">
+	
+	</select>
+	
+	
 </mapper>	 
 
 

@@ -10,12 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Police {
+	private long policeNo;
 	private String policeName;
 	private String policeEmail;
 	private String policeGrade;
 	private String policeProfile;
 	private String policeIdentity;
-	private String policeIog;
+	private String policeLog;
 	private String policePhone;
 	private long policeStationNo;
 	private String policePassword;

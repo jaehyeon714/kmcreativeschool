@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.km.model.dto.Attacker;
 import com.km.model.dto.DeclarationAttachment;
+import com.km.model.dto.Police;
 import com.km.model.dto.Report;
 import com.km.model.dto.Reporter;
 
@@ -31,20 +32,24 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 
 	@Override
 	public int insertReporter(SqlSession session, Reporter reporter) {
-		// TODO Auto-generated method stub
 		return session.insert("declaration.insertReporter",reporter);
 	}
 
 	@Override
 	public int insertAttacker(SqlSession session, Attacker attacker) {
-		// TODO Auto-generated method stub
 		return session.insert("declaration.insertAttacker",attacker);
 	}
 
 	@Override
 	public int insertDeclarationAttachment(SqlSession session, DeclarationAttachment file) {
-		// TODO Auto-generated method stub
 		return session.insert("declaration.insertAttachment",file);
 	}
 
+	@Override
+	public List<Police> searchReportAreaPolice(SqlSession session, String area) {
+		return session.selectList("declaration.searchReportAreaPolice",area);
+	}
+
+	
+	
 }
