@@ -11,6 +11,7 @@
 	
 	<!-- 커스텀 css -->
 	<link rel="stylesheet" href="${ path }/resources/css/basic.css">
+	<script src="${path }/resources/js/jquery-3.7.0.min.js"></script>
 </head>
 <body>
 	<header class="d-flex justify-content-between align-items-center p-3 bg-white border-bottom">

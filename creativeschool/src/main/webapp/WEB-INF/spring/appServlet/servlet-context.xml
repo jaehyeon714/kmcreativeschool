@@ -19,6 +19,11 @@
 
 	<context:component-scan base-package="com.km"/>
 	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="104857560"/>
+	</beans:bean>
+	
 	
 	<!-- 웹소켓연결하기 -->
 	<beans:bean id="chattingServer" class="com.km.config.ChattingServer"/>

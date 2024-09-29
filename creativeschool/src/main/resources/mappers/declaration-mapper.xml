@@ -3,6 +3,24 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="declaration">
 	
+	
+	<insert id="insertDeclaration" parameterType="report">
+		
+	</insert>
+	<insert id="insertReporter" parameterType="reporter">
+		INSERT INTO REPORTER_INFO VALUES(SEQ_REPORTER_NO.NEXTVAL,#{reporterName},#{reporterEmail},
+			#{reporterPhone},#{reporterSchool}#{reporterPassword})
+		<selectKey keyProperty="reporterNo" order="AFTER">
+			SELECT SEQ_REPORTER_NO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	<insert id="insertAttacker" parameterType="attacker">
+		
+	</insert>
+	<insert id="insertAttachment" parameterType="declarationAttach">
+		
+	</insert>
+	
 </mapper>	 
 
 
