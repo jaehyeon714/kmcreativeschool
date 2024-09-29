@@ -4,25 +4,86 @@
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>    
 
-<style>
-     .report-container { background: white; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 600px; margin: 0 auto; }
-     .perpetrator-info, .attachment-info { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
-</style>
 
-    <div class="report-container">
-        <h2>경찰관 등록</h2>
-        
-        <form method="post" action="#">
-            <div >
-                <div >
-                    <label>이름: <input type="text" name="policeName" required></label>
-                    <label>이메일: <input type="text" name="policeMail" required></label>
-                    <label>전화번호: <input type="text" name="policePhone" required></label>
-                    <label>관할서: <input type="text" name="policeJurisdiction" required></label>
-                </div> 
-                   		<input type="submit" class="btn btn-outline-success" value="등록">
-                   		<input type="reset" class="btn btn-outline-danger" value="취소">
-            </div>
-        </form>
-    </div>
+<main class="d-flex flex-column justify-content-center align-items-center">
+	<div class="d-flex justify-content-center">
+		<h2 style="margin-top:10%">경찰관 등록</h2>
+	</div>
+	<div style="width:25%">
+		<form action="${path }/#" method="post">
+ 			<div class="input-group input-group-lg">
+		    	<div class="input-group-prepend">
+		    		<span class="input-group-text">
+		    		이름
+		    		</span>
+		    	</div>
+		        <input type="text" id="policeName" name="policeName" 
+		        class="form-control" aria-label="Sizing example input" 
+		        aria-describedby="inputGroup-sizing-lg" 
+		        required>
+		    </div> 			
+		    <div class="input-group input-group-lg">
+		    	<div class="input-group-prepend">
+		    		<span class="input-group-text">
+		    		아이디
+		    		</span>
+		    	</div>
+		        <input type="text" id="policeIdentity" name="policeIdentity" 
+		        class="form-control" aria-label="Sizing example input" 
+		        aria-describedby="inputGroup-sizing-lg" 
+		        required>
+		    </div>
+ 			<div class="input-group input-group-lg">
+		    	<div class="input-group-prepend">
+		    		<span class="input-group-text">
+		    		이메일
+		    		</span>
+		    	</div>
+		        <input type="text" id="policeMail" name="policeMail" 
+		        class="form-control" aria-label="Sizing example input" 
+		        aria-describedby="inputGroup-sizing-lg" 
+		        required>
+		    </div>
+		    <div class="input-group input-group-lg">
+		    	<div class="input-group-prepend">
+		    		<span class="input-group-text">
+		    		전화번호
+		    		</span>
+		    	</div>
+		        <input type="text" id="policePhone" name="policePhone" 
+		        class="form-control" aria-label="Sizing example input" 
+		        aria-describedby="inputGroup-sizing-lg" 
+		        required>
+		    </div>
+		    <div class="input-group input-group-lg">
+		    	<div class="input-group-prepend">
+		    		<span class="input-group-text">
+		    		관활서
+		    		</span>
+		    	</div>
+		        <input type="text" id="policestation" name="policeStation" 
+		        class="form-control" aria-label="Sizing example input" 
+		        aria-describedby="inputGroup-sizing-lg" 
+		        required>
+		    </div>
+		    <div class="input-group input-group-lg">
+		    	<div class="input-group-prepend">
+		    		<span class="input-group-text">
+		    		패스워드
+		    		</span>
+		    	</div>
+		        <input type="password" id="policePassword" name="policePassword" 
+		        class="form-control" aria-label="Sizing example input" 
+		        aria-describedby="inputGroup-sizing-lg" 
+		        required>
+		    </div>
+		    
+		  <div class="form-group d-flex justify-content-center" style="margin-top:5%">
+		    <button class="btn btn-outline-success">등록</button>
+		    &nbsp;&nbsp;&nbsp;&nbsp;
+		    <button class="btn btn-outline-danger">취소</button>
+		  </div>
+		</form>
+	</div>
+</main>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
