@@ -56,3 +56,4 @@ public class ContactController {
         return "redirect:/contact/contactview?id_seq=" + contact.getId_seq(); // 저장 후 상세보기로 리다이렉트
     }
 }
+

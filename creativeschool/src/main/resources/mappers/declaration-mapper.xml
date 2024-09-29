@@ -54,6 +54,19 @@
 		#{declarationAttachmentRename},#{declarationAttachmentOriginalName},#{declarationNo})
 	</insert>
 	
+	<select id="searchReportAreaPolice" parameterType="map" resultType="map">
+		SELECT POLICE_NO,POLICE_EMAIL FROM POLICE JOIN POLICESTATION USING (POLICESTATION_NO)
+		WHERE POLICESTATION_SIDO LIKE #{sido}||'%' AND POLICESTATION_DONG LIKE #{dong}||'%'
+	</select>
+	<select id="searchReportAreaPolice2" parameterType="map" resultType="map">
+		SELECT POLICE_NO,POLICE_EMAIL FROM POLICE JOIN POLICESTATION USING (POLICESTATION_NO)
+		WHERE POLICESTATION_SIDO LIKE #{sido}||'%' AND POLICESTATION_GUNGU LIKE #{gungu}||'%'
+	</select>
+	
+	<insert id="insertJoinReport" parameterType="map">
+		INSERT INTO JOIN_POLICE_DECLARATION VALUES(#{reportNo},#{policeNo})
+	</insert>
+	
 </mapper>	 
 
 

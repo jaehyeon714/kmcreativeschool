@@ -19,8 +19,22 @@
 	        <a href="${ path }/">
 	            <img alt="로고" src="${ path }/resources/images/km_logo.png" class="mr-2" style="max-height: 50px;">
 	        </a>
-	        <h3 class="mb-0 ml-2">학교폭력신고</h3>
+	        <h3 class="mb-0 ml-2">당신의 용기 있는 신고가 안전한 학교를 만드는 첫걸음입니다.</h3>
 	    </div>
+	  	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  			<div class="container-fluid">
+   				<div class="collapse navbar-collapse" id="navbarNav">
+      				<ul class="navbar-nav">
+        				<li class="nav-item">
+          					<a class="nav-link" href="#">신고하기</a>
+        				</li>
+        				<li class="nav-item">
+          					<a class="nav-link" href="#">실시간 채팅</a>
+        				</li>
+      				</ul>
+    			</div>
+  			</div>
+		</nav>
 	    <div>
 	        <a href="${ path }/police/policeenroll.do">
 	            <button type="button" class="btn btn-primary px-4">경찰관</button>
