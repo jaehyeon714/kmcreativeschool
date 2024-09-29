@@ -17,4 +17,5 @@ public class Contact {
 	private String title;
 	private String contactContent;
 	private LocalDateTime dateTime;
+	private String response;
 }
