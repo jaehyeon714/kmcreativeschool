@@ -1,6 +1,5 @@
 package com.km.model.dto;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
@@ -17,4 +16,5 @@ public class Contact {
 	private String title;
 	private String contactContent;
 	private LocalDateTime dateTime;
+	private String response;
 }

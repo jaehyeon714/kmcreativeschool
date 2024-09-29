@@ -1,5 +1,8 @@
 package com.km.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,21 +19,6 @@ public class MainController {
 	@RequestMapping("/police/policeenroll.do")
 	public String policeLogin() {
 		return "police/policeenroll";
-	}
-	
-	@RequestMapping("/contact.do")
-	public String contact() {
-		return "contact/contact";
-	}
-	
-	@RequestMapping("/contact/contactview.do")
-	public String contactView() {
-		return "contact/contactview";
-	}
-	
-	@RequestMapping("/contact/contactwrite.do")
-	public String contactWrite() {
-		return "contact/contactwrite";
 	}
 	
 }

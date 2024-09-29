@@ -10,9 +10,9 @@
     		<p class="text-center" style="font-size: 30px;">신고하기</p>
     	</a>
     	<a href="${ path }/chat/livechatlist.km">
-    		<img alt="실시간채팅" src="/creativeschool/resources/images/live_chat_img.png" class="img-fluid">
+    		<img alt="실시간채팅" src="/creativeschool/resources/images/live_chat_img.png" style="width: 300px; height: 300px;">
     		<p class="text-center" style="font-size: 30px;">실시간 채팅</p>
     	</a>
-    </main>
+    </main>	
     
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
