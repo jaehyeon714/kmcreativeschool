@@ -46,8 +46,12 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 	}
 
 	@Override
-	public List<Police> searchReportAreaPolice(SqlSession session, String area) {
-		return session.selectList("declaration.searchReportAreaPolice",area);
+	public List<Map> searchReportAreaPolice(SqlSession session, Map area) {
+		List<Map> result=session.selectList("declaration.searchReportAreaPolice",area);
+		//동으로 조회
+		if(result.size()>0) return result;
+		//없으면 군구로 조회하기
+		else return session.selectList("declaration.searchReportAreaPolice2",area);
 	}
 
 	
