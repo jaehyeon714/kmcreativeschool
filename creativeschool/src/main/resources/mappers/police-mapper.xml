@@ -18,5 +18,31 @@
 	<select id="selectPoliceById" resultMap="policeMap" parameterType="string">
 		SELECT * FROM POLICE WHERE POLICE_NAME=#{id}
 	</select>
+	
+<insert id="insertPolice" parameterType="police">
+    INSERT INTO POLICE (
+        POLICE_IDENTITY,
+        POLICE_PASSWORD,
+        POLICE_NAME,
+        POLICE_EMAIL,
+        POLICE_NO,
+        POLICE_GRADE,
+        POLICE_PROFILE,
+        POLICE_LOG,
+        POLICESTATION_NO
+    ) VALUES (
+        #{policeIdentity},
+        #{policePassword},
+        #{policeName},
+        #{policeEmail},
+        NULL, 
+        NULL, 
+        NULL,  
+        NULL, 
+        NULL  
+    )
+</insert>
+
+	
 		
 </mapper>

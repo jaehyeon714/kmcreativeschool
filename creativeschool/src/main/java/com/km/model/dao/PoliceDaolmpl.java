@@ -12,5 +12,10 @@ public class PoliceDaolmpl implements PoliceDao{
 	public Police selectPoliceById(SqlSession session, String id) {
 		return session.selectOne("police.selectPoliceById", id);
 	}
+
+	@Override
+	public int insertPolice(SqlSession session, Police police) {
+		 return session.insert("police.insertPolice", police);
+	}
 	
 }

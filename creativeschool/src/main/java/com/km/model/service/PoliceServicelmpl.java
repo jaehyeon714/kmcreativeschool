@@ -20,4 +20,10 @@ public class PoliceServicelmpl implements PoliceService{
 	public Police selectPoliceById(String id) {
 		return dao.selectPoliceById(session, id);
 	}
+
+	@Override
+	public int insertPolice(Police police) {
+		dao.insertPolice(session, police);
+		return 1;
+	}
 }
