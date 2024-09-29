@@ -17,6 +17,6 @@ public class Police {
 	private String policeIdentity;
 	private String policeIog;
 	private String policePhone;
-	private String policeStation;
+	private long policeStationNo;
 	private String policePassword;
 }
