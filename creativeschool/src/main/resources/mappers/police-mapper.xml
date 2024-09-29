@@ -16,7 +16,7 @@
 	</resultMap>
 	
 	<select id="selectPoliceById" resultMap="policeMap" parameterType="string">
-		SELECT * FROM POLICE WHERE POLICE_NAME=#{id}
+		SELECT * FROM POLICE WHERE POLICE_IDENTITY=#{id}
 	</select>
 	
 <insert id="insertPolice" parameterType="police">

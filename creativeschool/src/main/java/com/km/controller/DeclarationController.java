@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,8 @@ public class DeclarationController {
 		return "report/report";
 	}
 	@RequestMapping("/reportenrollend.km")
-	public String enrollEndReport(Report report, MultipartFile[] upfile,HttpSession session, Model m) {
+	public String enrollEndReport(Report report, MultipartFile[] upfile,
+			HttpSession session,HttpServletRequest request, Model m) {
 		//파일저장하기 
 		if(upfile!=null) {
 			String path=session.getServletContext().getRealPath("/resources/upload/repoter/");
@@ -94,14 +96,12 @@ public class DeclarationController {
 			report.setGungu(addr[1]);
 			report.setDong(addr[2]+" "+addr[3]);
 		}
-		
-		log.debug("{}",report);
-		log.debug("검색 동"+searchArea);
+		log.debug(request.getContextPath());
 		try {
 			//DB에 데이터 저장
 			service.insertDeclaration(report);
 			//신고 관할서 경찰관에게 메일 전송하기
-			service.reportSendPolice(report,CommonUtils.SITE_HOST+session.getServletContext().getContextPath());
+			boolean flag=service.reportSendPolice(report,CommonUtils.SITE_HOST+request.getContextPath());
 			
 			m.addAttribute("msg", "정상적으로 신고 처리 되었습니다");
 			m.addAttribute("status","light");
