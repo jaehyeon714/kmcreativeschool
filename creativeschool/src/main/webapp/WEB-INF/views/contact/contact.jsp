@@ -21,15 +21,15 @@
 			</tr>
 			<tr>
 				<td>1</td>
-				<td><a href="${ path }/contact/contactview">~~~를 신고합니다.</a></td>
-				<td><a href="${ path }/contact/contactview">내 친구를 때림</a></td>
+				<td><a href="${ path }/contact/contactview.do">~~~를 신고합니다.</a></td>
+				<td><a href="${ path }/contact/contactview.do">내 친구를 때림</a></td>
 				<td>2024년 9월 29일</td>
 				<td>답변함</td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td><a href="${ path }/contact/contactview">OO고 ~~가 학교에서 담배핌</a></td>
-				<td><a href="${ path }/contact/contactview">OO이 담배핌</a></td>
+				<td><a href="${ path }/contact/contactview.do">OO고 ~~가 학교에서 담배핌</a></td>
+				<td><a href="${ path }/contact/contactview.do">OO이 담배핌</a></td>
 				<td>2024년 9월 30일</td>
 				<td>답변안함</td>
 			</tr>
