@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.km.common.CommonUtils;
 import com.km.model.dto.DeclarationAttachment;
 import com.km.model.dto.Report;
 import com.km.model.dto.Reporter;
@@ -42,7 +44,8 @@ public class DeclarationController {
 		return "report/report";
 	}
 	@RequestMapping("/reportenrollend.km")
-	public String enrollEndReport(Report report, MultipartFile[] upfile,HttpSession session, Model m) {
+	public String enrollEndReport(Report report, MultipartFile[] upfile,
+			HttpSession session,HttpServletRequest request, Model m) {
 		//파일저장하기 
 		if(upfile!=null) {
 			String path=session.getServletContext().getRealPath("/resources/upload/repoter/");
@@ -82,11 +85,12 @@ public class DeclarationController {
 		report.setReporter((Reporter)session.getAttribute("reporter"));
 		//주소 분할해서 저장하기 
 		String[] addr=report.getIncidentAddress().split(" ");
+		String searchArea="";
 		if(addr.length==5) {
 			report.setSido(addr[0]+" "+addr[1]);
 			report.setGungu(addr[2]);
 			report.setDong(addr[3]+" "+addr[4]);
-			
+			searchArea=addr[2]+" "+addr[3];
 		}else {
 			report.setSido(addr[0]);
 			report.setGungu(addr[1]);
@@ -94,16 +98,23 @@ public class DeclarationController {
 		}
 		
 		log.debug("{}",report);
-		
+		log.debug("검색 동"+searchArea);
 		try {
-			//service.insertDeclaration(report);
+			//DB에 데이터 저장
+			service.insertDeclaration(report);
+			//신고 관할서 경찰관에게 메일 전송하기
+			service.reportSendPolice(report,CommonUtils.SITE_HOST+request.getContextPath());
+			
 			m.addAttribute("msg", "정상적으로 신고 처리 되었습니다");
 			m.addAttribute("status","light");
+			
+			
 		}catch(IllegalArgumentException e) {
-			m.addAttribute("msg","신고를 실패했습니다 다시 시도하거나 관리자에게 문의하세요.");
+			
+			m.addAttribute("msg",e.getMessage()+"을(를) 실패했습니다 다시 시도하거나 관리자에게 문의하세요.");
 			m.addAttribute("status","danager");
 		}
-		return "common/msg";			
+		return "common/msg";		
 		
 		
 	}

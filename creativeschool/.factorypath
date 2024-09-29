@@ -35,4 +35,5 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-context-support/5.3.28/spring-context-support-5.3.28.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/sun/mail/javax.mail/1.6.2/javax.mail-1.6.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/aspectj/aspectjweaver/1.9.19/aspectjweaver-1.9.19.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>
