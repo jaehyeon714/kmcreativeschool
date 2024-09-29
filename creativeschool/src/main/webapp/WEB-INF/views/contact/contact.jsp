@@ -7,7 +7,7 @@
 
 	<div class="container mt-4 mb-4">
 		<div class="text-right mb-3">
-			<a href="${ path }/contact/contactwrite.do">
+			<a href="${ path }/contactwrite.do">
 				<button type="button" class="btn btn-light border">문의 글 작성하기</button>
 			</a>
 		</div>
@@ -23,15 +23,16 @@
 				<td>1</td>
 				<td><a href="${ path }/contact/contactview.do">~~~를 신고합니다.</a></td>
 				<td><a href="${ path }/contact/contactview.do">내 친구를 때림</a></td>
-				<td>2024년 9월 29일</td>
-				<td>답변함</td>
+				<td>2024년 9월 30일</td>
+				<td>답변안함</td>
 			</tr>
 			<tr>
 				<td>2</td>
+
 				<td><a href="${ path }/contact/contactview.do">OO고 ~~가 학교에서 담배핌</a></td>
 				<td><a href="${ path }/contact/contactview.do">OO이 담배핌</a></td>
-				<td>2024년 9월 30일</td>
-				<td>답변안함</td>
+				<td>2024년 9월 29일</td>
+				<td>답변함</td>
 			</tr>
 		</table>
 	</div>
