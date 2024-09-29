@@ -44,7 +44,7 @@ public class ContactController {
     }
 
     // 문의 저장
-    @PostMapping("/contact")
+    @PostMapping("/contactwrite.form")
     public String saveContact(@RequestParam String title, 
                               @RequestParam String contactContent) {
         Contact contact = Contact.builder()
