@@ -25,5 +25,8 @@
 	        <a href="${ path }/police/policeenroll.do">
 	            <button type="button" class="btn btn-primary px-4">경찰관</button>
 	        </a>
+	    	<a href="${ path }/contact.do">
+	    		<button type="button" class="btn btn-primary px-4">문의하기</button>
+	    	</a>
 	    </div>
 	</header>
