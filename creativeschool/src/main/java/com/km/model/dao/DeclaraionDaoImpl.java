@@ -32,19 +32,19 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 	@Override
 	public int insertReporter(SqlSession session, Reporter reporter) {
 		// TODO Auto-generated method stub
-		return 0;
+		return session.insert("declaration.insertReporter",reporter);
 	}
 
 	@Override
 	public int insertAttacker(SqlSession session, Attacker attacker) {
 		// TODO Auto-generated method stub
-		return 0;
+		return session.insert("declaration.insertAttacker",attacker);
 	}
 
 	@Override
 	public int insertDeclarationAttachment(SqlSession session, DeclarationAttachment file) {
 		// TODO Auto-generated method stub
-		return 0;
+		return session.insert("declaration.insertAttachment",file);
 	}
 
 }

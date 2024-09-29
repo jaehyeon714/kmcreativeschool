@@ -24,4 +24,6 @@ public interface DeclarationDao {
 	
 	int insertDeclarationAttachment(SqlSession session, DeclarationAttachment file);
 	
+	//List<Police> searchReportAreaPolice(SqlSession session, String area);
+	
 }

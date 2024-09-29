@@ -13,5 +13,6 @@ public interface DeclarationService {
 	
 	List<Report> selectReportSearch(Map<String,String> mapKeyword);
 	
+	boolean reportSendPolice(Report report);
 	
 }
