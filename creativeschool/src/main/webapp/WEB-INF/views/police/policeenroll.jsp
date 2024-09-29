@@ -17,7 +17,7 @@
 	    	style="width: 130px; height: 100px; 
 	    	border-radius:100px">
 		 </div>	
-	<%--<c:if test="${loginPolice == null} ">  --%>
+	<%-- <c:if test="${loginPolice == null} "> --%>
 		<div class="d-flex justify-content-center" id="div_box">
 		
 		    <form action="login" method="post">
@@ -64,7 +64,7 @@
     <c:if test="${not empty error}">
         <p style="color:red">${error}</p>
     </c:if>
-   <%--  <c:if test="${loginPolice != null }"><p>${loginPolice.policename}</p></c:if> --%>
+   <%-- <c:if test="${loginPolice != null }"><p>${loginPolice.policename}</p></c:if> --%>
 </main>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

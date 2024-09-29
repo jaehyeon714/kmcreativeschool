@@ -1,14 +1,23 @@
 package com.example.login.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.km.model.dto.Police;
+import com.km.model.service.PoliceService;
+
 @Controller
 public class LoginController {
 
+	@Autowired
+	private PoliceService service;
+	
     // 임의의 사용자 데이터 (예: 데이터베이스에서 가져온 사용자)
     private static final String VALID_USERNAME = "user";
     private static final String VALID_PASSWORD = "password";
@@ -35,9 +44,18 @@ public class LoginController {
     }
     
     @RequestMapping("/policeLogin")
-    public String pLogin() {
+    public String pLogin(String policeIdentity, String policePassword, HttpSession session) {
+    	Police s = service.selectPoliceById(policeIdentity);
+    	if(s!=null&&s.getPolicePassword().equals(policePassword)) {
+    		//로그인 성공
+    		System.out.println("경찰 로그인 성공");
+    		session.setAttribute("loginPolice", s);
+    	}else {
+    		//로그인 실패
+    		System.out.println("경찰 로그인 실패");
+    	}
     	
-    	return null;
+    	return "/police/policeenroll";
     }
     
     
