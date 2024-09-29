@@ -14,9 +14,11 @@ import com.km.model.dto.MailInfo;
 import com.km.model.dto.Report;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class DeclarationServiceImpl implements DeclarationService {
 	
 	private final SqlSession session;
@@ -84,9 +86,9 @@ public class DeclarationServiceImpl implements DeclarationService {
 					.content(content)
 					.reciever((String)result.get(0).get("POLICE_EMAIL"))
 					.build();
+			log.debug("{}",mail);
 			//이메일 전송하기
-			mailService.sendMail(mail);
-			return true;
+			return mailService.sendMail(mail);
 		}
 		return false;
 	}
