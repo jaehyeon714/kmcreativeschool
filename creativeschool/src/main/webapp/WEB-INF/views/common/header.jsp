@@ -6,8 +6,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>신고 사이트</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<!-- 공식 문서 - https://getbootstrap.kr/docs/5.3/getting-started/introduction -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	
+	<!-- 커스텀 css -->
+	<link rel="stylesheet" href="${ path }/resources/css/basic.css">
+	<script src="${path }/resources/js/jquery-3.7.0.min.js"></script>
 </head>
 <body>
 	<header class="d-flex justify-content-between align-items-center p-3 bg-white border-bottom">
@@ -18,7 +22,7 @@
 	        <h3 class="mb-0 ml-2">학교폭력신고</h3>
 	    </div>
 	    <div>
-	        <a href="${ path }/police/파일이름">
+	        <a href="${ path }/police/policeenroll.do">
 	            <button type="button" class="btn btn-primary px-4">경찰관</button>
 	        </a>
 	    </div>
