@@ -33,13 +33,13 @@ public class ContactController {
                 .findFirst();
 
         model.addAttribute("contact", contact.orElse(null)); // ID로 문의 상세 조회
-        return "contact/contactview"; // 상세 보기 페이지 반환
+        return "contact/view"; // 상세 보기 페이지 반환
     }
 
     // 문의 작성 페이지로 이동
     @RequestMapping("/contactwrite.do")
     public String showContactWriteForm() {
-        return "contact/contactwrite"; // 문의 작성 페이지 반환
+        return "contact/write"; // 문의 작성 페이지 반환
     }
 
     // 문의 저장
