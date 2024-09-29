@@ -63,6 +63,9 @@
 		WHERE POLICESTATION_SIDO LIKE #{sido}||'%' AND POLICESTATION_GUNGU LIKE #{gungu}||'%'
 	</select>
 	
+	<insert id="insertJoinReport" parameterType="map">
+		INSERT INTO JOIN_POLICE_DECLARATION VALUES(#{reportNo},#{policeNo})
+	</insert>
 	
 </mapper>	 
 

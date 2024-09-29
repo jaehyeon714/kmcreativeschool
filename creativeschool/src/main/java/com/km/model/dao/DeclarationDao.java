@@ -27,4 +27,5 @@ public interface DeclarationDao {
 	
 	List<Map> searchReportAreaPolice(SqlSession session, Map area);
 	
+	int insertJoinReport(SqlSession session, Map data);
 }
