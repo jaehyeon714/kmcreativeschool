@@ -27,13 +27,14 @@ input[readonly] {
 <div class="report-container">
 	<h2>경찰관 등록</h2>
 
-	<form method="post" action="#">
+	<form method="post" action="${path }/police/policeInsertDo.km">
 		<div>
 			<label>아이디: <input type="text" name="policeId" required></label><br>
 			<label>비밀번호: <input type="text" name="policePassword" required></label><br>
 			<label>이름: <input type="text" name="policeName" required></label><br>
-			<label>이메일: <input type="text" name="policeMail" required></label><br>
-			<label>전화번호: <input type="text" name="policePhone" required></label><br>
+			<label>이메일: <input type="text" name="policeEmail" required></label><br>
+			<label>전화번호: <input type="text" name="policeStationPhone" required></label><br>
+			<label>직위: <input type="text" name="policeGrade" required></label><br>
 			<label>관할서 검색: <input type="text" name="policeJurisdiction"
 				required oninput="searchPoliceStationByName(this.value);">
 			</label><br>
@@ -41,7 +42,6 @@ input[readonly] {
 			<label>관할서 이름: <input type="text" name="policeStationName" readonly/>	<br></label>	
 			<label>관할서 구분: <input type="text" name="policeStationType" readonly/>	<br></label>	
 			<label>관할서 시도청: <input type="text" name="policeStationSido" readonly/>	<br></label>	
-			<label>관할서 연번: <input type="text" name="policeStationNumber" readonly/>	<br></label>	
 			<label>관할서 주소: <input type="text" name="policeStationLocation" readonly/><br>	</label>	
 		
 			
