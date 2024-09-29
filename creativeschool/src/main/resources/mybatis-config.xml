@@ -10,6 +10,8 @@
 		<typeAlias type="com.km.model.dto.Attacker" alias="attacker"/>
 		<typeAlias type="com.km.model.dto.Reporter" alias="reporter"/>
 		<typeAlias type="com.km.model.dto.DeclarationAttachment" alias="declarationAttach"/>
+		<typeAlias type="com.km.model.dto.Police" alias="police"/>
+		<typeAlias type="com.km.model.dto.PoliceStation" alias="policeStation"/>
 	</typeAliases>
 
 </configuration>	 

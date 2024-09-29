@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.km.common.CommonUtils;
 import com.km.model.dto.DeclarationAttachment;
 import com.km.model.dto.Report;
 import com.km.model.dto.Reporter;
@@ -100,7 +101,7 @@ public class DeclarationController {
 			//DB에 데이터 저장
 			service.insertDeclaration(report);
 			//신고 관할서 경찰관에게 메일 전송하기
-			service.reportSendPolice(report);
+			service.reportSendPolice(report,CommonUtils.SITE_HOST+session.getServletContext().getContextPath());
 			
 			m.addAttribute("msg", "정상적으로 신고 처리 되었습니다");
 			m.addAttribute("status","light");
