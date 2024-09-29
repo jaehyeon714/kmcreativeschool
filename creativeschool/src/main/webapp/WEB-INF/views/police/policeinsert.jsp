@@ -29,6 +29,8 @@ input[readonly] {
 
 	<form method="post" action="#">
 		<div>
+			<label>아이디: <input type="text" name="policeId" required></label><br>
+			<label>비밀번호: <input type="text" name="policePassword" required></label><br>
 			<label>이름: <input type="text" name="policeName" required></label><br>
 			<label>이메일: <input type="text" name="policeMail" required></label><br>
 			<label>전화번호: <input type="text" name="policePhone" required></label><br>
