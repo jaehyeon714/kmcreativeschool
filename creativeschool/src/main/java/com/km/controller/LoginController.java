@@ -1,4 +1,4 @@
-package com.example.login.controller;
+package com.km.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,19 +43,21 @@ public class LoginController {
         return "/police/policeenroll"; // policeenroll.jsp로 이동
     }
     
-    @RequestMapping("/policeLogin")
+    @RequestMapping("/policeLogin.do")
     public String pLogin(String policeIdentity, String policePassword, HttpSession session) {
+    	System.out.println(policeIdentity + policePassword);
     	Police s = service.selectPoliceById(policeIdentity);
     	if(s!=null&&s.getPolicePassword().equals(policePassword)) {
     		//로그인 성공
     		System.out.println("경찰 로그인 성공");
     		session.setAttribute("loginPolice", s);
+    		
     	}else {
     		//로그인 실패
     		System.out.println("경찰 로그인 실패");
     	}
     	
-    	return "/police/policeenroll";
+    	return "redirect:/";
     }
     
     
