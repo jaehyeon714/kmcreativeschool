@@ -1,12 +1,12 @@
 package com.km.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.km.model.dto.Police;
 import com.km.model.service.PoliceService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class ChatController {
 	
 	@RequestMapping("/chat/livechatlist.km")
 	public String chatList(Model m) {
-		List<Police> polices=service.selectPoliceAll();
+		List<Map> polices=service.selectPoliceAll();
 		m.addAttribute("polices", polices);
 		return "chat/chatlist";
 	}
