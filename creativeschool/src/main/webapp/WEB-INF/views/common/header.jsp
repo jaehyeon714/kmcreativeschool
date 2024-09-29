@@ -26,10 +26,10 @@
    				<div class="collapse navbar-collapse" id="navbarNav">
       				<ul class="navbar-nav">
         				<li class="nav-item">
-          					<a class="nav-link" href="#">신고하기</a>
+          					<a class="nav-link" href="${path}/declaration/requestdeclaration.km">신고하기</a>
         				</li>
         				<li class="nav-item">
-          					<a class="nav-link" href="#">실시간 채팅</a>
+          					<a class="nav-link" href="${path }/chat/livechatlist.km">실시간 채팅</a>
         				</li>
       				</ul>
     			</div>

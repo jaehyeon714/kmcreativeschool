@@ -40,7 +40,7 @@
     		const policeId=$(e.target).find("input[type='hidden']").val();
 			console.log(policeId);
     		//채팅창 열기 
-    		open("");
+    		/* open(""); */
     	});
     </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
