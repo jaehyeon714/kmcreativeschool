@@ -69,8 +69,8 @@
 			                    <select name="attackers[0].attackerGender"
 			                    class="form-control" required>
 			                        <option value="">선택하세요</option>
-			                        <option value="남성">남성</option>
-			                        <option value="여성">여성</option>
+			                        <option value="남">남성</option>
+			                        <option value="여">여성</option>
 			                    </select>
 			                </label>
 			             </div>

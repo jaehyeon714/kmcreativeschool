@@ -223,6 +223,14 @@
 		    <artifactId>javax.mail</artifactId>
 		    <version>1.6.2</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>${org.aspectj-version}</version>
+		    <scope>runtime</scope>
+		</dependency>
 
 
 	</dependencies>
