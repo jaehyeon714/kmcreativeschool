@@ -9,7 +9,7 @@
     <p><strong>문의 내용:</strong></p>
     <p>${contact.contactContent}</p>
     <p><strong>작성 시간:</strong> ${contact.dateTime}</p>
-    <a href="${pageContext.request.contextPath}/contact/contact" class="btn btn-secondary">목록으로 돌아가기</a>
+    <a href="${pageContext.request.contextPath}/contact" class="btn btn-secondary">목록으로 돌아가기</a>
 </main>
 
 
