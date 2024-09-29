@@ -2,24 +2,67 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="declaration">
-	
+	<resultMap id="declarationMap" type="report">
+		<id column="DECLARATION_NO" property="reportNo"/>
+		<result column="DECLARATION_CONTENT" property="incidentDetails"/>
+		<result column="DECLARATION_CATEGORY" property="reportType"/>
+		<result column="DECLARATION_SIDO" property="sido"/>
+		<result column="DECLARATION_GUNGU" property="gungu"/>
+		<result column="DECLARATION_DONG" property="dong"/>
+		<result column="DECLARATION_DETAIL" property="incidentDetails"/>
+		<result column="DECLARATION_DATE" property="incidentTime"/>
+		<result column="DECLARATION_STATUS" property="status"/>
+		<association property="reporter" resultMap="reporterMap"/>
+		<collection property="files" ofType="declarationAttach">
+			<id column="DECLARATION_ATTACHMENT_NO" property="declarationAttachmentNo"/>
+			<result column="ATTACHMENT_RENAME" property="declarationAttachmentRename"/>
+			<result column="ATTACHMENT_ORIGINALNAME" property="declarationAttachmentOriginalName"/>
+			<result column="DECLARATION_NO" property="declarationNo"/>
+		</collection>
+	</resultMap>		
+	<resultMap id="reporterMap" type="reporter">
+		<id column="REPORTER_NO" property="reporterNo"/>
+		<result column="REPORTER_NAME" property="reporterName"/>
+		<result column="REPORTER_EMAIL" property="reporterEmail"/>
+		<result column="REPORTER_PHONE" property="reporterPhone"/>
+		<result column="REPORTER_PASSWORD" property="reporterPassword"/>
+		<result column="REPORTER_SCHOOL" property="reporterSchool"/>
+	</resultMap>
 	
 	<insert id="insertDeclaration" parameterType="report">
-		
+		INSERT INTO DECLARATION VALUES(SEQ_DECLARATION_NO.NEXTVAL, #{incidentDetails},
+		#{reportType},#{sido},#{gungu},#{dong},#{incidentAddress},
+		#{incidentTime},#{status},#{reporter.reporterNo})
+		<selectKey keyProperty="reportNo" order="AFTER" resultType="_long">
+			SELECT SEQ_DECLARATION_NO.CURRVAL FROM DUAL
+		</selectKey>
 	</insert>
 	<insert id="insertReporter" parameterType="reporter">
 		INSERT INTO REPORTER_INFO VALUES(SEQ_REPORTER_NO.NEXTVAL,#{reporterName},#{reporterEmail},
-			#{reporterPhone},#{reporterSchool}#{reporterPassword})
-		<selectKey keyProperty="reporterNo" order="AFTER">
+			#{reporterPhone},#{reporterPassword},#{reporterSchool})
+		<selectKey keyProperty="reporterNo" order="AFTER" resultType="_long">
 			SELECT SEQ_REPORTER_NO.CURRVAL FROM DUAL
 		</selectKey>
 	</insert>
 	<insert id="insertAttacker" parameterType="attacker">
-		
+		INSERT INTO ATTACKER VALUES(SEQ_ATTACKER_NO.NEXTVAL,
+		#{attackerName},#{attackerAddress},#{attackerContact},
+		#{attackerInfo},#{declarationNo},#{attackerSchool},#{attackerGender})
 	</insert>
 	<insert id="insertAttachment" parameterType="declarationAttach">
-		
+		INSERT INTO DECLARATION_ATTACHMENT VALUES(SEQ_DECLARATION_ATTACHMENT_NO.NEXTVAL,
+		#{declarationAttachmentRename},#{declarationAttachmentOriginalName},#{declarationNo})
 	</insert>
+	
+	<select id="searchReportAreaPolice" parameterType="map" resultType="map">
+		SELECT POLICE_NO,POLICE_EMAIL FROM POLICE JOIN POLICESTATION USING (POLICESTATION_NO)
+		WHERE POLICESTATION_SIDO LIKE #{sido}||'%' AND POLICESTATION_DONG LIKE #{dong}||'%'
+	</select>
+	<select id="searchReportAreaPolice2" parameterType="map" resultType="map">
+		SELECT POLICE_NO,POLICE_EMAIL FROM POLICE JOIN POLICESTATION USING (POLICESTATION_NO)
+		WHERE POLICESTATION_SIDO LIKE #{sido}||'%' AND POLICESTATION_GUNGU LIKE #{gungu}||'%'
+	</select>
+	
 	
 </mapper>	 
 

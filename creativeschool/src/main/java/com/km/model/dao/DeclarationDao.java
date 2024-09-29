@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.km.model.dto.Attacker;
 import com.km.model.dto.DeclarationAttachment;
+import com.km.model.dto.Police;
 import com.km.model.dto.Report;
 import com.km.model.dto.Reporter;
 
@@ -23,5 +24,7 @@ public interface DeclarationDao {
 	int insertAttacker(SqlSession session, Attacker attacker);
 	
 	int insertDeclarationAttachment(SqlSession session, DeclarationAttachment file);
+	
+	List<Map> searchReportAreaPolice(SqlSession session, Map area);
 	
 }

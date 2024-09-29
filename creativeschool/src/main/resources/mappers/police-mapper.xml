@@ -2,5 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="police">
+	<resultMap type="com.km.model.dto.Police" id="policeMap">
+		<id column="police_no" property="policeNo"/>
+		<result column="police_name" property="policeName"/>
+		<result column="police_email" property="policeEmail"/>
+		<result column="police_grade" property="policeGrade"/>
+		<result column="police_profile" property="policeProfile"/>
+		<result column="police_identity" property="policeIdentity"/>
+		<result column="police_log" property="policeLog"/>
+		<result column="police_phone" property="policePhone"/>
+		<result column="policestation_no" property="policeStationNo"/>
+		<result column="police_password" property="policePassword"/>
+	</resultMap>
+	
+	<select id="selectPoliceById" resultMap="policeMap" parameterType="string">
+		SELECT * FROM POLICE WHERE POLICE_NAME=#{id}
+	</select>
 		
 </mapper>
