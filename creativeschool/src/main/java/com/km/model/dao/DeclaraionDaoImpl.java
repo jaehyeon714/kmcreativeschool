@@ -54,6 +54,14 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 		else return session.selectList("declaration.searchReportAreaPolice2",area);
 	}
 
+	@Override
+	public int insertJoinReport(SqlSession session, Map data) {
+		// TODO Auto-generated method stub
+		return session.insert("declaration.insertJoinReport",data);
+	}
+	
+	
+
 	
 	
 }

@@ -11,6 +11,7 @@ import com.km.common.CommonUtils;
 import com.km.common.MailService;
 import com.km.model.dao.DeclarationDao;
 import com.km.model.dto.MailInfo;
+import com.km.model.dto.Police;
 import com.km.model.dto.Report;
 
 import lombok.RequiredArgsConstructor;
@@ -66,11 +67,17 @@ public class DeclarationServiceImpl implements DeclarationService {
 
 	@Override
 	public boolean reportSendPolice(Report report,String url) {
-		//메일 전송하기 
-		//경찰관 email찾기
 		List<Map> result=dao.searchReportAreaPolice(session, 
 				Map.of("sido",report.getSido(),"gungu",report.getGungu(),
 						"dong",report.getDong().split(" ")[0]));
+		//경찰관 사건지정하기
+		//첫번째로 나오는 경찰에게 사건연결
+		//차후 변경할 수 있게 설정
+		dao.insertJoinReport(session,Map.of("reportNo",
+				report.getReportNo(),"policeNo",result.get(0).get("POLICE_NO")));
+		
+		//메일 전송하기 
+		//경찰관 email찾기
 		if(result.size()>0) {
 			String content="""
 					<h2>%s에서 학교폭력이 접수되었습니다.<h2>
@@ -84,11 +91,14 @@ public class DeclarationServiceImpl implements DeclarationService {
 			MailInfo mail=MailInfo.builder()
 					.title("학교폭력 사건이 접수되었습니다")
 					.content(content)
-					.reciever((String)result.get(0).get("POLICE_EMAIL"))
 					.build();
-			log.debug("{}",mail);
-			//이메일 전송하기
-			return mailService.sendMail(mail);
+			
+			result.stream().forEach(police->{
+				mail.setReciever((String)police.get("POLICE_EMAIL"));
+				//이메일 전송하기
+				mailService.sendMail(mail);
+			});
+			return true;
 		}
 		return false;
 	}
