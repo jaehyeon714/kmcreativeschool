@@ -14,20 +14,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/contact")
 public class ContactController {
 
     private List<Contact> contacts = new ArrayList<>(); // 문의를 저장할 리스트
 
     // 문의 목록 조회
-    @GetMapping
+    @GetMapping("/contact")
     public String showContactList(Model model) {
         model.addAttribute("contacts", contacts); // 저장된 문의 리스트를 모델에 추가
         return "contact/contact"; // 문의 리스트 페이지 반환
     }
 
     // 문의 상세 보기 (contactview.do)
-    @GetMapping("/contactview")
+    @GetMapping("/contact/contactview")
     public String showContactDetail(@RequestParam Number id_seq, Model model) {
         Optional<Contact> contact = contacts.stream()
                 .filter(c -> c.getId_seq().equals(id_seq))
@@ -38,11 +37,10 @@ public class ContactController {
     }
 
     // 문의 작성 페이지로 이동
-    @GetMapping("/contactwrite.do")
+    @RequestMapping("/contactwrite.do")
     public String showContactWriteForm() {
         return "contact/contactwrite"; // 문의 작성 페이지 반환
     }
-
 
     // 문의 저장
     @PostMapping("/contact")
