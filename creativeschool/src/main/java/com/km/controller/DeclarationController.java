@@ -112,6 +112,7 @@ public class DeclarationController {
 			m.addAttribute("msg",e.getMessage()+"을(를) 실패했습니다 다시 시도하거나 관리자에게 문의하세요.");
 			m.addAttribute("status","danager");
 		}
+		session.removeAttribute("reporter");
 		return "common/msg";		
 		
 		

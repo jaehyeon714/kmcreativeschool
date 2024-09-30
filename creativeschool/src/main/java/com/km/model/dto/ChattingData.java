@@ -17,5 +17,6 @@ public class ChattingData {
 	private String sender;
 	private String reciever;
 	private String chattingContent;
+	private String chattingroom;
 	private Timestamp chattingDate;
 }

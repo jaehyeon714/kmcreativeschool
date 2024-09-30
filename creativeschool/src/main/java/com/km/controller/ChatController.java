@@ -6,13 +6,16 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.km.model.dto.Police;
 import com.km.model.service.PoliceService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+@SessionAttributes({"clientEmail"})
 public class ChatController {
 	
 	private final PoliceService service;
@@ -24,8 +27,12 @@ public class ChatController {
 		return "chat/chatlist";
 	}
 	
-	@RequestMapping("/chat/livechatlist/livechat.km")
-	public String liveChat() {
+	@RequestMapping("/chat/livechat.km")
+	public String liveChat(String police, String clientEmail,Model m) {
+		Police policeObj=service.selectPoliceById(police);
+		m.addAttribute("policeObj", policeObj);
+		m.addAttribute("police",police);
+		m.addAttribute("clientEmail",clientEmail);
 		return "chat/livechat";
 	}
 	
