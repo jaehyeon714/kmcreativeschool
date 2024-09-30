@@ -117,7 +117,12 @@ public class DeclarationController {
 		
 		
 	}
-
+	
+	@RequestMapping("/searchDeclaration.do")
+	public String searchDeclaration() {
+		
+		return "declaration/policeReport";
+	}
 }
 
 

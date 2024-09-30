@@ -36,11 +36,19 @@
   			</div>
 		</nav>
 	    <div>
-	        <a href="${ path }/police/policeenroll.do">
-	            <button type="button" class="btn btn-primary px-4">경찰관</button>
-	        </a>
-	    	<a href="${ path }/contact">
-	    		<button type="button" class="btn btn-primary px-4">문의하기</button>
-	    	</a>
+	    	<c:if test="${loginPolice==null}">
+		        <a href="${ path }/police/policeenroll.do">
+		            <button type="button" class="btn btn-primary px-4">경찰관</button>
+		        </a>
+		    	<a href="${ path }/contact">
+		    		<button type="button" class="btn btn-primary px-4">문의하기</button>
+		    	</a>
+	    	</c:if>
+	    	<c:if test="${loginPolice!=null }">
+	    		<span style="font-size:18px;font-weight:bolder;">${loginPolice.policeName } ${loginPolice.policeGrade }</span>
+	    		<a href="${ path }/declaration/searchDeclaration.do">
+		            <button type="button" class="btn btn-primary px-4">접수사건</button>
+		        </a>
+	    	</c:if>
 	    </div>
 	</header>
