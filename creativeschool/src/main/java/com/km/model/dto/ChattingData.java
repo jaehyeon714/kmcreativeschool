@@ -15,8 +15,8 @@ public class ChattingData {
 	private long chattingNo;
 	private String chattingCategory;
 	private String sender;
-	private String reciever;
+	private String receiver;
 	private String chattingContent;
-	private String chattingroom;
+	private String chattingRoom;
 	private Timestamp chattingDate;
 }

@@ -54,11 +54,13 @@
     		
     		if('${sessionScope.clientEmail}'){
     			alert("저장된 이메일로 연결합니다.");
-    			location.assign(`${path}/chat/livechat.km?police=\${policeId}&clientEmail=${sessionScope.clientEmail}`);
+    			sender='${sessionScope.clientEmail}';
+    			location.assign(`${path}/chat/livechat.km?receiver=\${policeId}&sender=${sessionScope.clientEmail}`);
     		}else{
 				clientEmail=prompt("이메일입력");
+				sender=clientEmail;
 				if(clientEmail!=null&&clientEmail.trim().length>0&&clientEmail.indexOf("@")!=-1){
-					location.assign(`${path}/chat/livechat.km?police=\${policeId}&clientEmail=\${clientEmail}`);
+					location.assign(`${path}/chat/livechat.km?receiver=\${policeId}&sender=\${clientEmail}`);
 				}else{
 					alert("이메일 형식에 맞춰서 반드시 입력해야합니다.");
 				}

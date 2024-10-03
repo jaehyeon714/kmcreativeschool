@@ -60,7 +60,11 @@ public class LoginController {
     	return "redirect:/";
     }
     
-    
+    @RequestMapping("/police/logout.do")
+    public String logout(HttpSession session) {
+    	session.invalidate();
+    	return "redirect:/";
+    }
     
     
     
