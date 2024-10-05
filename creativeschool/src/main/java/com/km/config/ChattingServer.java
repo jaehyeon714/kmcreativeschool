@@ -38,6 +38,7 @@ public class ChattingServer extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		ChattingData msg=mapper.readValue(message.getPayload(), ChattingData.class);
+		log.debug("{}",msg);
 		session.getAttributes().put("content",msg);
 		switch(msg.getChattingCategory()) {
 			case "open" : addClient(msg,session); break;
@@ -69,7 +70,8 @@ public class ChattingServer extends TextWebSocketHandler {
 		List<WebSocketSession> client=clients.values().stream()
 		.filter(s->{
 			ChattingData cd=(ChattingData)s.getAttributes().get("content");
-			return cd.getChattingRoom().equals(msg.getChattingRoom());
+			return cd.getChattingRoom()!=null
+					&&cd.getChattingRoom().equals(msg.getChattingRoom());
 		}).toList();
 		
 		//클라이언트에게 메세지 보내기 

@@ -19,8 +19,8 @@ function openSocket(server,path){
 				websocket.send(JSON.stringify(msg));
 				chattingRoom=`${receiver}_${sender2}`;
 			}else{
-				// const msg=new Message("roominsert",sender,receiver,'',new Date(),`${sender2}_${receiver}`);
-				// websocket.send(JSON.stringify(msg));
+				const msg=new Message("roominsert",sender,receiver,'',new Date(),`${sender2}_${receiver}`);
+				websocket.send(JSON.stringify(msg));
 				chattingRoom=`${sender2}_${receiver}`;
 			}
 		}

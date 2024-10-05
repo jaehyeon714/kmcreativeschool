@@ -42,11 +42,8 @@
 		</div>
 		
         <div id="chattingData" class="border rounded p-3 mb-3" style="height: 400px; overflow-y: auto;">
-            <div class="message my-2">
-                <div class="alert alert-secondary" role="alert">안녕하세요! 어떻게 도와드릴까요?</div>
-            </div>
-            <div class="message my-2 d-flex justify-content-end">
-                <div class="col-8 alert alert-primary" role="alert">안녕하세요! 질문이 있습니다.무슨일입이엠ㄴ아런ㅁ이ㅏㄹ먼ㅇ람ㄴㅇ리ㅏㅓㅁ나얾ㄴ.</div>
+            <div class="message my-2 justify-content-center">
+                <div style="text-align:center" class="alert alert-info" role="alert">안녕하세요! 무엇을 도와드릴까요?</div>
             </div>
         </div>
         <div class="input-group">

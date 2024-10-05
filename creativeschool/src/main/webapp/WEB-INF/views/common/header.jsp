@@ -61,7 +61,7 @@
 	<script src="${path }/resources/js/chatting-controller.js"></script>
 	<script>
 		
-		openSocket('${pageContext.request.localName}:${pageContext.request.localPort}','${path}')
+		openSocket(`\${location.host}`,'${path}')
 		if(${loginPolice!=null}){
 			sender='${loginPolice.policeIdentity}';
 		};
