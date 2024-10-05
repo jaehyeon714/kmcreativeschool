@@ -9,10 +9,20 @@
 		<result column="DECLARATION_SIDO" property="sido"/>
 		<result column="DECLARATION_GUNGU" property="gungu"/>
 		<result column="DECLARATION_DONG" property="dong"/>
-		<result column="DECLARATION_DETAIL" property="incidentDetails"/>
-		<result column="DECLARATION_DATE" property="incidentTime"/>
+		<result column="DECLARATION_DETAIL" property="incidentAddress"/>
+		<result column="DECLARATION_DATE" property="incidentTime" typeHandler="localDateTimeHandler"/>
 		<result column="DECLARATION_STATUS" property="status"/>
+		<result column="DECLARATION_INSERTDATE" property="declarationInsertDate"/>
 		<association property="reporter" resultMap="reporterMap"/>
+		<collection property="attackers" ofType="attacker">
+			<id column="attacker_no" property="attackerNo"/>
+			<result column="attacker_name" property="attackerName"/>
+			<result column="attacker_address" property="attackerAddress"/>
+			<result column="attacker_phone" property="attackerContact"/>
+			<result column="attacker_school" property="attackerSchool"/>
+			<result column="attacker_gender" property="attackerGender"/>
+			<result column="attacker_info" property="attackerInfo"/>
+		</collection>
 		<collection property="files" ofType="declarationAttach">
 			<id column="DECLARATION_ATTACHMENT_NO" property="declarationAttachmentNo"/>
 			<result column="ATTACHMENT_RENAME" property="declarationAttachmentRename"/>
@@ -32,7 +42,7 @@
 	<insert id="insertDeclaration" parameterType="report">
 		INSERT INTO DECLARATION VALUES(SEQ_DECLARATION_NO.NEXTVAL, #{incidentDetails},
 		#{reportType},#{sido},#{gungu},#{dong},#{incidentAddress},
-		#{incidentTime},#{status},#{reporter.reporterNo})
+		#{incidentTime},#{status},#{reporter.reporterNo},SYSDATE)
 		<selectKey keyProperty="reportNo" order="AFTER" resultType="_long">
 			SELECT SEQ_DECLARATION_NO.CURRVAL FROM DUAL
 		</selectKey>
@@ -67,6 +77,32 @@
 		INSERT INTO JOIN_POLICE_DECLARATION VALUES(#{reportNo},#{policeNo})
 	</insert>
 	
+	<select id="selectReportAll" parameterType="map" resultType="map">
+	select d.declaration_no, declaration_category, declaration_detail, declaration_date, 
+	    (select count(*) from attacker where d.declaration_no=declaration_no) as attacker_count,
+	    reporter_name, declaration_insertdate,
+	    (select count(*) from declaration_attachment where d.declaration_no=declaration_no) as attach_count
+	from declaration d join reporter_info r on d.reporter_no=r.reporter_no
+	        join join_police_declaration jpd on d.declaration_no=jpd.declaration_no
+	        join police using(police_no)
+     WHERE POLICE_IDENTITY=#{policeId}
+     ORDER BY declaration_insertdate desc
+	</select>
+	<select id="selectReportAllCount" parameterType="map" resultType="_long">
+	select count(*)
+	from declaration d join join_police_declaration jpd on d.declaration_no=jpd.declaration_no
+	        join police using(police_no)
+     WHERE POLICE_IDENTITY=#{policeId}
+     ORDER BY declaration_insertdate desc
+	</select>
+	<select id="selectReportByNo" parameterType="_long" resultMap="declarationMap">
+		SELECT * FROM JOIN_POLICE_DECLARATION 
+		JOIN DECLARATION USING(DECLARATION_NO) 
+		LEFT JOIN DECLARATION_ATTACHMENT USING(DECLARATION_NO)    
+        JOIN ATTACKER USING(DECLARATION_NO)
+        JOIN REPORTER_INFO USING(REPORTER_NO)
+        WHERE DECLARATION_NO=#{no}
+	</select>
 </mapper>	 
 
 

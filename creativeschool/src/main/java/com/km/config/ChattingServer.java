@@ -32,13 +32,13 @@ public class ChattingServer extends TextWebSocketHandler {
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		log.debug("{}",session);
+//		log.debug("{}",session);
 	}
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		ChattingData msg=mapper.readValue(message.getPayload(), ChattingData.class);
-		log.debug("{}",msg);
+//		log.debug("{}",msg);
 		session.getAttributes().put("content",msg);
 		switch(msg.getChattingCategory()) {
 			case "open" : addClient(msg,session); break;
@@ -50,11 +50,12 @@ public class ChattingServer extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		String key=clients.keySet().stream()
-			.filter(k->Objects.equals(clients.get(k),session)).findFirst().orElse("none");
-		log.debug(key);
-		if(!key.equals("none")) {
-			clients.remove(key);
+//		log.debug("{}",clients);
+		List<String> key=clients.keySet().stream()
+			.filter(k->Objects.equals(clients.get(k),session)).toList();
+//		log.debug("{}",key);
+		for(String k : key) {
+			clients.remove(k);
 		}
 	}
 	private void request(ChattingData msg) {
@@ -87,6 +88,6 @@ public class ChattingServer extends TextWebSocketHandler {
 	
 	private void addClient(ChattingData msg,WebSocketSession session) {
 		clients.put(msg.getSender(), session);
-		
+		log.debug("{}",clients);
 	}
 }

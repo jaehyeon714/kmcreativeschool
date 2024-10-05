@@ -4,6 +4,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.km.common.CommonUtils;
+import com.km.common.PageFactory;
 import com.km.model.dto.DeclarationAttachment;
+import com.km.model.dto.Police;
 import com.km.model.dto.Report;
 import com.km.model.dto.Reporter;
 import com.km.model.service.DeclarationService;
@@ -119,10 +125,34 @@ public class DeclarationController {
 	}
 	
 	@RequestMapping("/searchDeclaration.do")
-	public String searchDeclaration() {
+	public String searchDeclaration(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam(defaultValue = "5") int numPerpage,
+			@SessionAttribute Police loginPolice,
+			Model m) {
+		
+		List<Map> reports=service
+				.selectReportAll(Map.of(
+						"policeId",loginPolice.getPoliceIdentity(),
+						"cPage",cPage,
+						"numPerpage",numPerpage));
+		long reportCount=service.selectReportAllCount(loginPolice.getPoliceIdentity());
+		m.addAttribute("reports",reports);
+		m.addAttribute("pageBar",PageFactory.getPage(cPage, numPerpage, reportCount,"searchDeclaration.do"));		
+		log.debug("{}",reports);
 		
 		return "declaration/policeReport";
 	}
+	
+	@RequestMapping("/declarationdetail")
+	public String declarationDetail(long no,
+			Model m) {
+		Report report=service.selectReportByNo(no);
+		m.addAttribute("report",report);
+		
+		return "declaration/reportDetail";
+	}
+	
 }
 
 

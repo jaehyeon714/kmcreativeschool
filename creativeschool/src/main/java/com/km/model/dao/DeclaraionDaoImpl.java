@@ -3,6 +3,7 @@ package com.km.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -21,13 +22,16 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 	}
 
 	@Override
-	public List<Report> selectReportAll(SqlSession session, Map param) {
-		return null;
+	public List<Map> selectReportAll(SqlSession session, Map param) {
+		 int cPage=(int)param.get("cPage");
+		 int numPerpage=(int)param.get("numPerpage");
+		RowBounds rb=new RowBounds((cPage-1)*numPerpage,numPerpage);
+		return session.selectList("declaration.selectReportAll",param,rb);
 	}
 
 	@Override
-	public List<Report> selectReportSearch(SqlSession session, Map<String, String> mapKeyword) {
-		return null;
+	public List<Map> selectReportSearch(SqlSession session, Map<String, Object> mapKeyword) {
+		return session.selectList("declaration.selectReportSearch",mapKeyword);
 	}
 
 	@Override
@@ -59,6 +63,20 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 		// TODO Auto-generated method stub
 		return session.insert("declaration.insertJoinReport",data);
 	}
+
+	@Override
+	public long selectReportAllCount(SqlSession session, String id) {
+		// TODO Auto-generated method stub
+		return session.selectOne("declaration.selectReportAllCount",id);
+	}
+
+	@Override
+	public Report selectReportByNo(SqlSession session, long no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("declaration.selectReportByNo",no);
+	}
+	
+	
 	
 	
 

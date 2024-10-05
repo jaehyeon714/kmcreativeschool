@@ -1,5 +1,6 @@
 package com.km.model.dto;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +34,6 @@ public class Report {
 	private String gungu;
 	private String dong;//도로명주소 
 	
+	private Date declarationInsertDate;
 	
 }
