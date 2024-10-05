@@ -1,6 +1,9 @@
 package com.km.controller;
 
 import com.km.model.dto.Contact;
+import com.km.model.service.QnaService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +18,22 @@ import java.util.Optional;
 
 @Controller
 public class ContactController {
+	
+	private QnaService service;
+	
+	public ContactController(QnaService service) {
+		this.service = service;
+	}
 
     private List<Contact> contacts = new ArrayList<>(); // 문의를 저장할 리스트
 
     // 문의 목록 조회
     @GetMapping("/contact")
     public String showContactList(Model model) {
-        model.addAttribute("contacts", contacts); // 저장된 문의 리스트를 모델에 추가
-        return "contact/contact"; // 문의 리스트 페이지 반환
+        List<Contact> contacts = service.selectAllBoard();
+        System.out.println(contacts); // 콘솔에 확인
+        model.addAttribute("contacts", contacts);
+        return "contact/contact";
     }
 
     // 문의 상세 보기 (contactview.do)

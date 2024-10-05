@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qna">
+	
+	<resultMap type="com.km.model.dto.Qna" id="QnaMap">
+		<id column="QNA_NO" property="id_seq"/>
+		<result column="QNA_TITLE" property="title"/>
+		<result column="QNA_CONTENT" property="contactContent"/>
+		<result column="QNA_WRITER" property="writer"/>
+		<result column="QNA_DATE" property="dateTime"/>
+		<result column="QNA_REPLY" property="response"/>
+	</resultMap>
+	
+	<select id="selectAllBoard" resultMap="QnaMap">
+	    SELECT * FROM qna
+	</select>
+	
+</mapper>

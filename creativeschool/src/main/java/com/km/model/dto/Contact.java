@@ -15,6 +15,7 @@ public class Contact {
 	private Number id_seq;
 	private String title;
 	private String contactContent;
+	private String writer;
 	private LocalDateTime dateTime;
 	private String response;
 }

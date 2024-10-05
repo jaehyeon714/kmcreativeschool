@@ -8,15 +8,15 @@
         <form action="/contactwrite.form" method="post" autocomplete="off">
             <div class="form-group">
                 <label for="email">이메일</label>
-                <input type="email" class="form-control" id="email" placeholder="이메일을 입력하세요" required>
+                <input type="email" class="form-control" id="questionEmail" placeholder="이메일 (예 : abcd1234@gmail.com)" required>
             </div>
             <div class="form-group">
                 <label for="subject">제목</label>
-                <input type="text" class="form-control" id="subject" placeholder="제목을 입력하세요" required>
+                <input type="text" class="form-control" id="questionTitle" placeholder="제목" required>
             </div>
             <div class="form-group">
                 <label for="message">내용</label>
-                <textarea class="form-control" id="message" rows="5" placeholder="내용을 입력하세요" required style="resize: none;"></textarea>
+                <textarea class="form-control" id="message" rows="5" name="questionContent" placeholder="문의하고 싶은 내용을 입력하세요." required style="resize: none;"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">제출</button>
         </form>
