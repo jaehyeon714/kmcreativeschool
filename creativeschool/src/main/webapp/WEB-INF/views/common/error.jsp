@@ -13,3 +13,4 @@
         <p>로그인 페이지로 가시겠습니까? <a href="policeenroll.jsp">로그인</a></p>
     <%
         } 
+    %>

@@ -24,7 +24,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "login"; // login.jsp 파일을 반환
+        return "policeenroll"; // login.jsp 파일을 반환
     }
 
     @PostMapping("/login")
