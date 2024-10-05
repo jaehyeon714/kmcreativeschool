@@ -25,8 +25,6 @@ public class PoliceInsertController {
 		System.out.println(policeStation);
 		service.insertPolice(police);
 		return "police/policeinsert";
-		
-		
 	}
-		
+	
 }
