@@ -23,4 +23,14 @@ public class QnaServiceImpl implements QnaService {
 		return dao.selectAllBoard(session);
 	}
 	
+	@Override
+	public List<Contact> findByIdSeq(int seq) {
+		return dao.findByIdSeq(session, seq);
+	}
+	
+	@Override
+	public void insertContact(String title, String writer, String contactContent) {
+		dao.insertContact(session, title, writer, contactContent);
+	}
+	
 }

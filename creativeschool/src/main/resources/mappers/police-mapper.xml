@@ -47,5 +47,10 @@
 		SELECT police_identity, police_name, police_grade, police_profile, 
 		policestation_name, police_log FROM POLICE JOIN POLICESTATION USING(policestation_no)
 	</select>	
+	
+	<select id="findIdPw" parameterType="String" resultMap="policeMap">
+	    SELECT * FROM police WHERE police_email = #{police_email}
+	</select>
+
 		
 </mapper>

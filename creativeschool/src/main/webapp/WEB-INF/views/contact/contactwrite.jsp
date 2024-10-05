@@ -7,16 +7,16 @@
         <h2>문의 글 작성</h2>
         <form action="/contactwrite.form" method="post" autocomplete="off">
             <div class="form-group">
-                <label for="email">이메일</label>
-                <input type="email" class="form-control" id="questionEmail" placeholder="이메일 (예 : abcd1234@gmail.com)" required>
+                <label for="writer">작성자</label>
+                <input type="text" class="form-control" id="writer" name="writer" placeholder="작성자" required>
             </div>
             <div class="form-group">
-                <label for="subject">제목</label>
-                <input type="text" class="form-control" id="questionTitle" placeholder="제목" required>
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="제목" required>
             </div>
             <div class="form-group">
-                <label for="message">내용</label>
-                <textarea class="form-control" id="message" rows="5" name="questionContent" placeholder="문의하고 싶은 내용을 입력하세요." required style="resize: none;"></textarea>
+                <label for="contactContent">내용</label>
+                <textarea class="form-control" id="contactContent" rows="5" name="contactContent" placeholder="문의하고 싶은 내용을 입력하세요." required style="resize: none;"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">제출</button>
         </form>

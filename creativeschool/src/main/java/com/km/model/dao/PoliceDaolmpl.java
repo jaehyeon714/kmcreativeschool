@@ -26,6 +26,11 @@ public class PoliceDaolmpl implements PoliceDao{
 		return session.selectList("police.selectPoliceAll");
 	}
 	
+	@Override
+	public List<Police> findIdPw(SqlSession session, String policeEmail) {
+		return session.selectList("police.findIdPw");
+	}
+	
 	
 	
 }

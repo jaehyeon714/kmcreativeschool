@@ -3,8 +3,8 @@
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qna">
 	
-	<resultMap type="com.km.model.dto.Qna" id="QnaMap">
-		<id column="QNA_NO" property="id_seq"/>
+	<resultMap type="com.km.model.dto.Contact" id="ContactMap">
+		<id column="QNA_NO" property="seq"/>
 		<result column="QNA_TITLE" property="title"/>
 		<result column="QNA_CONTENT" property="contactContent"/>
 		<result column="QNA_WRITER" property="writer"/>
@@ -12,8 +12,18 @@
 		<result column="QNA_REPLY" property="response"/>
 	</resultMap>
 	
-	<select id="selectAllBoard" resultMap="QnaMap">
+	<select id="selectAllBoard" resultMap="ContactMap">
 	    SELECT * FROM qna
 	</select>
+	
+	<select id="findByIdSeq" parameterType="int" resultMap="ContactMap">
+        SELECT * FROM qna WHERE QNA_NO = #{seq}
+    </select>
+    
+    <insert id="insertContact" parameterType="String">
+    	INSERT INTO qna (QNA_TITLE, QNA_WRITER, QNA_CONTENT)
+    	VALUES(#{title}, #{writer}, #{contactContent})
+    </insert>
+
 	
 </mapper>

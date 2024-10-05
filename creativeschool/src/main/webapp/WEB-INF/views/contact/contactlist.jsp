@@ -21,11 +21,11 @@
 			</tr>
 			<c:forEach var="contacts" items="${ contacts }">
 				<tr>
-					<td>${ contacts.qnaTitle }</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>${ contacts.seq }</td>
+					<td><a href="${ path }/contact/contactview?seq=${contacts.seq}">${ contacts.title }</a></td>
+					<td><a href="">${ contacts.contactContent }</a></td>
+					<td>${ contacts.dateTime }</td>
+					<td>${ contacts.response }</td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -15,4 +15,14 @@ public class QnaDaoImpl implements QnaDao {
 		return session.selectList("qna.selectAllBoard");
 	}
 	
+	@Override
+	public List<Contact> findByIdSeq(SqlSession session, int seq) {
+		return session.selectList("qna.findByIdSeq");
+	}
+	
+	@Override
+	public void insertContact(SqlSession session, String title, String writer, String contactContent) {
+		session.insert("qna.insertContact");
+	}
+	
 }

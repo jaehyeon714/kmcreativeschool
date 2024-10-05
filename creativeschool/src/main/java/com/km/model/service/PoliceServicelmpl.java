@@ -35,5 +35,9 @@ public class PoliceServicelmpl implements PoliceService{
 		return dao.selectPoliceAll(session);
 	}
 	
+	@Override
+	public List<Police> findIdPw(String policeEmail) {
+		return dao.findIdPw(session, policeEmail);
+	}
 	
 }

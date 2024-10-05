@@ -11,4 +11,5 @@ public interface PoliceDao {
 	Police selectPoliceById(SqlSession session,  String id);
 	int insertPolice(SqlSession session,  Police police);
 	List<Map> selectPoliceAll(SqlSession session);
+	List<Police> findIdPw(SqlSession session, String policeEmail);
 }

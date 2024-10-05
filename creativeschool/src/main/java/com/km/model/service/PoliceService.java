@@ -9,4 +9,5 @@ public interface PoliceService {
 	Police selectPoliceById(String id);
 	int insertPolice(Police police);
 	List<Map> selectPoliceAll();
+	List<Police> findIdPw(String policeEmail);
 }

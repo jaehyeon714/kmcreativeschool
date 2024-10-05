@@ -59,8 +59,8 @@
         <h2>아이디 / 비밀번호 찾기</h2>
         <form action="${path}/police/findIdPw" method="post">
             <div class="form-group">
-                <label for="email">등록된 이메일 주소</label>
-                <input type="email" id="email" name="email" required>
+                <label for="policeEmail">등록된 이메일 주소</label>
+                <input type="email" id="policeEmail" name="policeEmail" required>
             </div>
             <button type="submit">아이디 찾기</button>
             <button type="submit">비밀번호 찾기</button>
