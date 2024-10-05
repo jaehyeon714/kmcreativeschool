@@ -41,7 +41,7 @@
 </main>
 	<script>
 	 function requestDetail(no){
-		 location.assign("${path}/declaration/declarationdetail?no="+no);
+		 location.assign("${path}/declaration/searchDeclarationdetail?no="+no);
 	 }
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

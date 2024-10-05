@@ -37,6 +37,15 @@
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	
+	<beans:bean id="logincheck" class="com.km.common.interceptor.LoginCheckInterface"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/declaration/search*"/>
+			<beans:ref bean="logincheck"/>
+		</interceptor>
+	</interceptors>
+	
+	
 </beans:beans>
 
 

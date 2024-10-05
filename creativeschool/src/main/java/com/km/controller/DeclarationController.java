@@ -144,10 +144,11 @@ public class DeclarationController {
 		return "declaration/policeReport";
 	}
 	
-	@RequestMapping("/declarationdetail")
+	@RequestMapping("/searchDeclarationdetail")
 	public String declarationDetail(long no,
 			Model m) {
 		Report report=service.selectReportByNo(no);
+		log.debug("{}",report);
 		m.addAttribute("report",report);
 		
 		return "declaration/reportDetail";
