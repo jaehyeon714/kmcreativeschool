@@ -19,7 +19,7 @@
 	        <a href="${ path }/">
 	            <img alt="로고" src="${ path }/resources/images/km_logo.png" class="mr-2" style="max-height: 50px;">
 	        </a>
-	        <h3 class="mb-0 ml-2">당신의 용기 있는 신고가 <br>안전한 학교를 만드는 첫걸음입니다.</h3>
+	        <h3 class="mb-0 ml-2"><strong>폭력은 끝내야 할 행동입니다.</strong></h3>
 	    </div>
 	    <c:if test="${loginPolice==null }">
 		  	<nav class="navbar navbar-expand-lg navbar-light bg-white">
