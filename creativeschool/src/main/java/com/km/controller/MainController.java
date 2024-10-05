@@ -21,4 +21,8 @@ public class MainController {
 		return "police/policeenroll";
 	}
 	
+	@RequestMapping("/police/findIdPw.do")
+	public String policeFindIdPw() {
+		return "police/findIdPw";
+	}
 }
