@@ -6,7 +6,7 @@
 	<!-- main > section > article -->
     <main class="container my-4 d-flex justify-content-around aling-items-center" style="height: 500px;">
     	<a href="${ path }/declaration/requestdeclaration.km">
-    		<img alt="신고하기" src="/creativeschool/resources/images/declaration_img.png" class="img-fluid" style="height: 45%;">
+    		<img alt="신고하기" src="/creativeschool/resources/images/declaration_img.png" class="img-fluid" style="width: 300px; height: 300px;">
     		<p class="text-center" style="font-size: 30px;">신고하기</p>
     	</a>
     	<a href="${ path }/chat/livechatlist.km">
