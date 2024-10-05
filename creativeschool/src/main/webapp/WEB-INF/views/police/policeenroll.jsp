@@ -52,12 +52,13 @@
 	   
 	   <div class="d-flex justify-content-center" id="div_box">
 	   		<div style="margin-right:3%"class="d-flex justify-content-center align-items-center">
-				<a href="${path }/#">아이디/비밀번호찾기</a>
+				<a href="javascript:searchIdPassword();" id="d">아이디/비밀번호찾기</a>
 			</div>
 			<div class="d-flex justify-content-center align-items-center">
 				<button type="button" class="btn btn-outline-primary" onclick="location.href='${path}/police/policeinsert.km'">경찰등록</button>
 			</div>
 		</div>
+		
 	</c:if>
     <!-- 로그인 실패 시 에러 메시지 출력 -->
     <c:if test="${not empty error}">
@@ -73,5 +74,9 @@
 	 <h2 style="text-align: center; margin-top:5%">${loginPolice.policeName} 경찰관님 환영합니다.</h2>
    	</c:if>
 </main>
-
+<script>
+ function searchIdPassword() {
+	 open("/creativeschool/police/findIdPw.do","_blank","width=500,height=330,top=250%,left=700%");
+ }
+</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
