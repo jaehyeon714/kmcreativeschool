@@ -19,30 +19,33 @@
 		SELECT * FROM POLICE WHERE POLICE_IDENTITY=#{id}
 	</select>
 	
-<insert id="insertPolice" parameterType="police">
-    INSERT INTO POLICE (
-        POLICE_IDENTITY,
-        POLICE_PASSWORD,
-        POLICE_NAME,
-        POLICE_EMAIL,
-        POLICE_NO,
-        POLICE_GRADE,
-        POLICE_PROFILE,
-        POLICE_LOG,
-        POLICESTATION_NO
-    ) VALUES (
-        #{policeIdentity},
-        #{policePassword},
-        #{policeName},
-        #{policeEmail},
-        NULL, 
-        NULL, 
-        NULL,  
-        NULL, 
-        NULL  
-    )
-</insert>
+	<insert id="insertPolice" parameterType="police">
+	    INSERT INTO POLICE (
+	        POLICE_IDENTITY,
+	        POLICE_PASSWORD,
+	        POLICE_NAME,
+	        POLICE_EMAIL,
+	        POLICE_NO,
+	        POLICE_GRADE,
+	        POLICE_PROFILE,
+	        POLICE_LOG,
+	        POLICESTATION_NO
+	    ) VALUES (
+	        #{policeIdentity},
+	        #{policePassword},
+	        #{policeName},
+	        #{policeEmail},
+	        NULL, 
+	        NULL, 
+	        NULL,  
+	        NULL, 
+	        NULL  
+	    )
+	</insert>
 
-	
+	<select id="selectPoliceAll" resultType="map">
+		SELECT police_identity, police_name, police_grade, police_profile, 
+		policestation_name, police_log FROM POLICE JOIN POLICESTATION USING(policestation_no)
+	</select>	
 		
 </mapper>

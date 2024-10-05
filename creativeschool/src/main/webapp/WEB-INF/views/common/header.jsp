@@ -19,28 +19,52 @@
 	        <a href="${ path }/">
 	            <img alt="로고" src="${ path }/resources/images/km_logo.png" class="mr-2" style="max-height: 50px;">
 	        </a>
-	        <h3 class="mb-0 ml-2">당신의 용기 있는 신고가 안전한 학교를 만드는 첫걸음입니다.</h3>
+	        <h3 class="mb-0 ml-2">당신의 용기 있는 신고가 <br>안전한 학교를 만드는 첫걸음입니다.</h3>
 	    </div>
-	  	<nav class="navbar navbar-expand-lg navbar-light bg-white">
-  			<div class="container-fluid">
-   				<div class="collapse navbar-collapse" id="navbarNav">
-      				<ul class="navbar-nav">
-        				<li class="nav-item">
-          					<a class="nav-link" href="#">신고하기</a>
-        				</li>
-        				<li class="nav-item">
-          					<a class="nav-link" href="#">실시간 채팅</a>
-        				</li>
-      				</ul>
-    			</div>
-  			</div>
-		</nav>
+	    <c:if test="${loginPolice==null }">
+		  	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+	  			<div class="container-fluid">
+	   				<div class="collapse navbar-collapse" id="navbarNav">
+	      				<ul class="navbar-nav">
+	        				<li class="nav-item">
+	          					<a class="nav-link" href="${path}/declaration/requestdeclaration.km">신고하기</a>
+	        				</li>
+	        				<li class="nav-item">
+	          					<a class="nav-link" href="${path }/chat/livechatlist.km">실시간 채팅</a>
+	        				</li>
+	      				</ul>
+	    			</div>
+	  			</div>
+			</nav>
+		</c:if>
 	    <div>
-	        <a href="${ path }/police/policeenroll.do">
-	            <button type="button" class="btn btn-primary px-4">경찰관</button>
-	        </a>
-	    	<a href="${ path }/contact">
-	    		<button type="button" class="btn btn-primary px-4">문의하기</button>
-	    	</a>
+	    	<c:if test="${loginPolice==null}">
+		        <a href="${ path }/police/policeenroll.do">
+		            <button type="button" class="btn btn-primary px-4">경찰관</button>
+		        </a>
+		    	<a href="${ path }/contact">
+		    		<button type="button" class="btn btn-primary px-4">문의하기</button>
+		    	</a>
+	    	</c:if>
+	    	<c:if test="${loginPolice!=null }">
+	    		<span style="font-size:18px;font-weight:bolder;">${loginPolice.policeName } ${loginPolice.policeGrade }</span>
+	    		<a href="${ path }/police/logout.do">
+		            <button type="button" class="btn btn-primary px-4">로그아웃</button>
+		        </a>
+	    		<a href="${ path }/declaration/searchDeclaration.do">
+		            <button type="button" class="btn btn-primary px-4">접수사건</button>
+		        </a>
+		        
+	    	</c:if>
 	    </div>
 	</header>
+	<script src="${path }/resources/js/chatting-controller.js"></script>
+	<script>
+		
+		openSocket(`\${location.host}`,'${path}')
+		if(${loginPolice!=null}){
+			sender='${loginPolice.policeIdentity}';
+		};
+		
+		
+	</script>
