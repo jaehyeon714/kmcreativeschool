@@ -11,6 +11,7 @@ public interface PoliceService {
 	Police selectPoliceByEmail(String email);
 	int insertPolice(Police police);
 	List<Map> selectPoliceAll();
+	List<Police> findIdPw(String policeEmail);
 	PoliceStation selectPoliceStaionByName(String name);
 	int insertPoliceStation(PoliceStation policeStation);
     int updatePolicePassword(String email, String newPassword);

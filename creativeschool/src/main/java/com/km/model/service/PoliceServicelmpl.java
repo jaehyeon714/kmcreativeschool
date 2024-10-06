@@ -63,6 +63,10 @@ public class PoliceServicelmpl implements PoliceService{
 		return dao.updatePolicePassword(session, email, newPassword);
 	}
 	
+	@Override
+	public List<Police> findIdPw(String policeEmail) {
+		return dao.findIdPw(session, policeEmail);
+	}
 	
 
 

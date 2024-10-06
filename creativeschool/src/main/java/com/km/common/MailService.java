@@ -15,7 +15,6 @@ public class MailService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
-	
 	public boolean sendMail(MailInfo mailInfo) {
 		try {
 			MimeMessage message=javaMailSender.createMimeMessage();

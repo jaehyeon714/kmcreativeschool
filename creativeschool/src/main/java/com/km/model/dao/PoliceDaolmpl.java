@@ -44,7 +44,14 @@ public class PoliceDaolmpl implements PoliceDao{
 	public Police selectPoliceByEmail(SqlSession session, String email) {
 		return session.selectOne("police.selectPoliceByEmail", email);
 	}
-
+	
+	@Override
+	public List<Police> findIdPw(SqlSession session, String policeEmail) {
+		return session.selectList("police.findIdPw");
+	}
+	
+	
+	
 	@Override
 	public int updatePolicePassword(SqlSession session, String email, String newPassword) {
         Map<String, String> params = new HashMap<>();
@@ -52,5 +59,7 @@ public class PoliceDaolmpl implements PoliceDao{
         params.put("password", newPassword);
 		return session.update("police.updatePolicePassword", params);
 	}
+	
+
 
 }
