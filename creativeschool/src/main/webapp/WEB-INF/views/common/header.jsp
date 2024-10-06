@@ -9,7 +9,7 @@
 			margin-right: 20px; /* 버튼 사이의 여백 조정 */
 		}
 		.button-container {
-			margin-left: -310px; /* 왼쪽으로 이동 */
+			margin-left: 50px; /* 왼쪽으로 이동 */
 		}
 	</style>
 	<meta charset="UTF-8">
@@ -30,16 +30,13 @@
 		  	<nav class="navbar navbar-expand-lg navbar-light bg-white w-50"> <!-- 전체 너비 설정 -->
 	  			<div class="container-fluid">
 	   				<div class="collapse navbar-collapse" id="navbarNav">
-						<div class="d-flex justify-content-center w-230 button-container"> <!-- 버튼을 왼쪽으로 이동 -->
+						<div class="d-flex justify-content-center w-150 button-container"> <!-- 버튼을 왼쪽으로 이동 -->
 	          				<a href="${path}/declaration/requestdeclaration.km">
-    							<button type="button" class="btn btn-outline-danger custom-button">신고하기</button>
+    							<button type="button" class="btn btn-primary custom-button">신고하기</button>
 							</a>
 							<a href="${path}/chat/livechatlist.km">
-    							<button type="button" class="btn btn-outline-primary custom-button">실시간채팅</button>
+    							<button type="button" class="btn btn-primary custom-button">실시간채팅</button>
 							</a>
-							<a href="${path}/police/policeenroll.do">
-		            			<button type="button" class="btn btn-primary custom-button">경찰관</button>
-		        			</a>
 		    				<a href="${path}/contact">
 		    					<button type="button" class="btn btn-primary custom-button">문의하기</button>
 		    				</a>
@@ -50,6 +47,11 @@
 	    			</div>
 	    			</div>
 			</nav>
+		</c:if>
+		<c:if test="${loginPolice==null }">
+			<a href="${path}/police/policeenroll.do">
+		    	<button type="button" class="btn btn-primary custom-button">경찰관</button>
+		    </a>
 		</c:if>
 	    	<c:if test="${loginPolice!=null }">
 	    		<span style="font-size:18px;font-weight:bolder;">${loginPolice.policeName } ${loginPolice.policeGrade }</span>
