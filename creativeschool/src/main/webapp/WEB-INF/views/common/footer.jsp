@@ -4,7 +4,7 @@
 <body style="padding-bottom: 60px;"> <!-- padding 추가 -->
     <!-- 페이지 내용 -->
     
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <footer class="bg-dark text-white text-center py-1 fixed-bottom">
         <div class="container">
             <p>&lt;&copy; 2024 website. Copyright.&gt;</p>
             <ul class="list-inline">
