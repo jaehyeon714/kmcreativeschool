@@ -61,6 +61,9 @@ const createFileTag=(tagName,fileName)=>{
 	tag.setAttribute("src",`${contextPath}/resources/upload/chatting/${chattingRoom}/${fileName}`);
 	tag.setAttribute("width","400px");
 	tag.setAttribute("height","400px");
+	if(tagName!='img'){
+		tag.setAttribute("controls","true");
+	}
 	tag.addEventListener("click",(e)=>{
 		location.assign(`${contextPath}/chat/download?rename=${fileName}&chattingRoom=${chattingRoom}`);
 	});
