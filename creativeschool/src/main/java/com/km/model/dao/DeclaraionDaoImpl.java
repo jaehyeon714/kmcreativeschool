@@ -76,7 +76,12 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 		return session.selectOne("declaration.selectReportByNo",no);
 	}
 	
-	
+	@Override
+	public String updateStatus(SqlSession session, String status, String id) {
+	    int result = session.update("declaration.updateStatus", status);
+	    return String.valueOf(result);
+	}
+
 	
 	
 

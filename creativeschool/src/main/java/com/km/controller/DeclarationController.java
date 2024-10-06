@@ -154,6 +154,24 @@ public class DeclarationController {
 		return "declaration/reportDetail";
 	}
 	
+	@RequestMapping("/updatestatus.do")
+	public String updateStatus(String status, String id) {
+			if (status.equals("1")) {
+				String result = service.updateStatus(id, "접수");
+				System.out.println("접수");
+				
+			} else if(status.equals("2")){
+				String result = service.updateStatus(id, "처리완료");
+				System.out.println("처리완료");
+				
+			} else {
+				System.out.println("어케하노 하하호호");
+			}
+		
+		return "declaration/reportDetail";
+	}
+
+	
 }
 
 
