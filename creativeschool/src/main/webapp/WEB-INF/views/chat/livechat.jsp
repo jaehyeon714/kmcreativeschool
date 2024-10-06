@@ -54,7 +54,22 @@
                 <button class="btn btn-primary" onclick="sendMessageHandler(event)" type="submit">전송</button>
             </div>
         </div>
-		<input type="file" value="사진 보내기">
+        <div id="fileUploadContainer" class="row" style="padding-top:3%">
+			<div class="col-6 input-group mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroupFileAddon01">파일업로드</span>
+			  </div>
+			  <div class="custom-file">
+			    <input type="file" class="custom-file-input" 
+			    	id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
+			    multiple>
+			    <label class="custom-file-label" for="inputGroupFile01">파일선택</label>
+			  </div>
+			</div>
+			<div class="col-4 input-group mb-3">
+				<button class="btn btn-success" onclick="uploadFile();">파일전송</button>
+			</div>
+		</div>
 	</main>
 	<script>
 		if('${loginPolice}') {
@@ -65,6 +80,51 @@
 			sender='${sessionScope.clientEmail}';
 			receive='${param.recevier}';
 		}
+		document.querySelector("#inputGroupFile01").addEventListener("change",e=>{
+			const $label=$(e.target).next("label");
+			const files=e.target.files;
+			if(files.length>1){
+				$label.text(e.target.files[0].name+'등 '+files.length+'건');
+			}else{
+				$label.text(e.target.files[0].name);
+			}
+		});
+		function uploadFile(){
+			const formData=new FormData();
+			formData.append("sender",sender);
+			formData.append("receiver",receiver);
+			formData.append("chattingRoom",chattingRoom);
+			
+			const $fileInput=document.querySelector("#inputGroupFile01");
+			for(file of $fileInput.files){
+				formData.append("upfile",file);
+			}
+			//파일 등록하기
+			 $.ajax({
+				url:"${path}/chat/upload.km",
+				data:formData,
+				type:'post',
+				processData:false,
+				contentType:false,
+				success:data=>{
+					//파일업로드 내용 채팅창에 전송하기
+					const chatData=data;
+					//chatData.chattingContent=JSON.parse(data.chattingContent);
+					//console.log(chatData);
+					websocket.send(JSON.stringify(chatData));
+					alert("파일업로드 완료");
+				},error:data=>{
+					alert("파일업로드에 실패했습니다. :( 다시 시도해주세요!");
+				},complete:()=>{
+					$fileInput.value='';
+					$($fileInput).next("label").text("파일선택");
+				}
+			}); 
+			
+			
+			
+		}
 	</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script src="${path }/resources/js/jquery-3.7.0.min.js"></script>
