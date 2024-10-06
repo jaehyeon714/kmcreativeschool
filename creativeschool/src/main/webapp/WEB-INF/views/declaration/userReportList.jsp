@@ -5,8 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<main class="container my-4">
-	<h4>사건신고현황</h4>
+<main class="container my-4" style="height: 500px;">
 	<c:if test="${not empty reports }">
 		<table class="table table-striped table-hover">
 			<tr>
@@ -28,7 +27,7 @@
 				<td>${report['ATTACKER_COUNT']}</td>
 				<td>${report['REPORTER_NAME'] }</td>
 				<td><fmt:formatDate value="${report['DECLARATION_INSERTDATE'] }"/></td>
-				<td>${report['ATTACH_COUNT']>0?'있음':'없음'}</td>
+				<td>${report['ATTACH_COUNT']}</td>
 			</tr>
 		</c:forEach>
 		</table>
