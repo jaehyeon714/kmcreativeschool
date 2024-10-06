@@ -19,7 +19,7 @@
             color: #007bff;
         }
     </style>
-    <main class="container mt-5">
+    <main class="container" style="margin-top: 130px;"> <!-- 여기 수정 -->
         <h2 class="text-center mb-4">신고를 위한 안내</h2>
         <p class="text-center mb-4">신고하고 싶은 내용을 아래에 입력하세요.</p>
         
@@ -47,4 +47,3 @@
         </div>
     </main>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-    
