@@ -154,6 +154,21 @@ public class DeclarationController {
 		return "declaration/reportDetail";
 	}
 	
+	@RequestMapping("/userReportLogin.km")
+	public String userReportLoginView() {
+		return "declaration/userReportListLogin";
+	}
+	
+	@RequestMapping("/userReportLogin.do")
+	public String userReportLoginDo(Model model, @RequestParam("userIdentity") String id, @RequestParam("userPassword") String pw) {
+		System.out.println(id + " " + pw);
+		model.addAttribute("id", id);
+		model.addAttribute("pw", pw);
+		return "declaration/userReportList";
+	}
+	
+
+	
 }
 
 

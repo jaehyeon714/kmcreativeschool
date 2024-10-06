@@ -43,7 +43,7 @@
 		    				<a href="${path}/contact">
 		    					<button type="button" class="btn btn-primary custom-button">문의하기</button>
 		    				</a>
-		    				<a href="${path}/contact">
+		    				<a href="${path}/declaration/userReportLogin.km">
 		    					<button type="button" class="btn btn-primary custom-button">나의 신고내역</button>
 		    				</a>
 						</div>
