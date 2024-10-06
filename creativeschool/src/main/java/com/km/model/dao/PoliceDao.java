@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.km.model.dto.Police;
-import com.km.model.dto.PoliceAttachment;
 import com.km.model.dto.PoliceStation;
 
 public interface PoliceDao {
@@ -15,5 +14,4 @@ public interface PoliceDao {
 	List<Map> selectPoliceAll(SqlSession session);
 	PoliceStation selectPoliceStationByName(SqlSession session, String name);
 	int insertPoliceStation(SqlSession session, PoliceStation policeStation);
-	int insertPoliceAttachment(SqlSession session, PoliceAttachment attachment);
 }

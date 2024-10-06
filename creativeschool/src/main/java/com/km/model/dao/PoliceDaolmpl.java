@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.km.model.dto.Police;
-import com.km.model.dto.PoliceAttachment;
 import com.km.model.dto.PoliceStation;
 
 @Repository
@@ -40,11 +39,4 @@ public class PoliceDaolmpl implements PoliceDao{
 		return session.insert("police.insertPoliceStation", policeStation);
 	}
 
-	@Override
-	public int insertPoliceAttachment(SqlSession session, PoliceAttachment attachment) {
-		return session.insert("police.insertPoliceAttachment", attachment);
-	}
-	
-	
-	
 }
