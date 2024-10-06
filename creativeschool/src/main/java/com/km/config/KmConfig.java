@@ -23,6 +23,8 @@ public class KmConfig implements WebMvcConfigurer{
         mailData.put("mail.smtp.host", "smtp.gmail.com");
         mailData.put("mail.smtp.port", "587");
         mailData.put("mail.debug", "true");
+
+//        mailData.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		
 		JavaMailSenderImpl sender=new JavaMailSenderImpl();
 		sender.setUsername("teacherdev09@gmail.com");

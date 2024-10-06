@@ -52,5 +52,19 @@ public class PoliceServicelmpl implements PoliceService{
 	}
 
 
+	@Override
+	public Police selectPoliceByEmail(String email) {
+		return dao.selectPoliceByEmail(session, email);
+	}
+
+
+	@Override
+	public int updatePolicePassword(String email, String newPassword) {
+		return dao.updatePolicePassword(session, email, newPassword);
+	}
+	
+	
+
+
 
 }

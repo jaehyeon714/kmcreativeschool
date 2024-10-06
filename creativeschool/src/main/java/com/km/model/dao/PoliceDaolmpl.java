@@ -1,5 +1,6 @@
 package com.km.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,19 @@ public class PoliceDaolmpl implements PoliceDao{
 	@Override
 	public int insertPoliceStation(SqlSession session, PoliceStation policeStation) {
 		return session.insert("police.insertPoliceStation", policeStation);
+	}
+
+	@Override
+	public Police selectPoliceByEmail(SqlSession session, String email) {
+		return session.selectOne("police.selectPoliceByEmail", email);
+	}
+
+	@Override
+	public int updatePolicePassword(SqlSession session, String email, String newPassword) {
+        Map<String, String> params = new HashMap<>();
+        params.put("email", email);
+        params.put("password", newPassword);
+		return session.update("police.updatePolicePassword", params);
 	}
 
 }
