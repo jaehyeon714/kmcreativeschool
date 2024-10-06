@@ -32,4 +32,6 @@ public interface DeclarationDao {
 	long selectReportAllCount(SqlSession session,String id);
 	
 	Report selectReportByNo(SqlSession session, long no);
+	
+	String updateStatus(SqlSession session, String status, String id);
 }

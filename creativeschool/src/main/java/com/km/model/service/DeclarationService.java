@@ -13,6 +13,8 @@ public interface DeclarationService {
 	long selectReportAllCount(String id);
 	List<Map> selectReportSearch(Map<String,Object> mapKeyword);
 	
-	boolean reportSendPolice(Report report,String url);
+	boolean reportSendPolice(Report report, String url);
 	Report selectReportByNo(long no);
+	
+	String updateStatus(String status, String id);
 }

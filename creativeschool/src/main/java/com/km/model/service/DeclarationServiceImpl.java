@@ -117,7 +117,11 @@ public class DeclarationServiceImpl implements DeclarationService {
 		return dao.selectReportByNo(session,no);
 	}
 	
-	
+	@Override
+	public String updateStatus(String status, String id) {
+		
+		return dao.updateStatus(session, status, id);
+	}
 	
 	
 }
