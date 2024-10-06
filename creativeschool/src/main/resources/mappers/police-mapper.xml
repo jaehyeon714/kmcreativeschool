@@ -36,6 +36,10 @@
 		SELECT * FROM POLICESTATION WHERE POLICESTATION_NAME=#{name}
 	</select>
 	
+	<select id="selectPoliceByEmail" resultMap="policeMap" parameterType="String">
+		SELECT * FROM POLICE WHERE POLICE_EMAIL=#{email}
+	</select>
+	
 	<insert id="insertPolice" parameterType="police">
 	    INSERT INTO POLICE (
 	        POLICE_IDENTITY,
@@ -46,7 +50,8 @@
 	        POLICE_GRADE,
 	        POLICE_PHONE,
 	        POLICE_LOG,
-	        POLICESTATION_NO
+	        POLICESTATION_NO,
+	        POLICE_PROFILE
 	    ) VALUES (
 	        #{policeIdentity},
 	        #{policePassword},
@@ -56,7 +61,8 @@
 	        #{policeGrade}, 
 	        #{policePhone},
 	        SYSDATE,
-	        #{policeStationNo}
+	        #{policeStationNo},
+	        #{policeProfile}
 
 	    )
 	</insert>
@@ -83,20 +89,6 @@
 		)
 	</insert>
 	
-	<insert id="insertPoliceAttachment" parameterType="com.km.model.dto.PoliceStation">
-		INSERT INTO POLICE_ATTACHMENT (
-			POLICE_ATTACHMENT_NO,
-			ATTACHMENT_RENAME,
-			ATTACHMENT_ORIGINALNAME,
-			POLICE_NO
-		) VALUES (
-			SEQ_POLICE_ATTACHMENT_NO.NEXTVAL,
-			#{policeAttachmentRename},
-			#{policeAttachmentOriginalName},
-			#{policeNo}
-		)
-	</insert>
-	
 
 	<select id="selectPoliceAll" resultType="map">
 		SELECT police_identity, police_name, police_grade, police_profile, 
@@ -107,5 +99,10 @@
 	    SELECT * FROM police WHERE police_email = #{police_email}
 	</select>
 
+	<update id="updatePolicePassword" parameterType="map">
+		UPDATE POLICE
+	    SET POLICE_PASSWORD = #{password}
+	    WHERE POLICE_EMAIL = #{email}
+	</update>
 		
 </mapper>

@@ -4,6 +4,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<style>
+	.custom-button {
+    margin-right: 150px;
+    margin-left: -50px;
+	}
+	</style>
 	<meta charset="UTF-8">
 	<title>신고 사이트</title>
 	<!-- 공식 문서 - https://getbootstrap.kr/docs/5.3/getting-started/introduction -->
@@ -25,14 +31,12 @@
 		  	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 	  			<div class="container-fluid">
 	   				<div class="collapse navbar-collapse" id="navbarNav">
-	      				<ul class="navbar-nav">
-	        				<li class="nav-item">
-	          					<a class="nav-link" href="${path}/declaration/requestdeclaration.km">신고하기</a>
-	        				</li>
-	        				<li class="nav-item">
-	          					<a class="nav-link" href="${path }/chat/livechatlist.km">실시간 채팅</a>
-	        				</li>
-	      				</ul>
+	          			<a class="nav-link" href="${path}/declaration/requestdeclaration.km">
+    						<button type="button" class="btn btn-outline-danger custom-button">신고하기</button>
+						</a>
+						<a class="nav-link" href="${path}/chat/livechatlist.km">
+    						<button type="button" class="btn btn-outline-primary custom-button">실시간채팅</button>
+						</a>
 	    			</div>
 	  			</div>
 			</nav>

@@ -17,4 +17,6 @@ public interface PoliceDao {
 	int insertPoliceStation(SqlSession session, PoliceStation policeStation);
 	int insertPoliceAttachment(SqlSession session, PoliceAttachment attachment);
 	List<Police> findIdPw(SqlSession session, String policeEmail);
+	Police selectPoliceByEmail(SqlSession session, String email);
+	int updatePolicePassword(SqlSession session, String email, String newPassword);
 }

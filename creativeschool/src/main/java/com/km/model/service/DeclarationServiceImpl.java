@@ -11,7 +11,6 @@ import com.km.common.CommonUtils;
 import com.km.common.MailService;
 import com.km.model.dao.DeclarationDao;
 import com.km.model.dto.MailInfo;
-import com.km.model.dto.Police;
 import com.km.model.dto.Report;
 
 import lombok.RequiredArgsConstructor;
@@ -47,6 +46,7 @@ public class DeclarationServiceImpl implements DeclarationService {
 		
 		if(report.getAttackers().size()>0) {
 			report.getAttackers().forEach(a->{
+				a.setDeclarationNo(report.getReportNo());
 				int attackerResult=dao.insertAttacker(session, a);
 				if(attackerResult==0) throw new IllegalArgumentException("가해자 저장실패.");
 			});
@@ -56,13 +56,13 @@ public class DeclarationServiceImpl implements DeclarationService {
 	}
 
 	@Override
-	public List<Report> selectReportAll(Map param) {
-		return null;
+	public List<Map> selectReportAll(Map param) {
+		return dao.selectReportAll(session, param);
 	}
 
 	@Override
-	public List<Report> selectReportSearch(Map<String,String> mapKeyword) {
-		return null;
+	public List<Map> selectReportSearch(Map<String,Object> mapKeyword) {
+		return dao.selectReportSearch(session, mapKeyword);
 	}
 
 	@Override
@@ -104,6 +104,19 @@ public class DeclarationServiceImpl implements DeclarationService {
 		}
 		return false;
 	}
+
+	@Override
+	public long selectReportAllCount(String id) {
+		// TODO Auto-generated method stub
+		return dao.selectReportAllCount(session, id);
+	}
+
+	@Override
+	public Report selectReportByNo(long no) {
+		// TODO Auto-generated method stub
+		return dao.selectReportByNo(session,no);
+	}
+	
 	
 	
 	

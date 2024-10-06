@@ -9,10 +9,10 @@ public interface DeclarationService {
 
 	int insertDeclaration(Report report);
 	
-	List<Report> selectReportAll(Map param);
-	
-	List<Report> selectReportSearch(Map<String,String> mapKeyword);
+	List<Map> selectReportAll(Map param);
+	long selectReportAllCount(String id);
+	List<Map> selectReportSearch(Map<String,Object> mapKeyword);
 	
 	boolean reportSendPolice(Report report,String url);
-	
+	Report selectReportByNo(long no);
 }

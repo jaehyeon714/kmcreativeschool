@@ -15,9 +15,9 @@ public interface DeclarationDao {
 
 	int insertDeclaration(SqlSession session, Report report);
 	
-	List<Report> selectReportAll(SqlSession session, Map param);
+	List<Map> selectReportAll(SqlSession session, Map param);
 	
-	List<Report> selectReportSearch(SqlSession session,Map<String,String> mapKeyword);
+	List<Map> selectReportSearch(SqlSession session,Map<String,Object> mapKeyword);
 	
 	int insertReporter(SqlSession session, Reporter reporter);
 	
@@ -28,4 +28,8 @@ public interface DeclarationDao {
 	List<Map> searchReportAreaPolice(SqlSession session, Map area);
 	
 	int insertJoinReport(SqlSession session, Map data);
+	
+	long selectReportAllCount(SqlSession session,String id);
+	
+	Report selectReportByNo(SqlSession session, long no);
 }
