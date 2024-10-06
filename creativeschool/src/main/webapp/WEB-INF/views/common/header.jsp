@@ -9,7 +9,7 @@
 			margin-right: 20px; /* 버튼 사이의 여백 조정 */
 		}
 		.button-container {
-			margin-left: -250px; /* 왼쪽으로 이동 */
+			margin-left: -310px; /* 왼쪽으로 이동 */
 		}
 	</style>
 	<meta charset="UTF-8">
@@ -30,7 +30,7 @@
 		  	<nav class="navbar navbar-expand-lg navbar-light bg-white w-50"> <!-- 전체 너비 설정 -->
 	  			<div class="container-fluid">
 	   				<div class="collapse navbar-collapse" id="navbarNav">
-						<div class="d-flex justify-content-center w-250 button-container"> <!-- 버튼을 왼쪽으로 이동 -->
+						<div class="d-flex justify-content-center w-230 button-container"> <!-- 버튼을 왼쪽으로 이동 -->
 	          				<a href="${path}/declaration/requestdeclaration.km">
     							<button type="button" class="btn btn-outline-danger custom-button">신고하기</button>
 							</a>
@@ -47,6 +47,7 @@
 		    					<button type="button" class="btn btn-primary custom-button">나의 신고내역</button>
 		    				</a>
 						</div>
+	    			</div>
 	    			</div>
 			</nav>
 		</c:if>
