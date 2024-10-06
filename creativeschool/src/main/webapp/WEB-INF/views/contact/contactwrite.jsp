@@ -5,7 +5,7 @@
 
 	<div class="container mt-5 mb-5">
         <h2>문의 글 작성</h2>
-        <form action="/contact/contactwrite.submit" method="post" autocomplete="off">
+        <form action="/contactwriteSubmit" method="post" autocomplete="off">
             <div class="form-group">
                 <label for="writer">작성자</label>
                 <input type="text" class="form-control" id="writer" name="writer" placeholder="작성자" required>
@@ -19,6 +19,7 @@
                 <textarea class="form-control" id="contactContent" rows="5" name="contactContent" placeholder="문의하고 싶은 내용을 입력하세요." required style="resize: none;"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">제출</button>
+            <a href="${ path }/contact" class="btn btn-outline-dark">돌아가기</a>
         </form>
     </div>
 

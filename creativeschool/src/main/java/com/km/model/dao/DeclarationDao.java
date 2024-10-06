@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.km.model.dto.Attacker;
 import com.km.model.dto.DeclarationAttachment;
-import com.km.model.dto.Police;
 import com.km.model.dto.Report;
 import com.km.model.dto.Reporter;
 
