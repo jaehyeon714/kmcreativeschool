@@ -133,7 +133,7 @@
             <button type="button" class="btn btn-outline-danger">취소하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-outline-secondary">임시 저장</button>
         </div>
-     </div>
+     </div><br><br><br><br><br><br>
     </form>
 </div>
 <script>
