@@ -46,7 +46,8 @@
 	        POLICE_GRADE,
 	        POLICE_PHONE,
 	        POLICE_LOG,
-	        POLICESTATION_NO
+	        POLICESTATION_NO,
+	        POLICE_PROFILE
 	    ) VALUES (
 	        #{policeIdentity},
 	        #{policePassword},
@@ -56,7 +57,8 @@
 	        #{policeGrade}, 
 	        #{policePhone},
 	        SYSDATE,
-	        #{policeStationNo}
+	        #{policeStationNo},
+	        #{policeProfile}
 
 	    )
 	</insert>
@@ -80,20 +82,6 @@
 			#{policeStationAddress},
 			#{policeStationDiv},
 			#{policeStationSidoStation}	
-		)
-	</insert>
-	
-	<insert id="insertPoliceAttachment" parameterType="com.km.model.dto.PoliceStation">
-		INSERT INTO POLICE_ATTACHMENT (
-			POLICE_ATTACHMENT_NO,
-			ATTACHMENT_RENAME,
-			ATTACHMENT_ORIGINALNAME,
-			POLICE_NO
-		) VALUES (
-			SEQ_POLICE_ATTACHMENT_NO.NEXTVAL,
-			#{policeAttachmentRename},
-			#{policeAttachmentOriginalName},
-			#{policeNo}
 		)
 	</insert>
 	

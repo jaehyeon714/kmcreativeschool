@@ -2,8 +2,11 @@ package com.km.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.km.model.dto.Police;
-import com.km.model.dto.PoliceAttachment;
 import com.km.model.dto.PoliceStation;
 import com.km.model.service.PoliceServicelmpl;
 
@@ -30,29 +32,39 @@ public class PoliceInsertController {
 	@RequestMapping("/police/policeInsertDo.km")
 	public String policeInsertDo(Police police, PoliceStation policeStation, MultipartFile policePhoto,
 			HttpSession session) {
-		String[] locationArray = policeStation.getPoliceStationAddress().split(" ");
-		if (locationArray.length == 5) {
-			policeStation.setPoliceStationSido(locationArray[0] + " " + locationArray[1]);
-			policeStation.setPoliceStationGungu(locationArray[2]);
-			policeStation.setPoliceStationDong(locationArray[3] + " " + locationArray[4]);
+		List<String> locationList = new ArrayList<>(Stream.of(policeStation.getPoliceStationAddress().split(" ")).toList());
+		
+		for (int i = 0; i < locationList.size(); i++) {
+			var name = locationList.get(i);
+			if (name.isBlank() || name.isEmpty()) {
+				locationList.remove(i);
+				i--;
+			}
 		}
-		if (locationArray.length == 4) {
-			policeStation.setPoliceStationSido(locationArray[0]);
-			policeStation.setPoliceStationGungu(locationArray[1]);
-			policeStation.setPoliceStationDong(locationArray[2] + " " + locationArray[3]);
+		
+		if (locationList.size() == 5) {
+			policeStation.setPoliceStationSido(locationList.get(0) + " " + locationList.get(1));
+			policeStation.setPoliceStationGungu(locationList.get(2));
+			policeStation.setPoliceStationDong(locationList.get(3) + " " + locationList.get(4));
 		}
-		PoliceStation existingStation = service.selectPoliceStaionByName(policeStation.getPoliceStationName());
+		if (locationList.size() == 4) {
+			policeStation.setPoliceStationSido(locationList.get(0));
+			policeStation.setPoliceStationGungu(locationList.get(1));
+			policeStation.setPoliceStationDong(locationList.get(2) + " " + locationList.get(3));
+		}
 
+		
+		PoliceStation existingStation = service.selectPoliceStaionByName(policeStation.getPoliceStationName());
+		
 		if (existingStation != null) { // 만약 경찰서가 이미 있다면 그 경찰서의 번호를 경찰에게 부여
 			police.setPoliceStationNo(existingStation.getPoliceStationNo());
-		} else { // 경찰서가 없다면, 경찰서도 새로 insert하고 그 경찰서의 번호를 가져와 경찰에게 부여
-			service.insertpoliceStation(policeStation);
+		} 
+		else { // 경찰서가 없다면, 경찰서도 새로 insert하고 그 경찰서의 번호를 가져와 경찰에게 부여
+			service.insertPoliceStation(policeStation);
 			police.setPoliceStationNo(
 					service.selectPoliceStaionByName(policeStation.getPoliceStationName()).getPoliceStationNo());
 		}
 
-		// 경찰 등록
-		service.insertPolice(police);
 
 		if (policePhoto != null && !policePhoto.isEmpty()) {
 			String path = session.getServletContext().getRealPath("/resources/upload/police/");
@@ -64,10 +76,7 @@ public class PoliceInsertController {
 			
 			try {
 				policePhoto.transferTo(new File(path, newFileName));
-				PoliceAttachment attachment = PoliceAttachment.builder().policeAttachmentRename(newFileName)
-						.policeAttachmentOriginalName(oriFileName)
-						.policeNo(service.selectPoliceById(police.getPoliceIdentity()).getPoliceNo()).build();
-				service.insertPoliceAttachment(attachment);
+				police.setPoliceProfile(newFileName);
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
@@ -75,8 +84,12 @@ public class PoliceInsertController {
 			}
 		}
 
+		
+		// 경찰 등록
+		service.insertPolice(police);
 		return "police/policeenroll";
 
 	}
 
+	
 }
