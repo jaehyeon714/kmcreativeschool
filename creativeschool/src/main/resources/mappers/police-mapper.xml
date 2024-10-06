@@ -36,6 +36,10 @@
 		SELECT * FROM POLICESTATION WHERE POLICESTATION_NAME=#{name}
 	</select>
 	
+	<select id="selectPoliceByEmail" resultMap="policeMap" parameterType="String">
+		SELECT * FROM POLICE WHERE POLICE_EMAIL=#{email}
+	</select>
+	
 	<insert id="insertPolice" parameterType="police">
 	    INSERT INTO POLICE (
 	        POLICE_IDENTITY,
@@ -90,5 +94,11 @@
 		SELECT police_identity, police_name, police_grade, police_profile, 
 		policestation_name, police_log FROM POLICE JOIN POLICESTATION USING(policestation_no)
 	</select>	
+	
+	<update id="updatePolicePassword" parameterType="map">
+		UPDATE POLICE
+	    SET POLICE_PASSWORD = #{password}
+	    WHERE POLICE_EMAIL = #{email}
+	</update>
 		
 </mapper>
