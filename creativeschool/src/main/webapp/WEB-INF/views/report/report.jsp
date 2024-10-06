@@ -91,10 +91,20 @@
         
         <div class="victimContainer">
             <h4>피해 정보</h4>
-            <div class="row">
-	            <label>신고 종류 <input type="text" class="form-control" name="reportType" required></label>
-	            <label>발생 위치 <input type="text" class="form-control" name="incidentAddress" required></label>
-            <label>발생 시간 <input type="datetime-local" class="form-control" name="incidentTime" required></label>
+           <div class="row">
+        <label>신고 종류 
+            <select name="reportType" class="form-control" required>
+                <option value="">선택하세요</option>
+                <option value="신체폭행">신체폭행</option>
+                <option value="금품갈취">금품갈취</option>
+                <option value="성범죄">성범죄</option>
+                <option value="횡령">횡령</option>
+                <option value="언어폭행">언어폭행</option>
+                <option value="사이버폭력">사이버폭력</option>
+            </select>
+        </label>
+        <label>발생 위치 <input type="text" class="form-control" name="incidentAddress" required></label>
+        <label>발생 시간 <input type="datetime-local" class="form-control" name="incidentTime" required></label>
             </div>
             <div class='row'>            
             <label style="width:100%">상세 내용 

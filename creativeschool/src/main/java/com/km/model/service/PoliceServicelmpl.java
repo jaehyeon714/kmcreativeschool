@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.km.model.dao.PoliceDao;
 import com.km.model.dto.Police;
-import com.km.model.dto.PoliceAttachment;
 import com.km.model.dto.PoliceStation;
 
 @Service
@@ -25,7 +24,6 @@ public class PoliceServicelmpl implements PoliceService{
 	public Police selectPoliceById(String id) {
 		return dao.selectPoliceById(session, id);
 	}
-	
 	
 
 	@Override
@@ -49,16 +47,28 @@ public class PoliceServicelmpl implements PoliceService{
 
 
 	@Override
-	public int insertpoliceStation(PoliceStation policeStation) {
+	public int insertPoliceStation(PoliceStation policeStation) {
 		return dao.insertPoliceStation(session, policeStation);
 	}
 
 
+	@Override
+	public Police selectPoliceByEmail(String email) {
+		return dao.selectPoliceByEmail(session, email);
+	}
+
 
 	@Override
-	public int insertPoliceAttachment(PoliceAttachment attachment) {
-		return dao.insertPoliceAttachment(session, attachment);
+	public int updatePolicePassword(String email, String newPassword) {
+		return dao.updatePolicePassword(session, email, newPassword);
 	}
 	
+	@Override
+	public List<Police> findIdPw(String policeEmail) {
+		return dao.findIdPw(session, policeEmail);
+	}
 	
+
+
+
 }

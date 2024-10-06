@@ -1,5 +1,6 @@
 package com.km.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.km.model.dto.Police;
-import com.km.model.dto.PoliceAttachment;
 import com.km.model.dto.PoliceStation;
 
 @Repository
@@ -41,10 +41,25 @@ public class PoliceDaolmpl implements PoliceDao{
 	}
 
 	@Override
-	public int insertPoliceAttachment(SqlSession session, PoliceAttachment attachment) {
-		return session.insert("police.insertPoliceAttachment", attachment);
+	public Police selectPoliceByEmail(SqlSession session, String email) {
+		return session.selectOne("police.selectPoliceByEmail", email);
+	}
+	
+	@Override
+	public List<Police> findIdPw(SqlSession session, String policeEmail) {
+		return session.selectList("police.findIdPw");
 	}
 	
 	
 	
+	@Override
+	public int updatePolicePassword(SqlSession session, String email, String newPassword) {
+        Map<String, String> params = new HashMap<>();
+        params.put("email", email);
+        params.put("password", newPassword);
+		return session.update("police.updatePolicePassword", params);
+	}
+	
+
+
 }

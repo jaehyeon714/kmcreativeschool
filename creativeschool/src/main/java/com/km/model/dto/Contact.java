@@ -1,20 +1,18 @@
 package com.km.model.dto;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Contact {
-	private Number id_seq;
+	private int seq;
 	private String title;
 	private String contactContent;
-	private LocalDateTime dateTime;
+	private String writer;
+	private Date dateTime;
 	private String response;
 }
