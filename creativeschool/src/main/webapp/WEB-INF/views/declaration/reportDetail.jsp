@@ -110,7 +110,9 @@
 	</div> --%>
 	</div>
 	<div style="margin:5%;display:flex;justify-content:center">
-		<button class="btn btn-primary" onclick="location.assign('${path}/declaration/updatestatus.do?status=1')">접수</button>
+		<button class="btn btn-${report.status=='접수'?'dark':'primary'}" 
+		onclick="location.assign('${path}/declaration/updatestatus.do?status=1')"
+		${report.status=='접수'?'disabled':''}>접수</button>
 		&nbsp;&nbsp;&nbsp;
 		<button class="btn btn-${report.status==null?'dark':'info'}" ${report.status==null?'disabled':'' } 
 			onclick="location.assign('${path}/declaration/updatestatus.do?status=2')">처리완료</button>

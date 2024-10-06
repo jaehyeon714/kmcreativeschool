@@ -61,10 +61,10 @@
 	<script src="${path }/resources/js/chatting-controller.js"></script>
 	<script>
 		
-		openSocket(`\${location.host}`,'${path}')
-		if(${loginPolice!=null}){
+		if(${sessionScope.loginPolice!=null}){
 			sender='${loginPolice.policeIdentity}';
+		}else if(${sessionScope.clientEmail!=null}){
+			sender='${sessionScope.clientEmail}';
 		};
-		
-		
+		openSocket(`\${location.host}`,'${path}')
 	</script>

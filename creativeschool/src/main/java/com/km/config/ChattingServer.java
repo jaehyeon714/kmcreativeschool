@@ -38,11 +38,11 @@ public class ChattingServer extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		ChattingData msg=mapper.readValue(message.getPayload(), ChattingData.class);
-//		log.debug("{}",msg);
+		log.debug("{}",msg);
 		session.getAttributes().put("content",msg);
 		switch(msg.getChattingCategory()) {
 			case "open" : addClient(msg,session); break;
-			case "msg": sendMessage(msg); break;
+			case "msg": case "enter" : case "file" : sendMessage(msg); break;
 			case "request" : request(msg);break;
 		}
 	}
@@ -61,7 +61,11 @@ public class ChattingServer extends TextWebSocketHandler {
 	private void request(ChattingData msg) {
 		WebSocketSession target=clients.get(msg.getReceiver());
 		try {
-			target.sendMessage(new TextMessage(mapper.writeValueAsString(msg)));
+			log.debug("{}",target);
+			if(target!=null) {
+				log.debug("session확인{}",target.isOpen());
+				target.sendMessage(new TextMessage(mapper.writeValueAsString(msg)));
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

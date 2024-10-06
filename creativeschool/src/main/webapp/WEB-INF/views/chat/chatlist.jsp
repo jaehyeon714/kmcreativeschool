@@ -26,7 +26,7 @@
 		            	<img class="profileImg" src="${path}/resources/images/basicprofile.png"/>
 	            	</c:if>
 	            	<c:if test="${police['POLICE_PROFILE']!=null }">
-		            	<img src="${path}/resources/upload/profile/${police.policeProfile}"
+		            	<img src="${path}/resources/upload/police/${police.policeProfile}"
 		            	width="50"/>
 	            	</c:if>
             	</div>
