@@ -29,7 +29,7 @@ public class ContactController {
     public String showContactList(Model model) {
     	List<Contact> contacts = qnaService.selectAllBoard();
         model.addAttribute("contacts", contacts);
-        return "contact/contactlist";
+        return "contact/contact";
     }
 
     // 문의 상세 보기 (contactview.do)
