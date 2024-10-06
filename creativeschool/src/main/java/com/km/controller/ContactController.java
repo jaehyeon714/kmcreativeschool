@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -25,29 +27,33 @@ public class ContactController {
     // 문의 목록 조회
     @GetMapping("/contact")
     public String showContactList(Model model) {
-    	List<Contact> contacts = new ArrayList<>(qnaService.selectAllBoard());
+    	List<Contact> contacts = qnaService.selectAllBoard();
         model.addAttribute("contacts", contacts);
         return "contact/contactlist";
     }
 
     // 문의 상세 보기 (contactview.do)
     @GetMapping("/contact/contactview")
-    public String showContactDetail(@RequestParam int seq, Model model) {
-        // 서비스에서 Contact 객체를 가져옵니다.
-        List<Contact> list = qnaService.findByIdSeq(seq);
-        model.addAttribute("contact", list);
-        return "contact/contactview"; // 뷰 이름 반환
+    public String showContactDetail(@RequestParam(name = "seq") int seq, Model model) {
+        // seq가 유효한지 확인
+        if (seq <= 0) {
+            throw new IllegalArgumentException("Invalid sequence number.");
+        }
+
+        Contact contact = qnaService.findByIdSeq(seq);
+        model.addAttribute("contact", contact);
+        return "contact/contactview";
     }
 
 
     // 문의 작성 페이지로 이동
-    @RequestMapping("/contactwrite.do")
+    @RequestMapping(value = "/contact/contactwrite.do", method = RequestMethod.GET)
     public String showContactWriteForm() {
         return "contact/contactwrite"; // 문의 작성 페이지 반환
     }
 
     // 문의 저장
-    @PostMapping("/contact")
+    /* @PostMapping("/contactwriteForm")
     public String saveContact(@RequestParam String title, 
                               @RequestParam String contactContent) {
         Contact contact = Contact.builder()
@@ -58,15 +64,15 @@ public class ContactController {
                 .build();
         contacts.add(contact); // 문의를 리스트에 저장
         return "redirect:/contact/contactview?seq=" + contact.getSeq(); // 저장 후 상세보기로 리다이렉트
-	}
+	} */
     
-    @PostMapping("/contactwrite.form")
+    @PostMapping("/contact/contactwrite.submit")
     public String insertContact(
-    		@RequestParam String title,
     		@RequestParam String writer,
+    		@RequestParam String title,
     		@RequestParam String contactContent) {
-    	qnaService.insertContact(title, writer, contactContent);
-    	return "redirect:/";
+    	qnaService.insertContact(writer, title, contactContent);
+    	return "redirect:/contactview";
     }
     
     

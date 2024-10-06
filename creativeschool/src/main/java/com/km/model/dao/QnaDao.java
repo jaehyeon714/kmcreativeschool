@@ -8,6 +8,6 @@ import com.km.model.dto.Contact;
 
 public interface QnaDao {
 	List<Contact> selectAllBoard(SqlSession session);
-	List<Contact> findByIdSeq(SqlSession session, int seq);
-	void insertContact(SqlSession session, String title, String writer, String contactContent);
+	Contact findByIdSeq(SqlSession session, int seq);
+	void insertContact(SqlSession session, String writer, String title, String contactContent);
 }

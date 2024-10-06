@@ -7,7 +7,7 @@
 
 	<div class="container mt-4 mb-4">
 		<div class="text-right mb-3">
-			<a href="${ path }/contactwrite.do">
+			<a href="${ path }/contact/contactwrite.do">
 				<button type="button" class="btn btn-light border">문의 글 작성하기</button>
 			</a>
 		</div>
@@ -19,13 +19,13 @@
 				<td>작성일</td>
 				<td>답변</td>
 			</tr>
-			<c:forEach var="contacts" items="${ contacts }">
+			<c:forEach var="list" items="${ contacts }">
 				<tr>
-					<td>${ contacts.seq }</td>
-					<td><a href="${ path }/contact/contactview?seq=${contacts.seq}">${ contacts.title }</a></td>
-					<td><a href="">${ contacts.contactContent }</a></td>
-					<td>${ contacts.dateTime }</td>
-					<td>${ contacts.response }</td>
+					<td>${ list.seq }</td>
+					<td><a href="${ path }/contact/contactview?seq=${list.seq}">${ list.title }</a></td>
+					<td><a href="${ path }/contact/contactview?seq=${list.seq}">${ list.contactContent }</a></td>
+					<td>${ list.dateTime }</td>
+					<td>${ list.response }</td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.km.model.dao.PoliceDao;
 import com.km.model.dto.Police;
+import com.km.model.dto.PoliceAttachment;
+import com.km.model.dto.PoliceStation;
 
 @Service
 public class PoliceServicelmpl implements PoliceService{
@@ -23,6 +25,8 @@ public class PoliceServicelmpl implements PoliceService{
 	public Police selectPoliceById(String id) {
 		return dao.selectPoliceById(session, id);
 	}
+	
+	
 
 	@Override
 	public int insertPolice(Police police) {
@@ -33,6 +37,27 @@ public class PoliceServicelmpl implements PoliceService{
 	@Override
 	public List<Map> selectPoliceAll() {
 		return dao.selectPoliceAll(session);
+	}
+
+
+
+	@Override
+	public PoliceStation selectPoliceStaionByName(String name) {
+		return dao.selectPoliceStationByName(session, name);
+	}
+
+
+
+	@Override
+	public int insertpoliceStation(PoliceStation policeStation) {
+		return dao.insertPoliceStation(session, policeStation);
+	}
+
+
+
+	@Override
+	public int insertPoliceAttachment(PoliceAttachment attachment) {
+		return dao.insertPoliceAttachment(session, attachment);
 	}
 	
 	@Override

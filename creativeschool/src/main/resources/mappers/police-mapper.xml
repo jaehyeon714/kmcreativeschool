@@ -15,8 +15,25 @@
 		<result column="police_password" property="policePassword"/>
 	</resultMap>
 	
+	<resultMap type="com.km.model.dto.PoliceStation" id="policeStationMap">
+		<id column="policestation_no" property="policeStationNo"/>
+		<result column="policestation_name" property="policeStationName"/>
+		<result column="policestation_sido" property="policeStationSido"/>
+		<result column="policestation_gungu" property="policeStationGungu"/>
+		<result column="policestation_dong" property="policeStationDong"/>
+		<result column="policestation_address" property="policeStationAddress"/>
+		<result column="policestation_phone" property="policeStationPhone"/>
+		<result column="policestation_div" property="policeStationDiv"/>
+		<result column="policestation_sidostation" property="policeStationSidoStation"/>
+	</resultMap>
+	
+	
 	<select id="selectPoliceById" resultMap="policeMap" parameterType="string">
 		SELECT * FROM POLICE WHERE POLICE_IDENTITY=#{id}
+	</select>
+	
+	<select id="selectPoliceStationByName" resultMap="policeStationMap" parameterType="string">
+		SELECT * FROM POLICESTATION WHERE POLICESTATION_NAME=#{name}
 	</select>
 	
 	<insert id="insertPolice" parameterType="police">
@@ -27,7 +44,7 @@
 	        POLICE_EMAIL,
 	        POLICE_NO,
 	        POLICE_GRADE,
-	        POLICE_PROFILE,
+	        POLICE_PHONE,
 	        POLICE_LOG,
 	        POLICESTATION_NO
 	    ) VALUES (
@@ -35,13 +52,51 @@
 	        #{policePassword},
 	        #{policeName},
 	        #{policeEmail},
-	        NULL, 
-	        NULL, 
-	        NULL,  
-	        NULL, 
-	        NULL  
+	       	SEQ_POLICE_NO.NEXTVAL, 
+	        #{policeGrade}, 
+	        #{policePhone},
+	        SYSDATE,
+	        #{policeStationNo}
+
 	    )
 	</insert>
+	
+	<insert id="insertPoliceStation" parameterType="policeStation">
+		INSERT INTO POLICESTATION (
+			POLICESTATION_NO,
+			POLICESTATION_NAME,
+			POLICESTATION_SIDO,
+			POLICESTATION_GUNGU,
+			POLICESTATION_DONG,
+			POLICESTATION_ADDRESS,
+			POLICESTATION_DIV,
+			POLICESTATION_SIDOSTATION
+		) VALUES (
+			SEQ_POLICESTATION_NO.NEXTVAL,
+			#{policeStationName},
+			#{policeStationSido},
+			#{policeStationGungu},
+			#{policeStationDong},
+			#{policeStationAddress},
+			#{policeStationDiv},
+			#{policeStationSidoStation}	
+		)
+	</insert>
+	
+	<insert id="insertPoliceAttachment" parameterType="com.km.model.dto.PoliceStation">
+		INSERT INTO POLICE_ATTACHMENT (
+			POLICE_ATTACHMENT_NO,
+			ATTACHMENT_RENAME,
+			ATTACHMENT_ORIGINALNAME,
+			POLICE_NO
+		) VALUES (
+			SEQ_POLICE_ATTACHMENT_NO.NEXTVAL,
+			#{policeAttachmentRename},
+			#{policeAttachmentOriginalName},
+			#{policeNo}
+		)
+	</insert>
+	
 
 	<select id="selectPoliceAll" resultType="map">
 		SELECT police_identity, police_name, police_grade, police_profile, 

@@ -16,12 +16,12 @@ public class QnaDaoImpl implements QnaDao {
 	}
 	
 	@Override
-	public List<Contact> findByIdSeq(SqlSession session, int seq) {
-		return session.selectList("qna.findByIdSeq");
+	public Contact findByIdSeq(SqlSession session, int seq) {
+		return session.selectOne("qna.findByIdSeq", seq);
 	}
 	
 	@Override
-	public void insertContact(SqlSession session, String title, String writer, String contactContent) {
+	public void insertContact(SqlSession session, String writer, String title, String contactContent) {
 		session.insert("qna.insertContact");
 	}
 	

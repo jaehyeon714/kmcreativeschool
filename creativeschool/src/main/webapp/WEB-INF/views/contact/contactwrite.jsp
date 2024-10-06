@@ -5,7 +5,7 @@
 
 	<div class="container mt-5 mb-5">
         <h2>문의 글 작성</h2>
-        <form action="/contactwrite.form" method="post" autocomplete="off">
+        <form action="/contact/contactwrite.submit" method="post" autocomplete="off">
             <div class="form-group">
                 <label for="writer">작성자</label>
                 <input type="text" class="form-control" id="writer" name="writer" placeholder="작성자" required>

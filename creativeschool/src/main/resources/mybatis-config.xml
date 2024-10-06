@@ -12,6 +12,7 @@
 		<typeAlias type="com.km.model.dto.DeclarationAttachment" alias="declarationAttach"/>
 		<typeAlias type="com.km.model.dto.Police" alias="police"/>
 		<typeAlias type="com.km.model.dto.PoliceStation" alias="policeStation"/>
+		<typeAlias type="com.km.model.dto.Contact" alias="Contact"/>
 	</typeAliases>
 
 </configuration>	 

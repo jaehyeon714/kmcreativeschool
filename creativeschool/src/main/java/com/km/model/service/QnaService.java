@@ -6,6 +6,6 @@ import com.km.model.dto.Contact;
 
 public interface QnaService {
 	List<Contact> selectAllBoard();
-	List<Contact> findByIdSeq(int seq);
-	void insertContact(String title, String writer, String contactContent);
+	Contact findByIdSeq(int seq);
+	void insertContact(String writer, String title, String contactContent);
 }
