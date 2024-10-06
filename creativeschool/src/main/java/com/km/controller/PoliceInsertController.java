@@ -94,20 +94,20 @@ public class PoliceInsertController {
 
 	}
 	
-	@RequestMapping(value = "/police/findIdPw", method = RequestMethod.POST)
-	public String findByPw(String policeEmail, Model model) {
-        List<Police> police = service.findIdPw(policeEmail);
-
-        if (police == null) {
-            model.addAttribute("error", "해당 이메일에 대한 경찰관을 찾을 수 없습니다.");
-            return "redirect:/"; // 오류 페이지로 이동
-        }
-        police.forEach(p -> {
-            System.out.println(p.getPoliceEmail().equals(policeEmail));
-        });
-        model.addAttribute("police", police);
-        return "redirect:/police/findIdPw.do"; // 성공적으로 찾은 경우 홈으로 리다이렉트
-    }
+//	@RequestMapping(value = "/police/findIdPw", method = RequestMethod.POST)
+//	public String findByPw(String policeEmail, Model model) {
+//        List<Police> police = service.findIdPw(policeEmail);
+//
+//        if (police == null) {
+//            model.addAttribute("error", "해당 이메일에 대한 경찰관을 찾을 수 없습니다.");
+//            return "redirect:/"; // 오류 페이지로 이동
+//        }
+//        police.forEach(p -> {
+//            System.out.println(p.getPoliceEmail().equals(policeEmail));
+//        });
+//        model.addAttribute("police", police);
+//        return "redirect:/police/findIdPw.do"; // 성공적으로 찾은 경우 홈으로 리다이렉트
+//    }
 	
 
 	
