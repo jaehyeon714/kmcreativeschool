@@ -35,8 +35,8 @@ public interface DeclarationDao {
 	
 	int updatePoliceStatus(SqlSession session, Map param);
 
-	List<Report> selectReportsByEmailAndPassword(SqlSession session, Map<String, String> map);
-	
 	Map searchReporterByReportNo(SqlSession session, int reportNo);
+	
+	List<Map<String, Object>> selectReportsByEmailAndPassword(SqlSession session, Map<String, String> map);
 	
 }

@@ -17,8 +17,7 @@ public interface DeclarationService {
 	Report selectReportByNo(long no);
 	
 	int updatePoliceStatus(Map param);
-	public List<Report> selectReportsByEmailAndPassword(String email, String password);
 	
-	
-	
+	String updateStatus(String status, String id);
+	public List<Map<String, Object>> selectReportsByEmailAndPassword(String email, String password);
 }

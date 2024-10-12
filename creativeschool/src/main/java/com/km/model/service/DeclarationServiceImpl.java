@@ -158,7 +158,7 @@ public class DeclarationServiceImpl implements DeclarationService {
 	}
 
 	@Override
-	public List<Report> selectReportsByEmailAndPassword(String email, String password) {
+	public List<Map<String, Object>> selectReportsByEmailAndPassword(String email, String password) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("email", email);
 		map.put("password", password);

@@ -109,8 +109,8 @@
 		    SET DECLARATION_STATUS = #{status}
 	    WHERE DECLARATION_NO = #{reportNo}
 	</update>
-
-	<select id="selectReportByEmailAndPassword" parameterType="map" resultMap="declarationMap">
+	
+	<select id="selectReportByEmailAndPassword" parameterType="map" resultType="java.util.HashMap">
 	    SELECT d.*, r.REPORTER_NAME, p.POLICE_NAME, p.POLICE_EMAIL, p.POLICE_GRADE
 	    FROM DECLARATION d
 	    JOIN REPORTER_INFO r ON d.REPORTER_NO = r.REPORTER_NO
@@ -127,6 +127,7 @@
             join police using(police_no)
             where declaration_no=#{reportNo}
 	</select>
+
 
 
 </mapper>	 
