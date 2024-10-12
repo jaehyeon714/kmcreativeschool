@@ -2,6 +2,7 @@ package com.km.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -174,17 +175,56 @@ public class DeclarationController {
 
 	@RequestMapping("/userReportLogin.km") // 로그인
 	public String userReportLoginView(HttpSession session) {
-		System.out.println("km");
+		session.invalidate();
 	    return "declaration/userReportListLogin";
 	}
 	
 	@RequestMapping("/userReportLogin.do")
 	public String userReportLoginDo(HttpSession session, String id, String pw) {
-		session.setAttribute("reporterId", id);
-		session.setAttribute("reporterPw", pw);
-		
-		
+	    session.setAttribute("reporterId", id);
+	    session.setAttribute("reporterPw", pw);
+	    
+	    List<Map<String, Object>> reportList = service.selectReportsByEmailAndPassword(id, pw);
+	    
+	    if (reportList.isEmpty()) {
+	        session.invalidate();
+	        return "redirect:/"; 
+	    }
+
+	    return "redirect:/declaration/userReportList.do"; 
 	}
+
+	@RequestMapping("/userReportList.do")
+	public String userReportList(HttpSession session, 
+	                              @RequestParam(defaultValue = "1") int cPage,
+	                              @RequestParam(defaultValue = "5") int numPerpage, 
+	                              Model model) {
+	    String reporterId = (String) session.getAttribute("reporterId");
+	    
+	    if (reporterId == null) {
+	        return "redirect:/userReportLogin.km"; 
+	    }
+
+	    List<Map<String, Object>> reportList = service.selectReportsByEmailAndPassword(reporterId, (String) session.getAttribute("reporterPw"));
+
+	    long totalCount = reportList.size(); 
+	    long startIndex = (cPage - 1) * numPerpage;
+
+	    List<Map<String, Object>> paginatedReports = reportList.stream()
+	        .skip(startIndex)
+	        .limit(numPerpage)
+	        .toList();
+
+	    model.addAttribute("reports", paginatedReports);
+	    model.addAttribute("pageBar", PageFactory.getPage(cPage, numPerpage, totalCount, "userReportList.do"));
+
+	    return "declaration/userReportList"; 
+	}
+
+	
+	
+	
+
 
 
 	
