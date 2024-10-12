@@ -21,7 +21,7 @@
     <c:if test="${loginPolice == null }">
         <div class="d-flex justify-content-center">
             <img alt="경찰로고" 
-                 src="${ path }/resources/images/policeLogo.png" 
+                 src="${path }/resources/images/policeLogo.png" 
                  style="width: 160px; height: 120px;">
         </div>    
         <div class="container d-flex justify-content-center" id="div_box">
@@ -64,7 +64,7 @@
     <c:if test="${loginPolice != null }">
         <div class="d-flex justify-content-center">
             <img alt="경찰로고" 
-                 src="${ path }/resources/images/policeLogo.png" 
+                 src="${ path }/resources/images/defaultimg.png" 
                  style="width: 130px; height: 100px; 
                  border-radius:100px">
         </div>    

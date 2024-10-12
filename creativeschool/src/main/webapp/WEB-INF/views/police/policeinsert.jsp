@@ -68,7 +68,7 @@ input[readonly] {
             
             <div style="text-align: center;  margin-right: 70px;">
                 <label for="policePhoto" style="cursor: pointer;">
-                    <img id="photoPreview" src="/resources/images/basicprofile.png" alt="사진 미리보기" style="border-radius: 50%; width: 150px; height: 150px; border: 2px solid #ccc;">
+                    <img id="photoPreview" src="${path }/resources/images/basicprofile.png" alt="사진 미리보기" style="border-radius: 50%; width: 150px; height: 150px; border: 2px solid #ccc;">
                     <input type="file" id="policePhoto" name="policePhoto" accept="image/*" style="display: none;" onchange="previewPhoto(event)">
                 </label>
                 <p>경찰관 사진 등록</p>
@@ -86,7 +86,7 @@ input[readonly] {
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-<script src="/resources/js/common.js"></script>
+<script src="${path }/resources/js/common.js"></script>
 
 <script>
 	

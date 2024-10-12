@@ -18,7 +18,7 @@
                 <label for="contactContent">내용</label>
                 <textarea class="form-control" id="contactContent" rows="5" name="contactContent" placeholder="문의하고 싶은 내용을 입력하세요." required style="resize: none;"></textarea>
             </div>
-            <button type="submit" class="btn btn-outline-primary">제출</button>
+            <button type="submit" class="btn btn-outline-primary">문의하기</button>
             <a href="${ path }/contact" class="btn btn-outline-dark">돌아가기</a>
         </form>
     </div>
