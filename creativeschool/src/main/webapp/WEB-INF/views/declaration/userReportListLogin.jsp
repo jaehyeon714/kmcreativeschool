@@ -3,6 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<style>
+    #div_box {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    .input-group {
+        width: 350px;
+    }
+    .btn-custom {
+        padding: 10px 0; /* 세로 크기를 줄이기 위한 패딩 설정 */
+        width: 100%; /* 버튼의 너비를 100%로 설정 */
+    }
+</style>
 <main class="flex-column justify-content-center" style="padding: 5%">
 
     <div class="d-flex justify-content-center">
@@ -12,28 +25,23 @@
 
     <div class="d-flex justify-content-center" id="div_box">
         <form action="${path}/declaration/userReportLogin.do" method="post"> 
-            <div class="d-flex justify-content-evenly">
-                <div style="margin-right: 3%">
-                    <div class="input-group input-group-lg">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> 아이디 </span>
-                        </div>
-                        <input type="text" id="userIdentity" name="userIdentity"
-                            class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg" required>
+            <div class="d-flex flex-column">
+                    <div class="input-group input-group-lg mb-3">
+                        <input type="text" id="policeIdentity" name="policeIdentity" 
+                               class="form-control" placeholder="아이디" 
+                               aria-label="Sizing example input" 
+                               aria-describedby="inputGroup-sizing-lg" 
+                               required>
                     </div>
-                    <div class="input-group input-group-lg">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> 패스워드 </span>
-                        </div>
-                        <input type="password" id="userPassword" name="userPassword"
-                            class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg" required>
+                    <div class="input-group input-group-lg mb-3">
+                        <input type="password" id="policePassword" name="policePassword" 
+                               class="form-control" placeholder="비밀번호" 
+                               aria-label="Sizing example input" 
+                               aria-describedby="inputGroup-sizing-lg" 
+                               required>
                     </div>
-                </div>
-                <input type="submit" class="btn btn-outline-success"
-                    style="width: 18%" value="로그인">
-            </div>
+                    <input type="submit" class="input-group btn btn-outline-primary btn-custom mb-1" value="로그인">    
+        	</div>
         </form>
     </div>
 </main>
