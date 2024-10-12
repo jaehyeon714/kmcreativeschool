@@ -103,8 +103,18 @@
         JOIN REPORTER_INFO USING(REPORTER_NO)
         WHERE DECLARATION_NO=#{no}
 	</select>
-</mapper>	 
+	
+	<update id="updateStatus" parameterType="map">
+	    UPDATE DECLARATION
+		    SET DECLARATION_STATUS = CASE 
+		        WHEN #{status} = '1' THEN '접수'
+		        WHEN #{status} = '2' THEN '처리완료'
+		        ELSE #{status}
+		    END
+	    WHERE DECLARATION_NO = #{no}
+	</update>
 
+</mapper>	 
 
 
 

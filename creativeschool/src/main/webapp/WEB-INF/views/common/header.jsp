@@ -32,16 +32,16 @@
 	   				<div class="collapse navbar-collapse" id="navbarNav">
 						<div class="d-flex justify-content-center w-150 button-container"> <!-- 버튼을 왼쪽으로 이동 -->
 	          				<a href="${path}/declaration/requestdeclaration.km">
-    							<button type="button" class="btn btn-primary custom-button">신고하기</button>
+    							<button type="button" class="btn btn-outline-danger">신고하기</button>
 							</a>
 							<a href="${path}/chat/livechatlist.km">
-    							<button type="button" class="btn btn-primary custom-button">실시간채팅</button>
+    							<button type="button" class="btn btn-outline-primary">실시간채팅</button>
 							</a>
 		    				<a href="${path}/contact">
-		    					<button type="button" class="btn btn-primary custom-button">문의하기</button>
+		    					<button type="button" class="btn btn-outline-danger">문의하기</button>
 		    				</a>
 		    				<a href="${path}/declaration/userReportLogin.km">
-		    					<button type="button" class="btn btn-primary custom-button">나의 신고내역</button>
+		    					<button type="button" class="btn btn-outline-primary">나의 신고내역</button>
 		    				</a>
 						</div>
 	    			</div>
@@ -50,16 +50,16 @@
 		</c:if>
 		<c:if test="${loginPolice==null }">
 			<a href="${path}/police/policeenroll.do">
-		    	<button type="button" class="btn btn-primary custom-button">경찰관</button>
+		    	<button type="button" class="btn btn-primary">경찰관</button>
 		    </a>
 		</c:if>
 	    	<c:if test="${loginPolice!=null }">
 	    		<span style="font-size:18px;font-weight:bolder;">${loginPolice.policeName } ${loginPolice.policeGrade }</span>
 	    		<a href="${ path }/police/logout.do">
-		            <button type="button" class="btn btn-primary custom-button">로그아웃</button>
+		            <button type="button" class="btn btn-primary">로그아웃</button>
 		        </a>
 	    		<a href="${ path }/declaration/searchDeclaration.do">
-		            <button type="button" class="btn btn-primary custom-button">접수사건</button>
+		            <button type="button" class="btn btn-primary">접수사건</button>
 		        </a>
 	    	</c:if>
 	</header>
@@ -72,5 +72,6 @@
 		};
 		openSocket(`\${location.host}`,'${path}')
 	</script>
+	
 </body>
 </html>
