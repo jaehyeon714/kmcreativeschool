@@ -20,7 +20,7 @@
         SELECT * FROM qna WHERE QNA_NO = #{seq}
     </select>
     
-    <insert id="insertContact" parameterType="com.km.model.dto.Contact">
+    <insert id="insertContact" parameterType="String">
     	INSERT INTO qna (QNA_NO, QNA_TITLE, QNA_CONTENT, QNA_WRITER)
 	    VALUES(SEQ_QNA_NO.nextval, #{title}, #{writer}, #{contactContent})
 	</insert>

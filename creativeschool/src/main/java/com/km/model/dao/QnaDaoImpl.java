@@ -1,6 +1,8 @@
 package com.km.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -21,8 +23,8 @@ public class QnaDaoImpl implements QnaDao {
 	}
 	
 	@Override
-	public void insertContact(SqlSession session, String writer, String title, String contactContent) {
-		session.insert("qna.insertContact");
+	public void insertContact(SqlSession session, Contact contact) {
+		session.insert("qna.insertContact", contact);
 	}
 	
 }

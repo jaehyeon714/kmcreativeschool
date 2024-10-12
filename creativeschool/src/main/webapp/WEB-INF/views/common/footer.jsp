@@ -10,7 +10,7 @@
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#" class="text-white">개인정보 처리방침</a></li>
                 <li class="list-inline-item"><a href="#" class="text-white">이용 약관</a></li>
-                <li class="list-inline-item"><a href="#" class="text-white">문의하기</a></li>
+                <li class="list-inline-item"><a href="${path }/contact" class="text-white">문의하기</a></li>
             </ul>
         </div>
     </footer>
