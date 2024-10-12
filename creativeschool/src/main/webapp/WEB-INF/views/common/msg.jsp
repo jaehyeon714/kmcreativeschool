@@ -13,7 +13,7 @@
 </main>
 <script>
 	setTimeout(()=>{
-		location.replace("${path}");
+		location.replace("${path}${loc}");
 	},3000)
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

@@ -77,9 +77,8 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 	}
 	
 	@Override
-	public String updateStatus(SqlSession session, String status, String id) {
-	    int result = session.update("declaration.updateStatus", status);
-	    return String.valueOf(result);
+	public int updatePoliceStatus(SqlSession session, Map param) {
+	    return session.update("declaration.updatePoliceStatus", param);
 	}
 
 	@Override
@@ -87,6 +86,12 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 		return session.selectList("declaration.selectReportByEmailAndPassword", map);
 	}
 
+	@Override
+	public Map searchReporterByReportNo(SqlSession session, int reportNo) {
+		return session.selectOne("declaration.searchReporterByReportNo",reportNo);
+	}
+
+	
 	
 	
 

@@ -16,6 +16,7 @@ import com.km.model.dto.Report;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import oracle.sql.CLOB;
 
 @Service
 @RequiredArgsConstructor
@@ -119,9 +120,41 @@ public class DeclarationServiceImpl implements DeclarationService {
 	}
 	
 	@Override
-	public String updateStatus(String status, String id) {
+	public int updatePoliceStatus(Map param) {
 		
-		return dao.updateStatus(session, status, id);
+		int result=dao.updatePoliceStatus(session, param);
+		if(result>0) {
+			//신고자에게 메일전송하기
+			Map info=dao.searchReporterByReportNo(session,(int)param.get("reportNo"));
+			String infoContent="";
+			try {
+				infoContent=((CLOB)info.get("DECLARATION_CONTENT")).stringValue();
+			}catch (Exception e) {}
+			String content="""
+					<h2>%s님이 접수한 '%s'사건이 <span style="color:%s">%s</span>되었습니다.<h2>
+					<h3>처리자 : %s Email : %s</h3>
+					<h4><a href="%s">학교폭력신고사이트 바로가기</a></h4>
+					""".formatted(info.get("REPORTER_EMAIL"),
+								infoContent,
+							((String)param.get("status")).equals("접수")?
+									"#28a745":"#17a2b8",
+							(String)param.get("status"),
+							info.get("POLICE_NAME"),
+							info.get("POLICE_EMAIL"),
+							CommonUtils.SITE_HOST+"");
+			//메세지 작성하기
+			MailInfo mail=MailInfo.builder()
+					.title("학교폭력 사건이 "+(String)param.get("status")+"처리 되었습니다")
+					.content(content)
+					.reciever((String)info.get("REPORTER_EMAIL"))
+					.build();
+			
+			boolean mailResult=mailService.sendMail(mail);
+			if(!mailResult) {
+				log.error("사건처리 이메일 전송실패!");
+			}
+		}
+		return result; 
 	}
 
 	@Override

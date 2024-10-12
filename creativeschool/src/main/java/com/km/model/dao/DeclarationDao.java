@@ -33,7 +33,10 @@ public interface DeclarationDao {
 	
 	Report selectReportByNo(SqlSession session, long no);
 	
-	String updateStatus(SqlSession session, String status, String id);
+	int updatePoliceStatus(SqlSession session, Map param);
 
 	List<Report> selectReportsByEmailAndPassword(SqlSession session, Map<String, String> map);
+	
+	Map searchReporterByReportNo(SqlSession session, int reportNo);
+	
 }

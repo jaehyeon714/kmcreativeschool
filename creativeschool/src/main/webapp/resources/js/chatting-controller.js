@@ -65,7 +65,7 @@ const createFileTag=(tagName,fileName)=>{
 		tag.setAttribute("controls","true");
 	}
 	tag.addEventListener("click",(e)=>{
-		location.assign(`${contextPath}/chat/download?rename=${fileName}&chattingRoom=${chattingRoom}`);
+		location.assign(`${contextPath}/file/download?div=chat&rename=${fileName}&chattingRoom=${chattingRoom}`);
 	});
 	tag.style.cursor="pointer";
 	return tag;

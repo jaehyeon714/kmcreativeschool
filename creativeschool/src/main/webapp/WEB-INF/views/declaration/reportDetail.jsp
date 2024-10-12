@@ -16,6 +16,9 @@
 		height:380px;
 		overflow:auto;
 	}
+	.list-group-item{
+		cursor:pointer;
+	}
 </style>
 <main class="container my-4" style="height: 500px;">
 	<div style="display:flex;justify-content:space-between;align-items:center;" >
@@ -80,15 +83,19 @@
 	<div id="attach-info" class="card">
 		<div class="card-body">
 			<c:if test="${report.files.get(0).declarationAttachmentNo==0}">
-				<h3>첨부파일이 없습니다.</h3>
+				<h4>첨부파일이 없습니다.</h4>
 			</c:if>
-			<ul class="list-group">
-			<c:forEach var="file" items="${report.files }">
-				<c:if test="${file.declarationAttachmentNo!=0 }">
-					<li class="list-group-item">${file.declarationAttachmentOriginalName }</li>
-				</c:if>
-			</c:forEach>
-			</ul>
+			<c:if test="${report.files.get(0).declarationAttachmentNo!=0}">
+				<h4>첨부파일 리스트</h4>
+				<ul class="list-group">
+				<c:forEach var="file" items="${report.files }">
+					<c:if test="${file.declarationAttachmentNo!=0 }">
+						<li class="list-group-item list-group-item-action d-flex justify-content-between" onclick="fn_filedown('${file.declarationAttachmentRename}','${file.declarationAttachmentOriginalName }')">${file.declarationAttachmentOriginalName }
+						<span class="badge badge-primary badge-pill">click!</span></li>
+					</c:if>
+				</c:forEach>
+				</ul>
+			</c:if>
 		</div>
 	<%-- <div id="carouselImg" class="carousel slide" style="width:60%;">
 	  <div class="carousel-inner">
@@ -125,6 +132,9 @@
 			$("#tabMenu a").removeClass("active");
 			$(`#\${title}-info`).css({'display':'flex',"backgroundColor":"ligthgray"});
 			$(e.target).addClass("active");
+		}
+		const fn_filedown=(rename,oriname)=>{
+			location.replace("${path}/file/download?div=report&rename="+rename)
 		}
 	</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

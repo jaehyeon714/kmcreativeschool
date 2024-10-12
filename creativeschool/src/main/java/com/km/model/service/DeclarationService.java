@@ -16,6 +16,9 @@ public interface DeclarationService {
 	boolean reportSendPolice(Report report, String url);
 	Report selectReportByNo(long no);
 	
-	String updateStatus(String status, String id);
+	int updatePoliceStatus(Map param);
 	public List<Report> selectReportsByEmailAndPassword(String email, String password);
+	
+	
+	
 }

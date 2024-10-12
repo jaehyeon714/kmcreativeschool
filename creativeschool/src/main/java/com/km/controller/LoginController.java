@@ -67,8 +67,8 @@ public class LoginController {
     
     @RequestMapping("/police/logout.do")
     public String logout(HttpSession session) {
-    	if(session!=null) {
-	    	Police s=(Police)session.getAttribute("loginPolice");
+    	Police s=(Police)session.getAttribute("loginPolice");
+    	if(s!=null) {
 	    	service.updatePoliceLog(Map.of("flag","out","id",s.getPoliceIdentity()));
 	    	session.invalidate();
     	}

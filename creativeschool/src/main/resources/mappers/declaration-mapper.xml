@@ -104,14 +104,10 @@
         WHERE DECLARATION_NO=#{no}
 	</select>
 	
-	<update id="updateStatus" parameterType="map">
+	<update id="updatePoliceStatus" parameterType="map">
 	    UPDATE DECLARATION
-		    SET DECLARATION_STATUS = CASE 
-		        WHEN #{status} = '1' THEN '접수'
-		        WHEN #{status} = '2' THEN '처리완료'
-		        ELSE #{status}
-		    END
-	    WHERE DECLARATION_NO = #{no}
+		    SET DECLARATION_STATUS = #{status}
+	    WHERE DECLARATION_NO = #{reportNo}
 	</update>
 
 	<select id="selectReportByEmailAndPassword" parameterType="map" resultMap="declarationMap">
@@ -122,6 +118,14 @@
 	    LEFT JOIN POLICE p ON jpd.POLICE_NO = p.POLICE_NO
 	    WHERE r.REPORTER_EMAIL = #{email}
 	    AND r.REPORTER_PASSWORD = #{password}
+	</select>
+
+	<select id="searchReporterByReportNo" parameterType="_int" resultType="map">
+		select reporter_email, police_name, police_email, declaration_content from reporter_info 
+            join declaration using(reporter_no) 
+            join join_police_declaration using(declaration_no)
+            join police using(police_no)
+            where declaration_no=#{reportNo}
 	</select>
 
 
