@@ -23,7 +23,7 @@
 		<!-- 왼쪽 부분: 로고 및 제목 -->
 	    <div class="d-flex align-items-center">
 	        <a href="${ path }/">
-	            <img alt="로고" src="${ path }/resources/images/km_logo.png" class="mr-2" style="max-height: 50px;">
+	            <img alt="로고" src="${ path }/resources/images/logo.png" class="mr-2" style="max-height: 50px;">
 	        </a>
 	        <h3 class="mb-0 ml-2"><strong>당신의 이야기를 들어줄 준비가 되어 있습니다.</strong></h3>
 	    </div>

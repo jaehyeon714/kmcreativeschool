@@ -1,47 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<main class="container my-4" style="height: 500px;">
-	<c:if test="${not empty reports }">
-		<table class="table table-striped table-hover">
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+<h2 class="text-center mt-4">문의하기</h2>
+
+<div class="container mt-4 mb-4">
+	<div class="text-right mb-3">
+		<a href="${ path }/contact/contactwrite.do">
+			<button type="button" class="btn btn-light border">문의 글 작성하기</button>
+		</a>
+	</div>
+	<table class="table table-hover">
+		<tr>
+			<td>번호</td>
+			<td>제목</td>
+			<td>내용</td>
+			<td>작성일</td>
+			<td>답변</td>
+		</tr>
+		<c:forEach var="report" items="${ reports }">
 			<tr>
-				<th>사건번호</th>
-				<th>분류</th>
-				<th>발생장소</th>
-				<th>발생시간</th>
-				<th>가해인원</th>
-				<th>신고자이름</th>
-				<th>등록일</th>
-				<th>첨부파일</th>
-			</tr>
-		<c:forEach var="report" items="${reports }">
-			<tr style="cursor:pointer;" onclick="requestDetail(${report['DECLARATION_NO']})">
-				<td>${report['DECLARATION_NO'] }</td>
-				<td>${report['DECLARATION_CATEGORY'] }</td>
-				<td>${report['DECLARATION_DETAIL'] }</td>
-				<td>${report['DECLARATION_DATE']}</td>
-				<td>${report['ATTACKER_COUNT']}</td>
-				<td>${report['REPORTER_NAME'] }</td>
-				<td><fmt:formatDate value="${report['DECLARATION_INSERTDATE'] }"/></td>
-				<td>${report['ATTACH_COUNT']}</td>
+				<td>${ report.reportNo }</td>
+				<td>${ report.reportType }</td>
+				<td>${ report.incidentAddress }</td>
 			</tr>
 		</c:forEach>
-		</table>
-	</c:if>
-	<c:if test="${empty reports }">
-		<h3>접수된 사건이 없습니다.</h3>
-	</c:if>
-	<div id="pageBar">
-		${pageBar }
+	</table>
+	<div class="text-center">
+		<c:if test="${ not empty pageBar }">
+	            ${ pageBar }
+	        </c:if>
 	</div>
-</main>
-	<script>
-	 function requestDetail(no){
-		 location.assign("${path}/declaration/searchDeclarationdetail?no="+no);
-	 }
-	</script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+</div>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
