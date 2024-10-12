@@ -5,7 +5,7 @@
 
 	<h2 class="text-center mt-4">문의하기</h2>
 
-	<div class="container mt-4 mb-4">
+	<div class="container mt-4 mb-5">
 		<div class="text-right mb-3">
 			<a href="${ path }/contact/contactwrite.do">
 				<button type="button" class="btn btn-light border">문의 글 작성하기</button>
@@ -23,7 +23,7 @@
 				<tr>
 					<td>${ list.seq }</td>
 					<td><a href="${ path }/contact/contactview?seq=${list.seq}">${ list.title }</a></td>
-					<td><a href="${ path }/contact/contactview?seq=${list.seq}">${ list.contactContent }</a></td>
+					<td><a href="${ path }/contact/contactview?seq=${list.seq}">${ list.writer }</a></td>
 					<td>${ list.dateTime }</td>
 					<td>${ list.response }</td>
 				</tr>

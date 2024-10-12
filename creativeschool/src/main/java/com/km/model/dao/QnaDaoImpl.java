@@ -23,12 +23,8 @@ public class QnaDaoImpl implements QnaDao {
 	}
 	
 	@Override
-	public void insertContact(SqlSession session, String writer, String title, String contactContent) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("writer", writer);
-		map.put("title", title);
-		map.put("contactContent", contactContent);
-		session.insert("qna.insertContact", map);
+	public void insertContact(SqlSession session, Contact contact) {
+		session.insert("qna.insertContact", contact);
 	}
 	
 }

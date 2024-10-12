@@ -9,5 +9,5 @@ import com.km.model.dto.Contact;
 public interface QnaDao {
 	List<Contact> selectAllBoard(SqlSession session);
 	Contact findByIdSeq(SqlSession session, int seq);
-	void insertContact(SqlSession session, String writer, String title, String contactContent);
+	void insertContact(SqlSession session, Contact contact);
 }

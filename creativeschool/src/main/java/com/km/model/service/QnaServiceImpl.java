@@ -15,9 +15,6 @@ import com.km.model.dto.Contact;
 public class QnaServiceImpl implements QnaService {
     
     @Autowired
-    private SqlSessionFactory factory;
-
-    @Autowired
     private SqlSession session;
     
     @Autowired
@@ -35,16 +32,8 @@ public class QnaServiceImpl implements QnaService {
         return dao.findByIdSeq(session, seq);
     }
 
-    // 트랜잭션 관리를 위해 @Transactional 추가
     @Override
-    @Transactional
-    public void insertContact(String writer, String title, String contactContent) {
-        try {
-            dao.insertContact(session, writer, title, contactContent);
-        } catch (Exception e) {
-            // 예외 발생 시 로그를 기록하고 다시 예외를 던짐
-            System.err.println("Error occurred while inserting contact: " + e.getMessage());
-            throw new RuntimeException("Failed to insert contact", e);
-        }
+    public void insertContact(Contact contact) {
+    		dao.insertContact(session, contact);
     }
 }

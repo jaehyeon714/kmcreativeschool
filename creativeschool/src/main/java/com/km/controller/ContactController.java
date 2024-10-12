@@ -66,18 +66,10 @@ public class ContactController {
         return "redirect:/contact/contactview?seq=" + contact.getSeq(); // 저장 후 상세보기로 리다이렉트
 	} */
     
-    @PostMapping("/contactwrite")
-    public String insertContact(
-    		@RequestParam String writer,
-    		@RequestParam String title,
-    		@RequestParam String contactContent) {
-    	try {
-    		qnaService.insertContact(writer, title, contactContent);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("에러남!!!");
-		}
-    	return "redirect:/";
+    @PostMapping("/contactwriteSubmit")
+    public String insertContact(Contact contact) {
+    	qnaService.insertContact(contact);
+    	return "redirect:/contact";
     }
     
     

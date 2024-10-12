@@ -22,7 +22,7 @@
     
     <insert id="insertContact" parameterType="String">
     	INSERT INTO qna (QNA_NO, QNA_TITLE, QNA_CONTENT, QNA_WRITER)
-	    VALUES(seq.nextval, #{title}, #{writer}, #{contactContent})
+	    VALUES(SEQ_QNA_NO.nextval, #{title}, #{writer}, #{contactContent})
 	</insert>
 
 
