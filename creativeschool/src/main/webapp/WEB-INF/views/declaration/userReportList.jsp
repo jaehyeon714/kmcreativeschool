@@ -32,7 +32,7 @@
             <td>${report.DECLARATION_DATE}</td>
             <td>${CommonUtils.clobToString(report.DECLARATION_CONTENT)}</td>
             <td>${report.DECLARATION_CATEGORY}</td>
-            <td>${report.DECLARATION_STATUS != null ? report.DECLARATION_STATUS : '알 수 없음'}</td>
+            <td>${report.DECLARATION_STATUS != null ? report.DECLARATION_STATUS : '미처리'}</td>
             <td>${report.POLICE_NAME}</td>
             <td>${report.DECLARATION_DETAIL}</td>
         </tr>

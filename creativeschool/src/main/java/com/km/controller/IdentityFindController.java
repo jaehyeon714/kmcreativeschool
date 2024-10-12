@@ -40,7 +40,7 @@ public class IdentityFindController {
 	private PoliceServicelmpl service;
 
 	@PostMapping("/police/findIdPw")
-	public String findIdentity(@RequestParam("email") String email, @RequestParam("action") String action) {
+	public String findIdentity(@RequestParam("policeEmail") String email, @RequestParam("action") String action) {
 		var police = service.selectPoliceByEmail(email);
 		if (police == null) {
 			return "/police/findIdPwFail";

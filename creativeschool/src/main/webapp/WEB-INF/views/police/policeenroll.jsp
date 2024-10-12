@@ -73,7 +73,7 @@
 </main>
 <script>
  function searchIdPassword() {
-     open("/police/findIdPw.do","_blank","width=500,height=330,top=250%,left=700%");
+     open("${path}/police/findIdPw.do","_blank","width=500,height=330,top=250%,left=700%");
  }
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

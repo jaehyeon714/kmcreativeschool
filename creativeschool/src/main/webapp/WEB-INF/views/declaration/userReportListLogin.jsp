@@ -25,42 +25,20 @@
 
     <div class="d-flex justify-content-center" id="div_box">
         <form action="${path}/declaration/userReportLogin.do" method="post"> 
-<<<<<<< HEAD
             <div class="d-flex flex-column">
                     <div class="input-group input-group-lg mb-3">
-                        <input type="text" id="policeIdentity" name="policeIdentity" 
+                        <input type="text" id="id" name="id" 
                                class="form-control" placeholder="아이디" 
                                aria-label="Sizing example input" 
                                aria-describedby="inputGroup-sizing-lg" 
                                required>
-=======
-            <div class="d-flex justify-content-evenly">
-                <div style="margin-right: 3%">
-                    <div class="input-group input-group-lg">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> 아이디 </span>
-                        </div>
-                        <input type="text" id="id" name="id"
-                            class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg" required>
->>>>>>> branch 'main' of https://github.com/Devteacher09/kmcreativeschool.git
                     </div>
-<<<<<<< HEAD
                     <div class="input-group input-group-lg mb-3">
-                        <input type="password" id="policePassword" name="policePassword" 
+                        <input type="password" id="pw" name="pw" 
                                class="form-control" placeholder="비밀번호" 
                                aria-label="Sizing example input" 
                                aria-describedby="inputGroup-sizing-lg" 
                                required>
-=======
-                    <div class="input-group input-group-lg">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> 패스워드 </span>
-                        </div>
-                        <input type="password" id="pw" name="pw"
-                            class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-lg" required>
->>>>>>> branch 'main' of https://github.com/Devteacher09/kmcreativeschool.git
                     </div>
                     <input type="submit" class="input-group btn btn-outline-primary btn-custom mb-1" value="로그인">    
         	</div>
