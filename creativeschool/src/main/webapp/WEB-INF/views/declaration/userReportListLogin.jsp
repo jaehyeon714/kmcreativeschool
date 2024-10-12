@@ -18,7 +18,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> 아이디 </span>
                         </div>
-                        <input type="text" id="userIdentity" name="userIdentity"
+                        <input type="text" id="id" name="userIdentity"
                             class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-lg" required>
                     </div>
@@ -26,7 +26,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> 패스워드 </span>
                         </div>
-                        <input type="password" id="userPassword" name="userPassword"
+                        <input type="password" id="pw" name="userPassword"
                             class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-lg" required>
                     </div>

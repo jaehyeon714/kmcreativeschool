@@ -114,6 +114,17 @@
 	    WHERE DECLARATION_NO = #{no}
 	</update>
 
+	<select id="selectReportByEmailAndPassword" parameterType="map" resultMap="declarationMap">
+	    SELECT d.*, r.REPORTER_NAME, p.POLICE_NAME, p.POLICE_EMAIL, p.POLICE_GRADE
+	    FROM DECLARATION d
+	    JOIN REPORTER_INFO r ON d.REPORTER_NO = r.REPORTER_NO
+	    LEFT JOIN JOIN_POLICE_DECLARATION jpd ON d.DECLARATION_NO = jpd.DECLARATION_NO
+	    LEFT JOIN POLICE p ON jpd.POLICE_NO = p.POLICE_NO
+	    WHERE r.REPORTER_EMAIL = #{email}
+	    AND r.REPORTER_PASSWORD = #{password}
+	</select>
+
+
 </mapper>	 
 
 
