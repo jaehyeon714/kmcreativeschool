@@ -15,7 +15,7 @@
 		}
 		#chatlist-container{
 			overflow:auto;
-			height:700px;
+			height:500px;
 		}
 	</style>
 	<!-- main > section > article -->    
