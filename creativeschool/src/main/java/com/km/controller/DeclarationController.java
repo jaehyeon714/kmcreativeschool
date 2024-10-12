@@ -172,19 +172,20 @@ public class DeclarationController {
 		return "declaration/reportDetail";
 	}
 
-	@RequestMapping("/userReportLogin.km")
-	public String userReportLoginView() {
-		return "declaration/userReportListLogin";
+	@RequestMapping("/userReportLogin.km") // 로그인
+	public String userReportLoginView(HttpSession session) {
+		System.out.println("km");
+	    return "declaration/userReportListLogin";
 	}
 	
 	@RequestMapping("/userReportLogin.do")
-	public String userReportLoginDo(Model model, @RequestParam("userIdentity") String id, @RequestParam("userPassword") String pw) {
-		System.out.println(id + " " + pw);
-		model.addAttribute("id", id);
-		model.addAttribute("pw", pw);
-		return "declaration/userReportList";
+	public String userReportLoginDo(HttpSession session, String id, String pw) {
+		session.setAttribute("reporterId", id);
+		session.setAttribute("reporterPw", pw);
+		
+		
 	}
-	
+
 
 	
 }
