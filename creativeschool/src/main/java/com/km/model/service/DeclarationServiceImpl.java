@@ -1,5 +1,6 @@
 package com.km.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -122,6 +123,16 @@ public class DeclarationServiceImpl implements DeclarationService {
 		
 		return dao.updateStatus(session, status, id);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectReportsByEmailAndPassword(String email, String password) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("password", password);
+		return dao.selectReportsByEmailAndPassword(session, map);
+	}
 	
+	
+
 	
 }

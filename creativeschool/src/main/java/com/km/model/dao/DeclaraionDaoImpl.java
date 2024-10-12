@@ -82,6 +82,11 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 	    return String.valueOf(result);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectReportsByEmailAndPassword(SqlSession session, Map<String, String> map) {
+		return session.selectList("declaration.selectReportByEmailAndPassword", map);
+	}
+
 	
 	
 
