@@ -22,7 +22,7 @@
 	<header class="d-flex justify-content-between align-items-center p-3 bg-white border-bottom">
 	    <div class="d-flex align-items-center">
 	        <a href="${ path }/">
-	            <img alt="로고" src="${ path }/resources/images/km_logo.png" class="mr-2" style="max-height: 50px;">
+	            <img alt="로고" src="${ path }/resources/images/logo.png" class="mr-2" style="max-height: 50px;">
 	        </a>
 	        <h3 class="mb-0 ml-2"><strong>폭력은 끝내야 할 행동입니다.</strong></h3>
 	    </div>
