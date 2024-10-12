@@ -20,12 +20,15 @@
 </head>
 <body>
 	<header class="d-flex justify-content-between align-items-center p-3 bg-white border-bottom">
+		<!-- 왼쪽 부분: 로고 및 제목 -->
 	    <div class="d-flex align-items-center">
 	        <a href="${ path }/">
 	            <img alt="로고" src="${ path }/resources/images/logo.png" class="mr-2" style="max-height: 50px;">
 	        </a>
-	        <h3 class="mb-0 ml-2"><strong>폭력은 끝내야 할 행동입니다.</strong></h3>
+	        <h3 class="mb-0 ml-2"><strong>당신의 이야기를 들어줄 준비가 되어 있습니다.</strong></h3>
 	    </div>
+	    
+	     <!-- 중간 부분: 메뉴 -->
 	    <c:if test="${loginPolice==null }">
 		  	<nav class="navbar navbar-expand-lg navbar-light bg-white w-50"> <!-- 전체 너비 설정 -->
 	  			<div class="container-fluid">
@@ -48,20 +51,26 @@
 	    			</div>
 			</nav>
 		</c:if>
-		<c:if test="${loginPolice==null }">
-			<a href="${path}/police/policeenroll.do">
-		    	<button type="button" class="btn btn-primary">경찰관</button>
-		    </a>
-		</c:if>
-	    	<c:if test="${loginPolice!=null }">
-	    		<span style="font-size:18px;font-weight:bolder;">${loginPolice.policeName } ${loginPolice.policeGrade }</span>
-	    		<a href="${ path }/police/logout.do">
-		            <button type="button" class="btn btn-primary">로그아웃</button>
-		        </a>
-	    		<a href="${ path }/declaration/searchDeclaration.do">
-		            <button type="button" class="btn btn-primary">접수사건</button>
-		        </a>
-	    	</c:if>
+		
+		<!-- 오른쪽 부분: 로그인 상태에 따른 내용 -->
+		<div class="d-flex align-items-center">
+            <c:if test="${loginPolice==null }">
+                <a href="${path}/police/policeenroll.do">
+                    <button type="button" class="btn btn-primary">경찰관</button>
+                </a>
+            </c:if>
+            <c:if test="${loginPolice!=null }">
+                <span style="font-size:18px;font-weight:bolder;">${loginPolice.policeName} ${loginPolice.policeGrade}</span>
+                <span class="ml-3">
+                    <a href="${ path }/declaration/searchDeclaration.do">
+                        <button type="button" class="btn btn-primary">접수사건</button>
+                    </a>
+                </span>
+                <a href="${ path }/police/logout.do">
+                    <button type="button" class="btn btn-primary">로그아웃</button>
+                </a>
+            </c:if>	
+        </div>
 	</header>
 	<script src="${path }/resources/js/chatting-controller.js"></script>
 	<script>
