@@ -15,4 +15,5 @@ public interface PoliceService {
 	PoliceStation selectPoliceStaionByName(String name);
 	int insertPoliceStation(PoliceStation policeStation);
     int updatePolicePassword(String email, String newPassword);
+    void updatePoliceLog(Map param);
 }

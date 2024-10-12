@@ -1,5 +1,7 @@
 package com.km.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,10 @@ public class LoginController {
     	if(s!=null&&s.getPolicePassword().equals(policePassword)) {
     		//로그인 성공
     		System.out.println("경찰 로그인 성공");
+    		//log기록하기
+    		service.updatePoliceLog(Map.of("flag","in","id",s.getPoliceIdentity()));
     		session.setAttribute("loginPolice", s);
+    		session.setMaxInactiveInterval(60*3);//유휴로그인 유지시간 3분
     		
     	}else {
     		//로그인 실패
@@ -62,7 +67,11 @@ public class LoginController {
     
     @RequestMapping("/police/logout.do")
     public String logout(HttpSession session) {
-    	session.invalidate();
+    	if(session!=null) {
+	    	Police s=(Police)session.getAttribute("loginPolice");
+	    	service.updatePoliceLog(Map.of("flag","out","id",s.getPoliceIdentity()));
+	    	session.invalidate();
+    	}
     	return "redirect:/";
     }
     

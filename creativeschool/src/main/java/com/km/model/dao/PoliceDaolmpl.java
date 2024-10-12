@@ -59,7 +59,12 @@ public class PoliceDaolmpl implements PoliceDao{
         params.put("password", newPassword);
 		return session.update("police.updatePolicePassword", params);
 	}
-	
 
+	@Override
+	public int updatePoliceLog(SqlSession session, Map param) {
+		return session.update("police.updatePoliceLog",param);
+	}
+	
+	
 
 }

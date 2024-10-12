@@ -104,5 +104,19 @@
 	    SET POLICE_PASSWORD = #{password}
 	    WHERE POLICE_EMAIL = #{email}
 	</update>
+	
+	<update id="updatePoliceLog" parameterType="map">
+		UPDATE POLICE
+		<set>
+			<if test="flag eq 'in'">
+				POLICE_LOG=SYSTIMESTAMP
+			</if>
+			<if test="flag eq 'out'">
+				POLICE_LOG=NULL
+			</if>
+		</set>
+		WHERE POLICE_IDENTITY=#{id}
+	</update>
+	
 		
 </mapper>

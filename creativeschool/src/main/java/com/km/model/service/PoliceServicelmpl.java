@@ -11,7 +11,10 @@ import com.km.model.dao.PoliceDao;
 import com.km.model.dto.Police;
 import com.km.model.dto.PoliceStation;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class PoliceServicelmpl implements PoliceService{
 	
 	@Autowired
@@ -67,8 +70,17 @@ public class PoliceServicelmpl implements PoliceService{
 	public List<Police> findIdPw(String policeEmail) {
 		return dao.findIdPw(session, policeEmail);
 	}
+
+
+	@Override
+	public void updatePoliceLog(Map param) {
+		int result=dao.updatePoliceLog(session, param);
+		if(result==0) {
+			log.error(param.get("id")+"logout log수정실패");
+		}
+	}
 	
 
-
+	
 
 }

@@ -17,4 +17,5 @@ public interface PoliceDao {
 	List<Police> findIdPw(SqlSession session, String policeEmail);
 	Police selectPoliceByEmail(SqlSession session, String email);
 	int updatePolicePassword(SqlSession session, String email, String newPassword);
+	int updatePoliceLog(SqlSession session,Map param);
 }

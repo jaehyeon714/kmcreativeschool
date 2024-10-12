@@ -22,4 +22,10 @@ public class MainController {
 		return "police/findIdPw";
 	}
 	
+	@RequestMapping("/updatestatus.do")
+	public String declarationUpdateStatus(int reportNo, int status) {
+		//status 1 접수, 2 처리완료
+		service
+	}
+	
 }

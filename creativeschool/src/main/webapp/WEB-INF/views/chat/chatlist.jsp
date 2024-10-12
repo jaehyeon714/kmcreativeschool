@@ -13,11 +13,15 @@
 		.list-group>li{
 			width:100% !important;
 		}
+		#chatlist-container{
+			overflow:auto;
+			height:700px;
+		}
 	</style>
 	<!-- main > section > article -->    
     <main class="container my-5" style="height: 600px;">
         <h2>채팅 리스트</h2>
-        <ol class="list-group">
+        <ol id="chatlist-container" class="list-group">
         <c:forEach var="police" items="${polices }">
             <li class="list-group-item d-flex list-group-item-action list-group-item-${police['POLICE_LOG']!=null?'success':'dark'} ">
             	<div class="profileImgContainer">

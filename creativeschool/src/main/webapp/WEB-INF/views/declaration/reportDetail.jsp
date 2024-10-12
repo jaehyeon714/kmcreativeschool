@@ -56,7 +56,7 @@
 	<div id="attacker-info" class="card">
 		<div class="card-body d-flex flex-md-wrap flex-sm-wrap" >
 			<c:forEach var="attacker" items="${report.attackers  }" varStatus="status">
-				<div style="padding:3%">
+				<div>
 					<h5>가해자 정보 ${status.count}</h5>
 					<p>이름 : ${attacker.attackerName }</p>
 					<p>학교명 : ${attacker.attackerSchool }</p>
@@ -111,11 +111,11 @@
 	</div>
 	<div style="margin:5%;display:flex;justify-content:center">
 		<button class="btn btn-${report.status=='접수'?'dark':'primary'}" 
-		onclick="location.assign('${path}/declaration/updatestatus.do?status=1')"
+		onclick="location.assign('${path}/declaration/updatestatus.do?reportNo=${report.reportNo}&status=1')"
 		${report.status=='접수'?'disabled':''}>접수</button>
 		&nbsp;&nbsp;&nbsp;
 		<button class="btn btn-${report.status==null?'dark':'info'}" ${report.status==null?'disabled':'' } 
-			onclick="location.assign('${path}/declaration/updatestatus.do?status=2')">처리완료</button>
+			onclick="location.assign('${path}/declaration/updatestatus.do?reportNo=${report.reportNo}&status=2')">처리완료</button>
 	</div>
 </main>
 	<script>
