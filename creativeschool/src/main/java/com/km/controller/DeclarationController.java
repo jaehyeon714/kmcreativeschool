@@ -1,10 +1,11 @@
 package com.km.controller;
 
 import java.io.File;
+import java.sql.Clob;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -36,10 +37,10 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes({"reporter"})
 @Slf4j
 public class DeclarationController {
-	
+
 	@Autowired
 	private DeclarationService service;
-	
+
 	@RequestMapping("/requestdeclaration.km")
 	public String reportinfo() {
 		//신고자정보 등록화면
@@ -70,9 +71,9 @@ public class DeclarationController {
 								.declarationAttachmentRename(reFileName).declarationAttachmentOriginalName(oriFileName).build();
 						report.getFiles().add(da);
 					}catch(Exception e) {
-						
+
 						e.printStackTrace();
-						
+
 						if(report.getFiles().size()>0) {
 							File[] allFile=new File(path).listFiles((dir,name)->{
 								for(DeclarationAttachment d : report.getFiles()) {
@@ -80,7 +81,7 @@ public class DeclarationController {
 								}
 								return false;
 							});
-							
+
 							Arrays.stream(allFile).forEach(f->f.delete());
 						}
 						return "common/error";
@@ -109,29 +110,30 @@ public class DeclarationController {
 			service.insertDeclaration(report);
 			//신고 관할서 경찰관에게 메일 전송하기
 			boolean flag=service.reportSendPolice(report,CommonUtils.SITE_HOST+request.getContextPath());
-			
+
 			m.addAttribute("msg", "정상적으로 신고 처리 되었습니다");
 			m.addAttribute("status","light");
-			
-			
+
+
 		}catch(IllegalArgumentException e) {
-			
+
 			m.addAttribute("msg",e.getMessage()+"을(를) 실패했습니다 다시 시도하거나 관리자에게 문의하세요.");
 			m.addAttribute("status","danager");
 		}
 		session.removeAttribute("reporter");
 		return "common/msg";		
-		
-		
+
+
 	}
-	
+
 	@RequestMapping("/searchDeclaration.do")
+//	@RequestMapping("/searchDeclaration.do")
 	public String searchDeclaration(
 			@RequestParam(defaultValue = "1") int cPage,
 			@RequestParam(defaultValue = "5") int numPerpage,
 			@SessionAttribute Police loginPolice,
 			Model m) {
-		
+
 		List<Map> reports=service
 				.selectReportAll(Map.of(
 						"policeId",loginPolice.getPoliceIdentity(),
@@ -141,20 +143,20 @@ public class DeclarationController {
 		m.addAttribute("reports",reports);
 		m.addAttribute("pageBar",PageFactory.getPage(cPage, numPerpage, reportCount,"searchDeclaration.do"));		
 		log.debug("{}",reports);
-		
+
 		return "declaration/policeReport";
 	}
-	
+
 	@RequestMapping("/searchDeclarationdetail")
 	public String declarationDetail(long no,
 			Model m) {
 		Report report=service.selectReportByNo(no);
 		log.debug("{}",report);
 		m.addAttribute("report",report);
-		
+
 		return "declaration/reportDetail";
 	}
-	
+
 
 //	@RequestMapping("/updatestatus.do")
 //	public String updateStatus(String status, String id) {
@@ -196,40 +198,97 @@ public class DeclarationController {
 
 	@RequestMapping("/userReportList.do")
 	public String userReportList(HttpSession session, 
-	                              @RequestParam(defaultValue = "1") int cPage,
-	                              @RequestParam(defaultValue = "5") int numPerpage, 
-	                              Model model) {
+	                             @RequestParam(defaultValue = "1") int cPage,
+	                             @RequestParam(defaultValue = "5") int numPerPage, 
+	                             @RequestParam(value = "condition", required = false) String condition,
+	                             @RequestParam(value = "keyword", required = false) String keyword,
+	                             Model model) {
+	    
 	    String reporterId = (String) session.getAttribute("reporterId");
+	    String reporterPw = (String) session.getAttribute("reporterPw");
 	    
 	    if (reporterId == null) {
 	        return "redirect:/userReportLogin.km"; 
 	    }
 
-	    List<Map<String, Object>> reportList = service.selectReportsByEmailAndPassword(reporterId, (String) session.getAttribute("reporterPw"));
+	    List<Map<String, Object>> reportList = service.selectReportsByEmailAndPassword(reporterId, reporterPw);
 
-	    long totalCount = reportList.size(); 
-	    long startIndex = (cPage - 1) * numPerpage;
+	    int completedReportCnt = 0;
+	    int submittedReportCnt = 0;
+	    int notSubmittedReportCnt = 0;
 
+	    if (keyword != null && !keyword.isEmpty() && condition != null) {
+	        Iterator<Map<String, Object>> iterator = reportList.iterator();
+	        while (iterator.hasNext()) {
+	            Map<String, Object> report = iterator.next();
+	            String status = (String) report.getOrDefault("DECLARATION_STATUS", "미접수");
+	            
+	            switch (status) {
+	                case "완료" -> completedReportCnt++;
+	                case "접수" -> submittedReportCnt++;
+	                default -> notSubmittedReportCnt++;
+	            }
+
+	            switch (condition) {
+	                case "내용":
+	                    if (!CommonUtils.clobToString((Clob) report.get("DECLARATION_CONTENT")).contains(keyword)) {
+	                        iterator.remove();
+	                    }
+	                    break;
+	                case "종류":
+	                    if (!report.getOrDefault("DECLARATION_CATEGORY", "").toString().contains(keyword)) {
+	                        iterator.remove();
+	                    }
+	                    break;
+	                case "상태":
+	                    if (!status.equals(keyword)) {
+	                        iterator.remove();
+	                    }
+	                    break;
+	                case "경찰관":
+	                    if (!report.getOrDefault("POLICE_NAME", "").toString().contains(keyword)) {
+	                        iterator.remove();
+	                    }
+	                    break;
+	                default:
+	                    break;
+	            }
+	        }
+	    } 
+	    else {
+	        for (var report : reportList) {
+	            String status = (String) report.getOrDefault("DECLARATION_STATUS", "미접수");
+	            switch (status) {
+	                case "완료" -> completedReportCnt++;
+	                case "접수" -> submittedReportCnt++;
+	                default -> notSubmittedReportCnt++;
+	            }
+	        }
+	    }
+
+	    long totalCount = reportList.size();
 	    List<Map<String, Object>> paginatedReports = reportList.stream()
-	        .skip(startIndex)
-	        .limit(numPerpage)
-	        .toList();
+	            .skip((long) (cPage - 1) * numPerPage)
+	            .limit(numPerPage)
+	            .toList();
 
 	    model.addAttribute("reports", paginatedReports);
-	    model.addAttribute("pageBar", PageFactory.getPage(cPage, numPerpage, totalCount, "userReportList.do"));
-
+	    model.addAttribute("completedReportCnt", completedReportCnt);
+	    model.addAttribute("submittedReportCnt", submittedReportCnt);
+	    model.addAttribute("notSubmittedReportCnt", notSubmittedReportCnt);
+	    model.addAttribute("condition", condition);
+	    model.addAttribute("keyword", keyword);
+	    model.addAttribute("pageBar", PageFactory.getPage(cPage, numPerPage, totalCount, "userReportList.do", condition, keyword));
+	    
 	    return "declaration/userReportList"; 
 	}
 
 	
 	
-	
 
 
 
-	
+
+
+
 }
-
-
-
-
