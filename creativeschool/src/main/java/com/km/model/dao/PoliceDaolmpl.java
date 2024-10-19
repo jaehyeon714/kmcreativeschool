@@ -84,7 +84,10 @@ public class PoliceDaolmpl implements PoliceDao{
 		return session.selectOne("police.selectReportByParamCount",param);
 	}
 	
-	
+	@Override
+	public void deletePolice(SqlSession session, String policeIdentity) {
+		session.delete("police.deletePolice", policeIdentity);
+	}
 	
 
 }

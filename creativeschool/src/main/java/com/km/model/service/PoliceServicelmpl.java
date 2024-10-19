@@ -87,6 +87,10 @@ public class PoliceServicelmpl implements PoliceService{
 		return dao.selectDeclarationCount(session,param);
 	}
 
+	@Override
+	public void deletePolice(String policeIdentity) {
+		dao.deletePolice(session, policeIdentity);
+	}
 
 	@Override
 	public List<Map> selectReportSearch(Map<String, Object> mapKeyword) {
@@ -100,11 +104,6 @@ public class PoliceServicelmpl implements PoliceService{
 		// TODO Auto-generated method stub
 		return dao.selectReportByParamCount(session,param);
 	}
-	
-	
-	
-	
-	
 	
 
 }

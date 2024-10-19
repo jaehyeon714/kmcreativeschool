@@ -66,8 +66,32 @@
                         <button type="button" class="btn btn-primary">접수사건</button>
                     </a>
                 </span>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                	경찰 삭제
+				</button>
+
+				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				  	<div class="modal-dialog modal-dialog-centered" role="document">
+				    	<div class="modal-content">
+					      	<div class="modal-header">
+					        	<h5 class="modal-title" id="exampleModalLongTitle">${ loginPolice.policeName } <span>${ loginPolice.policeGrade }님</span></h5>
+					        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          		<span aria-hidden="true">&times;</span>
+					        	</button>
+					      	</div>
+					      	<div class="modal-body">
+					      		<h5>삭제하시겠습니까?</h5>
+					      		<form action="${ path }/deletePolice.do" method="post" autocomplete="off" class="d-flex justify-content-between">
+					      			<input type="text" id="policeIdentity" name="policeIdentity" value="${ loginPolice.policeIdentity }" readonly="readonly" class="border-0">
+					      			<button type="submit" class="btn btn-outline-danger px-4">삭제</button>
+					      		</form>
+					      	</div>
+				    	</div>
+				  	</div>
+				</div>
+				
                 <a href="${ path }/police/logout.do">
-                    <button type="button" class="btn btn-primary">로그아웃</button>
+                    <button type="button" class="btn btn-primary mx-3">로그아웃</button>
                 </a>
             </c:if>	
         </div>

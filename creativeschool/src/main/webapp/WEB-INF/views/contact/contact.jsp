@@ -27,6 +27,12 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<div class="text-center">
+			<c:if test="${not empty pageBar}">
+	            ${pageBar}
+	        </c:if>
+		</div>
+	
 	</div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
