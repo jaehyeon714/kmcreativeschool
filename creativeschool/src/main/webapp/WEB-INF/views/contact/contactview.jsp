@@ -18,6 +18,7 @@
 	            <a href="${path}/contact" class="btn btn-secondary">목록으로 돌아가기</a>
 	        </div>
 	    </div>
+
 	</main>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
