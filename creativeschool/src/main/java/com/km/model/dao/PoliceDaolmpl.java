@@ -64,6 +64,13 @@ public class PoliceDaolmpl implements PoliceDao{
 	public int updatePoliceLog(SqlSession session, Map param) {
 		return session.update("police.updatePoliceLog",param);
 	}
+
+	@Override
+	public List<Map> selectDeclarationCount(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("police.selectDeclarationCount",param);
+	}
+	
 	
 	
 

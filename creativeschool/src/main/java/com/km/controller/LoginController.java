@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ public class LoginController {
 
 	@Autowired
 	private PoliceService service;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
     // 임의의 사용자 데이터 (예: 데이터베이스에서 가져온 사용자)
     private static final String VALID_USERNAME = "user";
@@ -47,9 +50,9 @@ public class LoginController {
     
     @RequestMapping("/policeLogin.do")
     public String pLogin(String policeIdentity, String policePassword, HttpSession session) {
-    	System.out.println(policeIdentity + policePassword);
     	Police s = service.selectPoliceById(policeIdentity);
-    	if(s!=null&&s.getPolicePassword().equals(policePassword)) {
+    	if(s!=null
+    			&&passwordEncoder.matches(policePassword,s.getPolicePassword())) {
     		//로그인 성공
     		System.out.println("경찰 로그인 성공");
     		//log기록하기

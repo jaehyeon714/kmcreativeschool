@@ -79,8 +79,15 @@ public class PoliceServicelmpl implements PoliceService{
 			log.error(param.get("id")+"logout log수정실패");
 		}
 	}
-	
 
+
+	@Override
+	public List<Map> selectDeclarationCount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectDeclarationCount(session,param);
+	}
+	
+	
 	
 
 }
