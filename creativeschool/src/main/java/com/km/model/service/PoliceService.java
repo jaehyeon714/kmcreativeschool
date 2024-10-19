@@ -19,4 +19,7 @@ public interface PoliceService {
     void deletePolice(String policeIdentity);
     
     List<Map> selectDeclarationCount(Map param);
+    List<Map> selectReportSearch(Map<String,Object> mapKeyword);
+    long selectReportByParamCount(Map<String,Object> param);
+    
 }

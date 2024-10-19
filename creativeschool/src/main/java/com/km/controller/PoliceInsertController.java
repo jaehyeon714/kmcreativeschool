@@ -1,12 +1,12 @@
 package com.km.controller;
 
-import java.util.List;
-import java.util.Map;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -18,7 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
@@ -159,10 +158,34 @@ public class PoliceInsertController {
 	}
 	
 	@RequestMapping("/declaration/searchdeclarationbyparam.do")
-	public String searchDeclarationByParam() {
+	public String searchDeclarationByParam(@RequestParam Map param,
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam(defaultValue = "5") int numPerpage,
+			@SessionAttribute Police loginPolice,
+			Model m) {
+		param.put("cPage", cPage);
+		param.put("numPerpage", numPerpage);
+		param.put("policeId",loginPolice.getPoliceIdentity());
 		
+		List<Map> searchStatusCount=service.selectDeclarationCount(Map.of("policeId",loginPolice.getPoliceIdentity()));
+		
+		
+		List<Map> reports=service.selectReportSearch(param);
+		long reportCount=service.selectReportByParamCount(param);
+		
+		m.addAttribute("reports",reports);
+		m.addAttribute("pageBar",PageFactory.getPageSearch(cPage, numPerpage, reportCount,"searchdeclarationbyparam.do",param));
+		m.addAttribute("statusCount",getGroupStatusCount(searchStatusCount));
+				
 		return "declaration/policeReport";
 	}
 	
+	private Map<String,BigDecimal> getGroupStatusCount(List<Map> searchStatusCount){
+		return searchStatusCount.stream().collect(
+				Collectors.toMap(
+						k->(String)(k.get("DECLARATION_STATUS")==null?"미처리":k.get("DECLARATION_STATUS")),
+						v->(BigDecimal)v.get("COUNT"))
+			);
+	}
 	
 }

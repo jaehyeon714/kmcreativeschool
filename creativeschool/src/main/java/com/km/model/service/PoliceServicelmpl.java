@@ -91,6 +91,19 @@ public class PoliceServicelmpl implements PoliceService{
 	public void deletePolice(String policeIdentity) {
 		dao.deletePolice(session, policeIdentity);
 	}
+
+	@Override
+	public List<Map> selectReportSearch(Map<String, Object> mapKeyword) {
+		// TODO Auto-generated method stub
+		return dao.selectReportSearch(session, mapKeyword);
+	}
+
+
+	@Override
+	public long selectReportByParamCount(Map<String,Object> param) {
+		// TODO Auto-generated method stub
+		return dao.selectReportByParamCount(session,param);
+	}
 	
 
 }
