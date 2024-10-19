@@ -16,4 +16,6 @@ public interface PoliceService {
 	int insertPoliceStation(PoliceStation policeStation);
     int updatePolicePassword(String email, String newPassword);
     void updatePoliceLog(Map param);
+    
+    List<Map> selectDeclarationCount(Map param);
 }

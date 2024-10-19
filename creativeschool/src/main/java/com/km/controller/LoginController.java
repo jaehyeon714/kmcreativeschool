@@ -50,9 +50,9 @@ public class LoginController {
     
     @RequestMapping("/policeLogin.do")
     public String pLogin(String policeIdentity, String policePassword, HttpSession session) {
-    	System.out.println(policeIdentity + policePassword);
     	Police s = service.selectPoliceById(policeIdentity);
-    	if(s!=null&&passwordEncoder.matches(policePassword,s.getPolicePassword())) {
+    	if(s!=null
+    			&&passwordEncoder.matches(policePassword,s.getPolicePassword())) {
     		//로그인 성공
     		System.out.println("경찰 로그인 성공");
     		//log기록하기
