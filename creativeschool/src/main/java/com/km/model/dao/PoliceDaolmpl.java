@@ -71,7 +71,10 @@ public class PoliceDaolmpl implements PoliceDao{
 		return session.selectList("police.selectDeclarationCount",param);
 	}
 	
-	
+	@Override
+	public void deletePolice(SqlSession session, String policeIdentity) {
+		session.delete("police.deletePolice", policeIdentity);
+	}
 	
 
 }

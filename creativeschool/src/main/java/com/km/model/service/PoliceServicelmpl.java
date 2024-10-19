@@ -86,8 +86,11 @@ public class PoliceServicelmpl implements PoliceService{
 		// TODO Auto-generated method stub
 		return dao.selectDeclarationCount(session,param);
 	}
-	
-	
+
+	@Override
+	public void deletePolice(String policeIdentity) {
+		dao.deletePolice(session, policeIdentity);
+	}
 	
 
 }

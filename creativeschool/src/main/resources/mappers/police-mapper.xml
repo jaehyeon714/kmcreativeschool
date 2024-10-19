@@ -127,5 +127,8 @@
 		group by declaration_status
 	</select>
 	
+	<delete id="deletePolice" parameterType="String">
+		DELETE FROM police WHERE police_identity = #{policeIdentity}
+	</delete>
 		
 </mapper>

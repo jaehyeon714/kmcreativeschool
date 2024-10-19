@@ -78,7 +78,19 @@ public class LoginController {
     	return "redirect:/";
     }
     
-    
+    @PostMapping("/deletePolice.do")
+    public String deletePolice(String policeIdentity, HttpSession session) {
+    	try {
+    		session.invalidate();
+    		service.deletePolice(policeIdentity);
+    		System.out.println("왜 되는지는 모르지만 어쨋든성공함");
+    		return "redirect:/";
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("에러남!!!");
+			return "redirect:/";
+		}
+    }
     
     
     
