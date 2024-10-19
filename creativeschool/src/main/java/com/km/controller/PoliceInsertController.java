@@ -1,31 +1,46 @@
 package com.km.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.km.common.PageFactory;
 import com.km.model.dto.Police;
 import com.km.model.dto.PoliceStation;
+import com.km.model.service.DeclarationService;
 import com.km.model.service.PoliceServicelmpl;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class PoliceInsertController {
 	@Autowired
 	private PoliceServicelmpl service;
-
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private DeclarationService declarationService;
+	
 	@RequestMapping("/police/policeinsert.km")
 	public String policeinsert() {
 		return "police/policeinsert";
@@ -88,6 +103,10 @@ public class PoliceInsertController {
 
 		
 		// 경찰 등록
+		// 경찰등록 전 비밀번호 암호화하기
+		String encodePassword=passwordEncoder.encode(police.getPolicePassword());
+		log.debug(encodePassword);
+		police.setPolicePassword(encodePassword);
 		service.insertPolice(police);
 		return "police/policeenroll";
 
@@ -109,5 +128,41 @@ public class PoliceInsertController {
 //    }
 	
 
+	@RequestMapping("/declaration/searchDeclaration.do")
+	public String searchDeclaration(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam(defaultValue = "5") int numPerpage,
+			@SessionAttribute Police loginPolice,
+			Model m) {
+		
+		List<Map> reports=declarationService
+				.selectReportAll(Map.of(
+						"policeId",loginPolice.getPoliceIdentity(),
+						"cPage",cPage,
+						"numPerpage",numPerpage));
+		
+		List<Map> searchStatusCount=service.selectDeclarationCount(Map.of("policeId",loginPolice.getPoliceIdentity()));
+		Map<String,BigDecimal> statusCount=searchStatusCount.stream().collect(
+				Collectors.toMap(
+							k->(String)(k.get("DECLARATION_STATUS")==null?"미처리":k.get("DECLARATION_STATUS")),
+							v->(BigDecimal)v.get("COUNT"))
+				);
+		
+		long reportCount=declarationService.selectReportAllCount(loginPolice.getPoliceIdentity());
+		m.addAttribute("reports",reports);
+		m.addAttribute("pageBar",PageFactory.getPage(cPage, numPerpage, reportCount,"searchDeclaration.do"));
+		m.addAttribute("statusCount",statusCount);
+		
+		log.debug("{}",reports);
+		
+		return "declaration/policeReport";
+	}
+	
+	@RequestMapping("/declaration/searchdeclarationbyparam.do")
+	public String searchDeclarationByParam() {
+		
+		return "declaration/policeReport";
+	}
+	
 	
 }

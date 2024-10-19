@@ -118,5 +118,14 @@
 		WHERE POLICE_IDENTITY=#{id}
 	</update>
 	
+	<select id="selectDeclarationCount" resultType="map">
+		select declaration_status, count(*) as count 
+		from declaration 
+			join join_police_declaration using(declaration_no) 
+			join police using(police_no)
+		where police_identity=#{policeId}
+		group by declaration_status
+	</select>
+	
 		
 </mapper>
