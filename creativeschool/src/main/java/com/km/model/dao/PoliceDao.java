@@ -19,4 +19,6 @@ public interface PoliceDao {
 	int updatePolicePassword(SqlSession session, String email, String newPassword);
 	int updatePoliceLog(SqlSession session,Map param);
 	List<Map> selectDeclarationCount(SqlSession session, Map param);
+	List<Map> selectReportSearch(SqlSession session, Map param);
+	long selectReportByParamCount(SqlSession session, Map<String,Object> param);
 }

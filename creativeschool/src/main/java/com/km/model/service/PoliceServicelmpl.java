@@ -86,6 +86,23 @@ public class PoliceServicelmpl implements PoliceService{
 		// TODO Auto-generated method stub
 		return dao.selectDeclarationCount(session,param);
 	}
+
+
+	@Override
+	public List<Map> selectReportSearch(Map<String, Object> mapKeyword) {
+		// TODO Auto-generated method stub
+		return dao.selectReportSearch(session, mapKeyword);
+	}
+
+
+	@Override
+	public long selectReportByParamCount(Map<String,Object> param) {
+		// TODO Auto-generated method stub
+		return dao.selectReportByParamCount(session,param);
+	}
+	
+	
+	
 	
 	
 	
