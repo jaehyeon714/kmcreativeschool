@@ -73,6 +73,7 @@ public class DeclarationServiceImpl implements DeclarationService {
 				Map.of("sido",report.getSido(),"gungu",report.getGungu(),
 						"dong",report.getDong().split(" ")[0]));
 		
+		log.debug("{}",result);
 		
 		if(result.size()>0) {
 			//경찰관 사건지정하기

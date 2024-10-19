@@ -116,7 +116,7 @@ public class DeclarationController {
 			service.insertDeclaration(report);
 			// 신고 관할서 경찰관에게 메일 전송하기
 			boolean flag = service.reportSendPolice(report, CommonUtils.SITE_HOST + request.getContextPath());
-
+			log.debug("{}",flag);
 			m.addAttribute("msg", "정상적으로 신고 처리 되었습니다");
 			m.addAttribute("status", "light");
 
