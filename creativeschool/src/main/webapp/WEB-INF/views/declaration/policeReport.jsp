@@ -14,23 +14,23 @@
 	<div id="content-header" class="d-flex justify-content-between">
 		<h4>사건신고현황</h4>
 		<div>
-			<a href="#" class="badge badge-secondary">미처리 ${statusCount['미처리']}</a>
-			<a href="#" class="badge badge-primary">접수 ${statusCount["완료"]}</a>
-			<a href="#" class="badge badge-success">완료 ${statusCount["접수"]}</a>
+			<a href="${path }/declaration/searchdeclarationbyparam.do?status=미처리" class="badge badge-secondary">미처리 ${statusCount['미처리']}</a>
+			<a href="${path }/declaration/searchdeclarationbyparam.do?status=접수" class="badge badge-primary">접수 ${statusCount["접수"]}</a>
+			<a href="${path }/declaration/searchdeclarationbyparam.do?status=완료" class="badge badge-success">완료 ${statusCount["완료"]}</a>
 		</div>
 	</div>
-		<form >
+		<form action="${path }/declaration/searchdeclarationbyparam.do" method="post">
 			<div class="input-group mb-3">
 				<div class="input-group-preappend">
-					<select class="custom-select">
-						<option>분류</option>
-						<option>발생장소</option>
-						<option>신고자이름</option>
+					<select class="custom-select" name="type">
+						<option value="declaration_category">분류</option>
+						<option value="declaration_detail">발생장소</option>
+						<option value="reporter_name">신고자이름</option>
 					</select>
 				</div>
-				<input class="form-control">
+				<input class="form-control" name="keyword">
 				<div class="input-group-append">
-				    <button class="btn btn-info" type="button">검색</button>
+				    <button class="btn btn-info">검색</button>
 				</div>
 			</div>
 		</form>

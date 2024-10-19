@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -67,8 +68,20 @@ public class PoliceDaolmpl implements PoliceDao{
 
 	@Override
 	public List<Map> selectDeclarationCount(SqlSession session, Map param) {
-		// TODO Auto-generated method stub
 		return session.selectList("police.selectDeclarationCount",param);
+	}
+
+	@Override
+	public List<Map> selectReportSearch(SqlSession session, Map param) {
+		int cPage=(int)param.get("cPage");
+		 int numPerpage=(int)param.get("numPerpage");
+		RowBounds rb=new RowBounds((cPage-1)*numPerpage,numPerpage);
+		return session.selectList("police.selectReportSearch",param,rb);
+	}
+
+	@Override
+	public long selectReportByParamCount(SqlSession session, Map<String, Object> param) {
+		return session.selectOne("police.selectReportByParamCount",param);
 	}
 	
 	

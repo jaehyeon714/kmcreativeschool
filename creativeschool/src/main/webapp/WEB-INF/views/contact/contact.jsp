@@ -15,7 +15,6 @@
 			<tr>
 				<td>번호</td>
 				<td>제목</td>
-				<td>내용</td>
 				<td>작성일</td>
 				<td>답변</td>
 			</tr>
@@ -23,7 +22,6 @@
 				<tr>
 					<td>${ list.seq }</td>
 					<td><a href="${ path }/contact/contactview?seq=${list.seq}">${ list.title }</a></td>
-					<td><a href="${ path }/contact/contactview?seq=${list.seq}">${ list.writer }</a></td>
 					<td>${ list.dateTime }</td>
 					<td>${ list.response }</td>
 				</tr>
