@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,16 @@ import com.km.model.dto.Police;
 import com.km.model.dto.PoliceStation;
 import com.km.model.service.PoliceServicelmpl;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class PoliceInsertController {
 	@Autowired
 	private PoliceServicelmpl service;
-
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@RequestMapping("/police/policeinsert.km")
 	public String policeinsert() {
 		return "police/policeinsert";
@@ -88,6 +94,10 @@ public class PoliceInsertController {
 
 		
 		// 경찰 등록
+		// 경찰등록 전 비밀번호 암호화하기
+		String encodePassword=passwordEncoder.encode(police.getPolicePassword());
+		log.debug(encodePassword);
+		police.setPolicePassword(encodePassword);
 		service.insertPolice(police);
 		return "police/policeenroll";
 
