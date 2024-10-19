@@ -131,7 +131,7 @@ public class DeclarationController {
 
 	}
 
-	@RequestMapping("/searchDeclaration.do")
+//	@RequestMapping("/searchDeclaration.do")
 	public String searchDeclaration(@RequestParam(defaultValue = "1") int cPage,
 			@RequestParam(defaultValue = "5") int numPerpage, @SessionAttribute Police loginPolice, Model m) {
 
