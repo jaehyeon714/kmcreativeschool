@@ -128,6 +128,10 @@
             join police using(police_no)
             where declaration_no=#{reportNo}
 	</select>
+	
+	<select id="selectReporterByEmail" parameterType="java.lang.String" resultMap="reporterMap">
+		SELECT * FROM REPORTER_INFO WHERE REPORTER_EMAIL = #{email}
+	</select>
 
 
 

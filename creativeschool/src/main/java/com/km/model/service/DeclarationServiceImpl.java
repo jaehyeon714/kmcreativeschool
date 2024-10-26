@@ -13,6 +13,7 @@ import com.km.common.MailService;
 import com.km.model.dao.DeclarationDao;
 import com.km.model.dto.MailInfo;
 import com.km.model.dto.Report;
+import com.km.model.dto.Reporter;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -164,6 +165,11 @@ public class DeclarationServiceImpl implements DeclarationService {
 		map.put("email", email);
 		map.put("password", password);
 		return dao.selectReportsByEmailAndPassword(session, map);
+	}
+
+	@Override
+	public Reporter selectReporterByEmail(String email) {
+		return dao.selectReporterByEmail(session, email);
 	}
 	
 	

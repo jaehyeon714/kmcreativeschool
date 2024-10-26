@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +40,12 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes({ "reporter" })
 @Slf4j
 public class DeclarationController {
-
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private DeclarationService service;
+	
 
 	@RequestMapping("/requestdeclaration.km")
 	public String reportinfo() {
@@ -95,7 +101,9 @@ public class DeclarationController {
 		}
 		
 		// 신고자 저장하기
-		report.setReporter((Reporter) session.getAttribute("reporter"));
+		Reporter reporter = (Reporter) session.getAttribute("reporter");
+		reporter.setReporterPassword(passwordEncoder.encode(reporter.getReporterPassword()));
+		report.setReporter(reporter);
 		// 주소 분할해서 저장하기
 		String[] addr = report.getIncidentAddress().split(" ");
 		String searchArea = "";
@@ -170,6 +178,19 @@ public class DeclarationController {
 //		
 //		return "declaration/reportDetail";
 //	}
+	
+	//====================이메일로 신고자 정보 가져오기============
+	
+	@RequestMapping("/getReporterInfoByEmail.km")
+	public ResponseEntity<Reporter> getReporterInfoByEmail(@RequestParam String email) {
+		System.out.println(email);
+		Reporter reporterInfo = service.selectReporterByEmail(email);
+        System.out.println(reporterInfo);
+        return ResponseEntity.status(HttpStatus.OK).body(reporterInfo);
+	}
+	
+	
+	//======================================================
 
 	@RequestMapping("/userReportLogin.km") // 로그인
 	public String userReportLoginView(HttpSession session) {
@@ -180,7 +201,7 @@ public class DeclarationController {
 	@RequestMapping("/userReportLogin.do")
 	public String userReportLoginDo(HttpSession session, String id, String pw) {
 		session.setAttribute("reporterId", id);
-		session.setAttribute("reporterPw", pw);
+		session.setAttribute("reporterPw", passwordEncoder.encode(pw));
 
 		List<Map<String, Object>> reportList = service.selectReportsByEmailAndPassword(id, pw);
 

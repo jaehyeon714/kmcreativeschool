@@ -91,6 +91,11 @@ public class DeclaraionDaoImpl implements DeclarationDao {
 		return session.selectOne("declaration.searchReporterByReportNo",reportNo);
 	}
 
+	@Override
+	public Reporter selectReporterByEmail(SqlSession session, String email) {
+		return session.selectOne("declaration.selectReporterByEmail", email);
+	}
+
 	
 	
 	
