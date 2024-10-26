@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +39,8 @@ public class IdentityFindController {
 	
 	@Autowired
 	private PoliceServicelmpl service;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@PostMapping("/police/findIdPw")
 	public String findIdentity(@RequestParam("policeEmail") String email, @RequestParam("action") String action) {
@@ -58,7 +61,7 @@ public class IdentityFindController {
 			var newPassword = generateRandomString();
 			mailInfo.setContent("<h3>" + police.getPoliceName() + " 회원님의 임시 비밀번호 정보입니다.</h3><br>" + "PW: " + newPassword
 					+ "<br>" + "로그인 완료 후 비밀번호 변경 권장드립니다. 감사합니다.");
-			service.updatePolicePassword(email, newPassword);
+			service.updatePolicePassword(email, passwordEncoder.encode(newPassword));
 		}
 		mailService.sendMail(mailInfo);
 

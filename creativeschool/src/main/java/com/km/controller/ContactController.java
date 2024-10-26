@@ -37,7 +37,7 @@ public class ContactController {
 	            .limit(numPerPage)
 	            .toList();
 
-	    model.addAttribute("pageBar", PageFactory.getPage(cPage, numPerPage, totalData, "/contact"));
+	    model.addAttribute("pageBar", PageFactory.getPage(cPage, numPerPage, totalData, "/creativeschool/contact"));
 	    model.addAttribute("contacts", paginatedContacts);
 	    return "contact/contact";
 	}
