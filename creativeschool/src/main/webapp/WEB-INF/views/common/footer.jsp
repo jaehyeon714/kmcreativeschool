@@ -4,9 +4,9 @@
 <body style="padding-bottom: 60px;"> <!-- padding 추가 -->
     <!-- 페이지 내용 -->
     
-    <footer class="bg-dark text-white text-center py-1 fixed-bottom">
+    <footer class="bg-dark text-white text-center py-1">
         <div class="container">
-            <p>&lt;&copy; 2024 website. Copyright.&gt;</p>
+            <p>&lt;&copy; 2024 KeunMyung HighSchool. Copyright.&gt;</p>
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#" class="text-white">개인정보 처리방침</a></li>
                 <li class="list-inline-item"><a href="#" class="text-white">이용 약관</a></li>

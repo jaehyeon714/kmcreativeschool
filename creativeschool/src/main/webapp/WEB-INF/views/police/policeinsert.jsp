@@ -43,9 +43,21 @@ input[readonly] {
 </style>
 
 <div class="report-container">
-    <h2>경찰관 등록</h2>
 	<form method="post" action="${path}/police/policeInsertDo.km" enctype="multipart/form-data" id="policeForm">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column justify-content-between">
+	        <div class="d-flex justify-content-around">
+	        	<div class="d-flex align-items-center">
+				    <h3>경찰관 등록</h3>	
+			    </div>
+		        <div>
+	                <label for="policePhoto" style="cursor: pointer;">
+	                    <img id="photoPreview" src="${path }/resources/images/basicprofile.png" alt="사진 미리보기" style="border-radius: 50%; width: 100px; height: 100px; border: 2px solid #ccc;">
+	                    <input type="file" id="policePhoto" name="policePhoto" accept="image/*" style="display: none;" onchange="previewPhoto(event)">
+	                </label>
+	                <p>경찰관 사진 등록</p>
+	            </div>
+	        </div>
+	        <div class="d-flex justify-content-between">
         	<div>
 	           <div class="input-group mb-3">
 	            	<div class="input-group-prepend">
@@ -81,7 +93,15 @@ input[readonly] {
 					<div class="input-group-prepend"> 
 	                	<span class="input-group-text">직위</span>
 	                </div>                
-	                <input class="form-control" type="text" name="policeGrade" required>
+	                <select class="custom-select" name="policeGrade" required>
+	                	<option selected disabled>선택하세요</option>
+	                	<option value="경정">경정</option>
+	                	<option value="경감">경감</option>
+	                	<option value="경위">경위</option>
+	                	<option value="경사">경사</option>
+	                	<option value="경장">경장</option>
+	                	<option value="순경">순경</option>
+	                </select>
 				</div>  
 			</div>
 			<div>
@@ -117,15 +137,13 @@ input[readonly] {
 	                </div>
 	                <input type="text" class="form-control" name="policeStationAddress" readonly/>
 	            </div>
-	            <div id="result" style="margin-top: 10px;"></div>
             </div>
-            <div style="text-align: center;  margin-right: 70px;">
-                <label for="policePhoto" style="cursor: pointer;">
-                    <img id="photoPreview" src="${path }/resources/images/basicprofile.png" alt="사진 미리보기" style="border-radius: 50%; width: 150px; height: 150px; border: 2px solid #ccc;">
-                    <input type="file" id="policePhoto" name="policePhoto" accept="image/*" style="display: none;" onchange="previewPhoto(event)">
-                </label>
-                <p>경찰관 사진 등록</p>
+            <div style="min-width:35%;">
+            	<div id="result" style="overflow:auto;max-height:300px">
+            		<h4>관할서검색결과</h4>
+            	</div>
             </div>
+        </div>
         </div>
         <input type="submit" class="btn btn-outline-success" value="등록">
         <input type="reset" class="btn btn-outline-danger" value="취소">
@@ -147,64 +165,92 @@ input[readonly] {
 	async function loadPoliceStationsData() {
 	    try {
 	        policeStationsData = await searchPoliceStation();
-	        console.log(policeStationsData);
 	    }
 	    catch (error) {
 	        console.error(error);
 	    }
 	}
 
+	let intFunc="";
 	function searchPoliceStationByName(name) {
 	    const resultDiv = document.getElementById('result');
-	    resultDiv.innerHTML = '';
-
-	    const result = policeStationsData.filter(item => item['관서명'].includes(name)||item['경찰서'].includes(name));
-	    //const additionalResults = policeStationsData.filter(item => item['경찰서'].includes(name));
-	    //result.push(...additionalResults);
-	    console.log(result);
-	    if (result.length > 0) {
-	        result.forEach(item => {
-	            const div = document.createElement('div');
-	            div.classList.add('info');
-	            console.log(item);
-	            div.innerHTML = `
-	                <strong>경찰서:</strong> \${item['경찰서']}경찰서<br>
-	                <strong>관서명:</strong> \${item['관서명']}<br>
-	                <strong>구분:</strong> \${item['구분']}<br>
-	                <strong>시도청:</strong> \${item['시도청']}<br>
-	                <strong>연번:</strong> \${item['연번']}<br>
-	                <strong>주소:</strong> \${item['주소']}<br>
-	            `;
-	            
-				div.onclick = function() {
-				    const allDivs = document.querySelectorAll('.info');
-				    allDivs.forEach(d => d.style.borderColor = '#ccc');
-				
-				    div.style.borderColor = 'blue';
-				
-				    document.querySelector('input[name="policeStationName"]').value = item['경찰서'] + '경찰서';
-				    document.querySelector('input[name="policeStationDiv"]').value = item['구분'];
-				    document.querySelector('input[name="policeStationSidoStation"]').value = item['시도청'];
-				    document.querySelector('input[name="policeStationAddress"]').value = item['주소'];
-				    
-				    //더미
-				    /*
-				    document.querySelector('input[name="policeIdentity"]').value = '테스트아이디';
-				    document.querySelector('input[name="policePassword"]').value = 'testpassword';
-				    document.querySelector('input[name="policeName"]').value = '김춘식';
-				    document.querySelector('input[name="policeEmail"]').value = '테스트이메일';
-				    document.querySelector('input[name="policePhone"]').value = '1234';
-				    document.querySelector('input[name="policeGrade"]').value = '학생';
-					*/
-				};
-
-
-                
-	            resultDiv.appendChild(div);
-	        });
-	    } else {
-	        resultDiv.innerHTML = '<p>해당 경찰서를 찾을 수 없습니다.</p>';
+		if(intFunc!=""){
+			clearTimeout(intFunc);
+			//intFunc="";
+		}
+		if(name.length>=2){
+			resultDiv.innerHTML = '';
+			//로딩화면
+			const $containerDiv=document.createElement("div");
+			$containerDiv.classList.add("d-flex");
+			$containerDiv.classList.add("justify-content-center");
+			$containerDiv.classList.add("align-items-center");
+			$containerDiv.style.minHeight='300px';
+			const $spinnerDiv=document.createElement("div");
+			$spinnerDiv.classList.add("spinner-border");
+			$spinnerDiv.classList.add("text-primary");
+			$spinnerDiv.setAttribute("role","status");
+			const $spinnerSpan=document.createElement("span");
+			$spinnerSpan.classList.add("sr-only")
+			$spinnerSpan.innerText="loading....";
+			$spinnerDiv.appendChild($spinnerSpan);
+			$containerDiv.append($spinnerDiv);
+			resultDiv.appendChild($containerDiv);
+		}else{
+			resultDiv.innerHTML="<h4>두 글자이상 검색어를 입력하세요</h4>";
+		}
+		if(name.length>=2){
+			intFunc=setTimeout(()=>{
+				resultDiv.innerHTML = '';
+				    const result = policeStationsData.filter(item => item['관서명'].includes(name)||item['경찰서'].includes(name));
+				    if (result.length > 0){
+				        result.forEach(item => {
+				            const div = document.createElement('div');
+				            div.classList.add('info');
+				            const title=["경찰서","관서명","구분","시도청","연번","주소"];            
+				            title.forEach(name=>{
+				            	const $div=document.createElement("div");
+				            	const $strong=document.createElement("strong");
+				            	$strong.innerText=name;
+				            	const $span=document.createElement("span");
+				            	$span.style.paddingLeft='2%';
+				            	$span.innerText=item[name];
+				            	$div.appendChild($strong);
+				            	$div.appendChild($span);
+					            div.appendChild($div);
+				            });
+				            
+							div.onclick = function() {
+							    const allDivs = document.querySelectorAll('.info');
+							    allDivs.forEach(d => d.style.borderColor = '#ccc');
+							
+							    div.style.borderColor = 'blue';
+							
+							    document.querySelector('input[name="policeStationName"]').value = item['경찰서'] + '경찰서';
+							    document.querySelector('input[name="policeStationDiv"]').value = item['구분'];
+							    document.querySelector('input[name="policeStationSidoStation"]').value = item['시도청'];
+							    document.querySelector('input[name="policeStationAddress"]').value = item['주소'];
+							    
+							    //더미
+							    /*
+							    document.querySelector('input[name="policeIdentity"]').value = '테스트아이디';
+							    document.querySelector('input[name="policePassword"]').value = 'testpassword';
+							    document.querySelector('input[name="policeName"]').value = '김춘식';
+							    document.querySelector('input[name="policeEmail"]').value = '테스트이메일';
+							    document.querySelector('input[name="policePhone"]').value = '1234';
+							    document.querySelector('input[name="policeGrade"]').value = '학생';
+								*/
+							};
+							
+				            resultDiv.appendChild(div);
+				        });
+				    } else {
+				        resultDiv.innerHTML = '<h4>해당 경찰서를 찾을 수 없습니다.</h4>';
+				    }
+			},1000);
 	    }
+		
+	
 	}
 
 

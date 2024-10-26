@@ -38,13 +38,13 @@
     							<button type="button" class="btn btn-outline-danger">신고하기</button>
 							</a>
 							<a href="${path}/chat/livechatlist.km">
-    							<button type="button" class="btn btn-outline-primary">실시간채팅</button>
+    							<button type="button" class="btn btn-outline-danger">실시간채팅</button>
 							</a>
 		    				<a href="${path}/contact">
-		    					<button type="button" class="btn btn-outline-danger">문의하기</button>
+		    					<button type="button" class="btn btn-outline-info">문의하기</button>
 		    				</a>
 		    				<a href="${path}/declaration/userReportLogin.km">
-		    					<button type="button" class="btn btn-outline-primary">나의 신고내역</button>
+		    					<button type="button" class="btn btn-outline-info">나의 신고내역</button>
 		    				</a>
 						</div>
 	    			</div>
@@ -56,7 +56,7 @@
 		<div class="d-flex align-items-center">
             <c:if test="${loginPolice==null }">
                 <a href="${path}/police/policeenroll.do">
-                    <button type="button" class="btn btn-primary">경찰관</button>
+                    <button type="button" class="btn btn-primary">경찰접속</button>
                 </a>
             </c:if>
             <c:if test="${loginPolice!=null }">
