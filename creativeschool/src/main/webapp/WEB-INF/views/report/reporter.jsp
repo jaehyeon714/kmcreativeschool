@@ -60,7 +60,7 @@
 <main class="d-flex flex-column justify-content-center align-items-center">
     <div id="alertContainer">
         <div id="emailCheckedAlert" class="info">기존 이메일 정보를 찾았어요.<br>해당 정보로 등록을 진행합니다.</div>
-        <div id="emailCheckAlert" class="alert">이메일 중복 검사를 진행해주세요.</div>
+        <div id="emailNotExistAlert" class="alert">이메일을 찾을 수 없어요.<br>신규 등록을 진행해주세요.</div>
         <div id="nameAlert" class="alert">이름 길이를 확인해주세요.</div>
         <div id="phoneAlert" class="alert">전화번호를 확인해주세요.</div>
         <div id="passwordPatternAlert" class="alert">비밀번호 규칙을 확인해주세요.</div>
@@ -106,11 +106,30 @@
                 <button class="btn btn-outline-success">등록</button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="btn btn-outline-warning">취소</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+			    <button class="btn btn-outline-danger" type="button" onclick="resetForm()">초기화</button>
+               
             </div>
         </form>
     </div>
 
     <script>
+    	function resetForm() {
+        	document.querySelector("form").reset();
+            document.getElementById("reporterName").readOnly = false;
+            document.getElementById("reporterPhone").readOnly = false;
+            document.getElementById("reporterSchool").readOnly = false;
+            document.getElementById("reporterPassword").readOnly = false;
+            document.getElementById("reporterPassword2").readOnly = false;
+            document.getElementById("reporterEmail").readOnly = false;
+
+            const passwordGroup = document.getElementById("passwordGroup");
+            const password2Group = document.getElementById("password2Group");
+            
+            if (passwordGroup) passwordGroup.style.display = 'block';
+            if (password2Group) password2Group.style.display = 'block';
+   		}
+    
     	let emailChecked = false;
     
         document.getElementById("fetchReportsBtn").addEventListener("click", fetchReports);
@@ -124,11 +143,6 @@
             const phoneRegex = /^\d{3}-?\d{3,4}-?\d{4}$/;
 
             let isValid = true;
-            
-            if (!emailChecked) {
-                showAlert('emailCheckAlert'); 
-                isValid = false;
-            }
             
             if (!isPasswordValid(password) || !isPasswordValid(confirmPassword)) {
                 showAlert('passwordPatternAlert');
@@ -213,16 +227,13 @@
                         
                         if (passwordGroup) passwordGroup.style.display = 'none';
                         if (password2Group) password2Group.style.display = 'none';
-                        emailChecked = true;
                         showAlert('emailCheckedAlert')
                     } else {
-                        alert("해당 이메일로 등록된 정보가 없습니다.");
-                        emailChecked = true;
+                        showAlert('emailNotExistAlert');
                     }
                 })
                 .catch(error => {
-                    alert("해당 이메일로 등록된 정보가 없습니다. 신규 가입을 진행해주세요.");
-                    emailChecked = true;
+                    showAlert('emailNotExistAlert');
                 });
         }
 
