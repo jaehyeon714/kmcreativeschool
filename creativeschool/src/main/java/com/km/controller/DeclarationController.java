@@ -189,7 +189,6 @@ public class DeclarationController {
         return ResponseEntity.status(HttpStatus.OK).body(reporterInfo);
 	}
 	
-	
 	//======================================================
 
 	@RequestMapping("/userReportLogin.km") // 로그인
