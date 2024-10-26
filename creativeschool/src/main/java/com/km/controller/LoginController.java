@@ -1,7 +1,10 @@
 package com.km.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +52,7 @@ public class LoginController {
     }
     
     @RequestMapping("/policeLogin.do")
-    public String pLogin(String policeIdentity, String policePassword, HttpSession session) {
+    public String pLogin(String policeIdentity, String policePassword, HttpSession session, HttpServletResponse response) throws IOException {
     	Police s = service.selectPoliceById(policeIdentity);
     	if(s!=null
     			&&passwordEncoder.matches(policePassword,s.getPolicePassword())) {
@@ -59,13 +62,19 @@ public class LoginController {
     		service.updatePoliceLog(Map.of("flag","in","id",s.getPoliceIdentity()));
     		session.setAttribute("loginPolice", s);
     		session.setMaxInactiveInterval(60*3);//유휴로그인 유지시간 3분
-    		
+    		return "redirect:/";
     	}else {
     		//로그인 실패
     		System.out.println("경찰 로그인 실패");
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+    		PrintWriter out = response.getWriter();
+			out.println("<script> alert('아이디 또는 비밀번호가 틀립니다.');");
+			out.println("history.go(-1); </script>"); 
+			out.close();
+    		return "/police/policeenroll";
     	}
     	
-    	return "redirect:/";
     }
     
     @RequestMapping("/police/logout.do")

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.km.model.dto.Report;
+import com.km.model.dto.Reporter;
 
 public interface DeclarationService {
 
@@ -19,4 +20,6 @@ public interface DeclarationService {
 	int updatePoliceStatus(Map param);
 	
 	public List<Map<String, Object>> selectReportsByEmailAndPassword(String email, String password);
+	
+	Reporter selectReporterByEmail(String email);
 }

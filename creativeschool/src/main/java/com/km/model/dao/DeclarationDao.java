@@ -38,4 +38,6 @@ public interface DeclarationDao {
 	
 	List<Map<String, Object>> selectReportsByEmailAndPassword(SqlSession session, Map<String, String> map);
 	
+	Reporter selectReporterByEmail(SqlSession session, String email);
+	
 }

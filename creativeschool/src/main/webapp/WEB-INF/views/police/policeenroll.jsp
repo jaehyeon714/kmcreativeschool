@@ -59,7 +59,6 @@
     </c:if>
     <!-- 로그인 실패 시 에러 메시지 출력 -->
     <c:if test="${not empty error}">
-        <p style="color:red">${error}</p>
     </c:if>
     <c:if test="${loginPolice != null }">
         <div class="d-flex justify-content-center">
