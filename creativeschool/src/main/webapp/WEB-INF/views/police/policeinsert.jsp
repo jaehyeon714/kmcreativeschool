@@ -10,7 +10,7 @@
 	padding: 20px;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	max-width: 600px;
+	max-width: 90%;
 	margin: 0 auto;
 }
 input[readonly] {
@@ -44,28 +44,81 @@ input[readonly] {
 
 <div class="report-container">
     <h2>경찰관 등록</h2>
-
 	<form method="post" action="${path}/police/policeInsertDo.km" enctype="multipart/form-data" id="policeForm">
-        <div style="display: flex;">
-            <!-- 왼쪽 입력 필드 -->
-            <div style="flex-grow: 1; margin-right: 20px;">
-                <label>아이디: <input type="text" name="policeIdentity" required></label><br>
-                <label>비밀번호: <input type="text" name="policePassword" required></label><br>
-                <label>이름: <input type="text" name="policeName" required></label><br>
-                <label>이메일: <input type="text" name="policeEmail" required></label><br>
-                <label>전화번호: <input type="text" name="policePhone" required></label><br>
-                <label>직위: <input type="text" name="policeGrade" required></label><br>
-                <label>관할서 검색: <input type="text" name="policeJurisdiction"
-                    required oninput="searchPoliceStationByName(this.value);"></label><br>
-                
-                <label>관할서 이름: <input type="text" name="policeStationName" readonly/><br></label>
-                <label>관할서 구분: <input type="text" name="policeStationDiv" readonly/><br></label>
-                <label>관할서 시도청: <input type="text" name="policeStationSidoStation" readonly/><br></label>
-                <label>관할서 주소: <input type="text" name="policeStationAddress" readonly/><br></label>
-
-                <div id="result" style="margin-top: 10px;"></div>
+        <div class="d-flex justify-content-between">
+        	<div>
+	           <div class="input-group mb-3">
+	            	<div class="input-group-prepend">
+	               		<span class="input-group-text">아이디</span>
+	                </div>
+	                <input class="form-control" type="text" name="policeIdentity" required>
+	            </div>
+	            <div class="input-group mb-3">
+	            	<div class="input-group-prepend"> 
+	                	<span class="input-group-text">비밀번호</span>
+	                </div>
+	                <input class="form-control" type="text" name="policePassword" required> 
+	            </div>
+	            <div class="input-group mb-3">
+	                <div class="input-group-prepend"> 
+	                	<span class="input-group-text">이 름</span>
+	                </div>
+	                <input class="form-control" type="text" name="policeName" required>
+	            </div>
+	            <div class="input-group mb-3">
+	                <div class="input-group-prepend"> 
+	                	<span class="input-group-text">이메일</span>
+	                </div>
+	                <input class="form-control" type="text" name="policeEmail" required>
+				</div>
+				<div class="input-group mb-3">                
+	                <div class="input-group-prepend"> 
+	                	<span class="input-group-text">전화번호</span>
+	                </div>
+	                <input class="form-control" type="text" name="policePhone" required>
+				</div>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend"> 
+	                	<span class="input-group-text">직위</span>
+	                </div>                
+	                <input class="form-control" type="text" name="policeGrade" required>
+				</div>  
+			</div>
+			<div>
+	            <div class="input-group mb-3">
+	                <div class="input-group-prepend"> 
+	                	<span class="input-group-text">관할서검색</span>
+	                </div>
+	                <input class="form-control" type="text" name="policeJurisdiction"
+	                    required oninput="searchPoliceStationByName(this.value);"
+	                    placeholder="관서명 혹은 경찰서명">
+	            </div>
+	            <div class="input-group mb-3">
+		             <div class="input-group-prepend"> 
+	                	<span class="input-group-text">관할서 이름</span>
+	                </div>
+					<input class="form-control" type="text" name="policeStationName" readonly/><br></label>
+                </div>
+                <div class="input-group mb-3">
+                 	<div class="input-group-prepend"> 
+	                	<span class="input-group-text">관할서 구분</span>
+	                </div>
+	                <input class="form-control" type="text" name="policeStationDiv" readonly/>
+	            </div>
+	            <div class="input-group mb-3">
+	            	<div class="input-group-prepend"> 
+	                	<span class="input-group-text">관할서 시도청</span>
+	                </div>
+	                <input class="form-control" type="text" name="policeStationSidoStation" readonly/>
+	            </div>
+	            <div class="input-group mb-3">
+	            	<div class="input-group-prepend"> 
+	                	<span class="input-group-text">관할서 주소</span>
+	                </div>
+	                <input type="text" class="form-control" name="policeStationAddress" readonly/>
+	            </div>
+	            <div id="result" style="margin-top: 10px;"></div>
             </div>
-            
             <div style="text-align: center;  margin-right: 70px;">
                 <label for="policePhoto" style="cursor: pointer;">
                     <img id="photoPreview" src="${path }/resources/images/basicprofile.png" alt="사진 미리보기" style="border-radius: 50%; width: 150px; height: 150px; border: 2px solid #ccc;">
@@ -74,7 +127,6 @@ input[readonly] {
                 <p>경찰관 사진 등록</p>
             </div>
         </div>
-
         <input type="submit" class="btn btn-outline-success" value="등록">
         <input type="reset" class="btn btn-outline-danger" value="취소">
     </form>
@@ -94,7 +146,8 @@ input[readonly] {
 	
 	async function loadPoliceStationsData() {
 	    try {
-	        policeStationsData = await searchPoliceStation(); 
+	        policeStationsData = await searchPoliceStation();
+	        console.log(policeStationsData);
 	    }
 	    catch (error) {
 	        console.error(error);
@@ -105,10 +158,10 @@ input[readonly] {
 	    const resultDiv = document.getElementById('result');
 	    resultDiv.innerHTML = '';
 
-	    const result = policeStationsData.filter(item => item['관서명'] === name);
-	    const additionalResults = policeStationsData.filter(item => item['경찰서'] === name);
-	    result.push(...additionalResults);
-
+	    const result = policeStationsData.filter(item => item['관서명'].includes(name)||item['경찰서'].includes(name));
+	    //const additionalResults = policeStationsData.filter(item => item['경찰서'].includes(name));
+	    //result.push(...additionalResults);
+	    console.log(result);
 	    if (result.length > 0) {
 	        result.forEach(item => {
 	            const div = document.createElement('div');

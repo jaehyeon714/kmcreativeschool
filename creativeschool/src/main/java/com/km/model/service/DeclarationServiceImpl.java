@@ -70,7 +70,7 @@ public class DeclarationServiceImpl implements DeclarationService {
 	@Override
 	public boolean reportSendPolice(Report report,String url) {
 		List<Map> result=dao.searchReportAreaPolice(session, 
-				Map.of("sido",report.getSido(),"gungu",report.getGungu(),
+				Map.of("sido",report.getSido().substring(report.getSido().indexOf(" ")+1),"gungu",report.getGungu(),
 						"dong",report.getDong().split(" ")[0]));
 		
 		log.debug("{}",result);
