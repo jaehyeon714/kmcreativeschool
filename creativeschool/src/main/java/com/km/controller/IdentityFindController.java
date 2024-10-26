@@ -2,15 +2,20 @@ package com.km.controller;
 
 import java.security.SecureRandom;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.km.common.MailService;
 import com.km.model.dto.MailInfo;
+import com.km.model.dto.Police;
 import com.km.model.service.PoliceServicelmpl;
 
 @Controller
@@ -67,4 +72,16 @@ public class IdentityFindController {
 
 		return "/police/findIdPwComplete";
 	}
+	
+	@RequestMapping("/police/chagepassword.do")
+	public String chagePassword(String password,HttpSession session,Model m) {
+		
+		Police p=(Police)session.getAttribute("loginPolice");
+		int result=service.updatePolicePassword(p.getPoliceEmail(), passwordEncoder.encode(password));
+		m.addAttribute("msg",result>0?"비밀번호변경완료":"비밀번호변경실패");
+		m.addAttribute("loc","/police/logout.do");
+		
+		return "common/msg";
+	}
+	
 }

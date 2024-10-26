@@ -67,7 +67,7 @@
                     </a>
                 </span>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
-                	경찰 삭제
+                	계정삭제
 				</button>
 
 				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -89,12 +89,43 @@
 				    	</div>
 				  	</div>
 				</div>
-				
+				<div>
+                    <button data-toggle="modal" data-target="#passwordchangeModal"type="button" class="btn btn-warning mx-3">비밀번호변경</button>
+                </div>
                 <a href="${ path }/police/logout.do">
                     <button type="button" class="btn btn-primary mx-3">로그아웃</button>
                 </a>
             </c:if>	
         </div>
+        <div id="passwordchangeModal" class="modal" tabindex="-1">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">비밀번호변경</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+				<form action="${path}/police/chagepassword.do" method="post" onsubmit="return checkPassword();">
+			      <div class="modal-body">
+					  <div class="form-group">
+					    <label for="exampleInputEmail1">비밀번호</label>
+					    <input type="password" class="form-control" name="password" id="password" aria-describedby="emailHelp">
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleInputPassword1">비밀번호확인</label>
+					    <input type="password" class="form-control" id="passwordCheck">
+					  </div>
+			        
+			      </div>
+			      <div class="modal-footer">
+			        <button class="btn btn-primary">변경하기</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+			      </div>
+				</form>			      
+			    </div>
+			  </div>
+			</div>
 	</header>
 	<script src="${path }/resources/js/chatting-controller.js"></script>
 	<script>
@@ -104,6 +135,18 @@
 			sender='${sessionScope.clientEmail}';
 		};
 		openSocket(`\${location.host}`,'${path}')
+		const checkPassword=(e)=>{
+			const pass=$("#password").val();
+			const passck=$("#passwordCheck").val();
+			if(pass.length>=8&&pass==passck){
+				return true;
+			}else{
+				alert("비밀번호가 일치하지 않습니다.\n다시입력하세요. 8글자이상입력하세요");
+				$("#password").val("");
+				$("#passwordCheck").val("");
+				return false;
+			}
+		}
 	</script>
 	
 </body>

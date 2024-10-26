@@ -81,7 +81,7 @@
                 <div class="input-group">
                     <input type="email" class="form-control" id="reporterEmail" name="reporterEmail" placeholder="신고자 이메일 (example@email.com)" required>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button" id="fetchReportsBtn">이메일 중복 검사</button>
+                        <button class="btn btn-outline-primary" type="button" id="fetchReportsBtn">등록된 사용자찾기</button>
                     </div>
                 </div>
             </div>
